@@ -7,7 +7,8 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write        # PR 시험 그림을 ci-results 브랜치에 올리기 위해
+  pull-requests: write   # PR에 결과 댓글
 
 concurrency:
   group: ci-${{ github.ref }}
@@ -27,9 +28,9 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
 
@@ -54,15 +55,43 @@ jobs:
           rm -rf 08_렌더_data
           ls -la
 
+      - name: 웹 미리보기 확인 (Linux)
+        if: runner.os == 'Linux' && always()
+        shell: bash
+        env:
+          EXPECT: '{"08": 80081}'
+        run: |
+          python web/build_site.py _site
+          node web/smoke_test.js _site ci_out
+
       - name: 결과 요약
         if: always()
         shell: bash
         run: |
-          if [ -f ci_out/summary.md ]; then cat ci_out/summary.md >> "$GITHUB_STEP_SUMMARY"; fi
+          for f in ci_out/summary.md ci_out/web_summary.md; do [ -f "$f" ] && cat "$f" >> "$GITHUB_STEP_SUMMARY"; done; true
+
+      - name: PR에 결과와 그림 남기기 (Linux)
+        if: runner.os == 'Linux' && always() && github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR: ${{ github.event.number }}
+          REPO: ${{ github.repository }}
+        run: |
+          dir="pr-$PR/${{ github.run_id }}"
+          url="https://x-access-token:${GH_TOKEN}@github.com/${REPO}.git"
+          if git ls-remote --exit-code "$url" ci-results >/dev/null; then git clone -q --depth 1 --branch ci-results "$url" cr
+          else mkdir cr && git -C cr init -q -b ci-results && git -C cr remote add origin "$url"; fi
+          mkdir -p "cr/$dir" && cp ci_out/*.png "cr/$dir/" 2>/dev/null || true
+          git -C cr -c user.name="github-actions" -c user.email="github-actions@users.noreply.github.com" add -A
+          git -C cr -c user.name="github-actions" -c user.email="github-actions@users.noreply.github.com" commit -qm "PR #$PR 시험 그림 ($dir)" || true
+          git -C cr push -q origin ci-results
+          python tests/pr_report.py ci_out "https://raw.githubusercontent.com/$REPO/ci-results/$dir" > body.md
+          gh pr comment "$PR" -R "$REPO" --body-file body.md --edit-last --create-if-none || gh pr comment "$PR" -R "$REPO" --body-file body.md
 
       - name: 시험 그림 올리기
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: 시험그림-${{ matrix.os }}
           path: ci_out/
@@ -73,7 +102,7 @@ jobs:
     name: 비밀값 검사
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: API 키·개인 파일이 들어가지 않았는지 확인
         shell: bash
         run: |
