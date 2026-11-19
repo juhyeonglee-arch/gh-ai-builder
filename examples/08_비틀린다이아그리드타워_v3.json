@@ -1,0 +1,4965 @@
+{
+"title": "50층 비틀린 다이아그리드 타워 v3 — 구조 + 유닛 커튼월",
+"summary": "층마다 일정하게 돌아가는 정사각형 평면 위에, 바깥 유리 선 → 슬래브 끝 → 다이아그리드 중심선 순서로 안쪽으로 들어가며 켜를 나눴어요. 구조는 모듈 층마다 놓인 링의 절점을 두 방향 나선으로 이은 H형강 대각재, 링 보, 원반형 주강 노드, 엔드 플레이트와 볼트로 이뤄져요. 슬래브는 층 높이에서 아래로, 링 보·바닥 보는 그 밑에 매달려요. 외피는 층마다 돌린 선을 따라 같은 크기의 유닛 패널(멀리언·트랜섬·스팬드럴·유리·캡)이 블록으로 놓이고, 모서리는 코너 기둥으로 마감해요.",
+"notes": "Bake하면 노드·엔드 플레이트·커튼월 유닛·코너가 블록으로 들어가요. 바닥 보는 '바닥 보 켜기'로 켜세요. 구조가 유리에 닿으면 '유리 → 다이아그리드 중심 거리'를 늘리세요(대각재 춤/2 + 노드 반지름보다 커야 해요).",
+"groups": [
+{
+"id": "g1",
+"label": "1. 입력 — 타워",
+"note": "층·평면·비틀림·다이아그리드 모듈, 그리고 외피에서 슬래브 끝·구조 중심까지 들어가는 거리를 정해요."
+},
+{
+"id": "g1b",
+"label": "1b. 입력 — 구조 부재",
+"note": "대각재 H형강, 링 보·바닥 보 비율, 주강 노드, 엔드 플레이트·볼트 치수예요."
+},
+{
+"id": "g1c",
+"label": "1c. 입력 — 커튼월",
+"note": "한 변 패널 수, 멀리언·트랜섬·캡, 스팬드럴 높이, 유리 두께, 패널이 층 바닥보다 내려오는 길이예요."
+},
+{
+"id": "g2",
+"label": "2. 비틀림 규칙과 층 작업면",
+"note": "높이 1mm당 회전량 = 총 비틀림 ÷ 건물 높이. 층마다(지붕 포함) 작업면을 올리고 그 높이만큼 돌려요."
+},
+{
+"id": "g3",
+"label": "3. 슬래브·코어 (콘크리트)",
+"note": "슬래브는 층 높이(마감 바닥)에서 아래로 두께만큼, 코어를 비우고 만들어요. 코어는 속 빈 튜브로 지붕까지 세워요."
+},
+{
+"id": "g4",
+"label": "4. H형강 단면 (원점)",
+"note": "플랜지 2장 + 웨브 1장 사각형을 하나의 H 윤곽으로 합쳐요. 춤 방향이 X축이에요."
+},
+{
+"id": "g5",
+"label": "5. 링·절점",
+"note": "모듈 층마다 구조 링을 슬래브 밑(링 보 중심 높이)에 두고, 링마다 반 칸씩 엇갈린 절점을 찍어요."
+},
+{
+"id": "g6",
+"label": "6. 대각재 축선",
+"note": "절점을 두 방향 나선으로 이은 뒤 절점 사이마다 끊어 부재 축선을 얻어요."
+},
+{
+"id": "g7",
+"label": "7. 대각재 (H형강)",
+"note": "축선 양 끝을 노드 반지름+플레이트 두께만큼 줄이고(mm), 춤이 건물 바깥을 향하게 H 단면을 세워 축선 방향으로 밀어내요."
+},
+{
+"id": "g8",
+"label": "8. 링 보 (H형강, 춤 수직)",
+"note": "링을 절점에서 끊고 작은 H 단면(비율)을 춤이 수직이 되게 놓아요. 윗면이 슬래브 밑면에 닿아요."
+},
+{
+"id": "g9",
+"label": "9. 바닥 보 (켜기 스위치)",
+"note": "층마다 구조 선을 나눈 점에서 코어까지 보를 걸어요. 윗면이 슬래브 밑면에 닿아요. 개수가 많아 기본은 꺼져 있어요."
+},
+{
+"id": "g10",
+"label": "10. 주강 노드 (블록)",
+"note": "원점에 원반형 노드(드럼 + 안팎 캡)를 만들고, 절점마다 축이 건물 바깥을 향하게 블록으로 놓아요. 대각재 끝이 드럼 테두리에 닿아요."
+},
+{
+"id": "g11",
+"label": "11. 엔드 플레이트·볼트 (블록)",
+"note": "원점에 플레이트 한 장과 볼트 10개(몸통·머리·너트)를 만들고, 대각재 양 끝마다 블록으로 놓아요. 플레이트 뒷면이 노드 드럼에 닿아요."
+},
+{
+"id": "g12",
+"label": "12. 커튼월 패널 자리",
+"note": "층마다 돌린 외피 선을 4변으로 나누고 각 변을 패널 수로 나눠, 패널 왼쪽 아래마다 작업면(X=변 방향, Y=위, Z=바깥)을 세워요. 각 변 시작점에는 코너 기둥 자리도 만들어요."
+},
+{
+"id": "g13",
+"label": "13. 유닛 패널 원형 (원점, Y=위, Z=바깥)",
+"note": "패널 한 장: 좌우 반쪽 멀리언, 위·중간·아래 트랜섬, 스팬드럴 판(슬래브·링 보를 가림), 복층 유리, 바깥 캡. 모서리용 코너 기둥도 함께 짜요."
+},
+{
+"id": "g14",
+"label": "14. 미리보기 (선택)",
+"note": "그래스호퍼 화면에서 유리만 실제 자리에 띄워 봐요. Bake에는 영향이 없어요."
+}
+],
+"nodes": [
+{
+"id": "sN",
+"component": "Params/Input/Number Slider",
+"group": "g1",
+"nickname": "층수",
+"slider": [
+8,
+80,
+50
+],
+"int": true
+},
+{
+"id": "sH",
+"component": "Params/Input/Number Slider",
+"group": "g1",
+"nickname": "층고",
+"slider": [
+3000,
+6000,
+4000
+],
+"int": true
+},
+{
+"id": "sS",
+"component": "Params/Input/Number Slider",
+"group": "g1",
+"nickname": "외피 한 변(유리 선)",
+"slider": [
+20000,
+60000,
+36000
+],
+"int": true
+},
+{
+"id": "sT",
+"component": "Params/Input/Number Slider",
+"group": "g1",
+"nickname": "총 비틀림(도)",
+"slider": [
+0,
+120,
+60
+],
+"int": true
+},
+{
+"id": "sM",
+"component": "Params/Input/Number Slider",
+"group": "g1",
+"nickname": "다이아그리드 모듈(층)",
+"slider": [
+2,
+8,
+4
+],
+"int": true
+},
+{
+"id": "sD",
+"component": "Params/Input/Number Slider",
+"group": "g1",
+"nickname": "한 면당 칸 수",
+"slider": [
+3,
+12,
+6
+],
+"int": true
+},
+{
+"id": "sIn",
+"component": "Params/Input/Number Slider",
+"group": "g1",
+"nickname": "유리 → 슬래브 끝 거리",
+"slider": [
+50,
+600,
+150
+],
+"int": true
+},
+{
+"id": "cIn",
+"component": "Params/Input/Number Slider",
+"group": "g1",
+"nickname": "유리 → 다이아그리드 중심 거리",
+"slider": [
+800,
+3000,
+1800
+],
+"int": true
+},
+{
+"id": "sC",
+"component": "Params/Input/Number Slider",
+"group": "g1",
+"nickname": "코어 한 변",
+"slider": [
+6000,
+20000,
+12000
+],
+"int": true
+},
+{
+"id": "sCt",
+"component": "Params/Input/Number Slider",
+"group": "g1",
+"nickname": "코어 벽 두께",
+"slider": [
+200,
+1000,
+500
+],
+"int": true
+},
+{
+"id": "sT2",
+"component": "Params/Input/Number Slider",
+"group": "g1",
+"nickname": "슬래브 두께",
+"slider": [
+150,
+500,
+250
+],
+"int": true
+},
+{
+"id": "p0",
+"component": "Params/Input/Panel",
+"group": "g1",
+"nickname": "0",
+"text": "0"
+},
+{
+"id": "p1",
+"component": "Params/Input/Panel",
+"group": "g1",
+"nickname": "1",
+"text": "1"
+},
+{
+"id": "p2",
+"component": "Params/Input/Panel",
+"group": "g1",
+"nickname": "2",
+"text": "2"
+},
+{
+"id": "p4",
+"component": "Params/Input/Panel",
+"group": "g1",
+"nickname": "4",
+"text": "4"
+},
+{
+"id": "pR",
+"component": "Params/Input/Panel",
+"group": "g1",
+"nickname": "√2/2",
+"text": "0.70710678"
+},
+{
+"id": "pNeg",
+"component": "Params/Input/Panel",
+"group": "g1",
+"nickname": "-1",
+"text": "-1"
+},
+{
+"id": "tog",
+"component": "Params/Input/Boolean Toggle",
+"group": "g1",
+"nickname": "비율로 재기(켬)",
+"toggle": true
+},
+{
+"id": "tAbs",
+"component": "Params/Input/Boolean Toggle",
+"group": "g1",
+"nickname": "mm로 재기(끔)",
+"toggle": false
+},
+{
+"id": "tgFl",
+"component": "Params/Input/Boolean Toggle",
+"group": "g1",
+"nickname": "바닥 보 켜기",
+"toggle": false
+},
+{
+"id": "dD",
+"component": "Params/Input/Number Slider",
+"group": "g1b",
+"nickname": "대각재 춤(바깥 방향)",
+"slider": [
+400,
+1200,
+700
+],
+"int": true
+},
+{
+"id": "dB",
+"component": "Params/Input/Number Slider",
+"group": "g1b",
+"nickname": "대각재 플랜지 폭",
+"slider": [
+200,
+800,
+450
+],
+"int": true
+},
+{
+"id": "dTf",
+"component": "Params/Input/Number Slider",
+"group": "g1b",
+"nickname": "플랜지 두께",
+"slider": [
+16,
+100,
+45
+],
+"int": true
+},
+{
+"id": "dTw",
+"component": "Params/Input/Number Slider",
+"group": "g1b",
+"nickname": "웨브 두께",
+"slider": [
+12,
+80,
+30
+],
+"int": true
+},
+{
+"id": "kR",
+"component": "Params/Input/Number Slider",
+"group": "g1b",
+"nickname": "링 보 단면 비율",
+"slider": [
+0.3,
+1.0,
+0.7
+],
+"int": false
+},
+{
+"id": "kF",
+"component": "Params/Input/Number Slider",
+"group": "g1b",
+"nickname": "바닥 보 단면 비율",
+"slider": [
+0.2,
+0.8,
+0.5
+],
+"int": false
+},
+{
+"id": "fN",
+"component": "Params/Input/Number Slider",
+"group": "g1b",
+"nickname": "한 면당 바닥 보 수",
+"slider": [
+2,
+20,
+8
+],
+"int": true
+},
+{
+"id": "nD",
+"component": "Params/Input/Number Slider",
+"group": "g1b",
+"nickname": "주강 노드 지름",
+"slider": [
+600,
+2500,
+1300
+],
+"int": true
+},
+{
+"id": "nT",
+"component": "Params/Input/Number Slider",
+"group": "g1b",
+"nickname": "주강 노드 두께(바깥 방향)",
+"slider": [
+500,
+2000,
+1000
+],
+"int": true
+},
+{
+"id": "tp",
+"component": "Params/Input/Number Slider",
+"group": "g1b",
+"nickname": "엔드 플레이트 두께",
+"slider": [
+20,
+100,
+50
+],
+"int": true
+},
+{
+"id": "eB",
+"component": "Params/Input/Number Slider",
+"group": "g1b",
+"nickname": "플레이트 여유",
+"slider": [
+60,
+250,
+120
+],
+"int": true
+},
+{
+"id": "bd",
+"component": "Params/Input/Number Slider",
+"group": "g1b",
+"nickname": "볼트 지름",
+"slider": [
+16,
+48,
+30
+],
+"int": true
+},
+{
+"id": "p06",
+"component": "Params/Input/Panel",
+"group": "g1b",
+"nickname": "0.6",
+"text": "0.6"
+},
+{
+"id": "p045",
+"component": "Params/Input/Panel",
+"group": "g1b",
+"nickname": "0.45",
+"text": "0.45"
+},
+{
+"id": "p115",
+"component": "Params/Input/Panel",
+"group": "g1b",
+"nickname": "1.15",
+"text": "1.15"
+},
+{
+"id": "p95",
+"component": "Params/Input/Panel",
+"group": "g1b",
+"nickname": "0.95",
+"text": "0.95"
+},
+{
+"id": "p60",
+"component": "Params/Input/Panel",
+"group": "g1b",
+"nickname": "60",
+"text": "60"
+},
+{
+"id": "p30",
+"component": "Params/Input/Panel",
+"group": "g1b",
+"nickname": "30",
+"text": "30"
+},
+{
+"id": "p25",
+"component": "Params/Input/Panel",
+"group": "g1b",
+"nickname": "25",
+"text": "25"
+},
+{
+"id": "p20",
+"component": "Params/Input/Panel",
+"group": "g1b",
+"nickname": "20",
+"text": "20"
+},
+{
+"id": "p6",
+"component": "Params/Input/Panel",
+"group": "g1b",
+"nickname": "6",
+"text": "6"
+},
+{
+"id": "nP",
+"component": "Params/Input/Number Slider",
+"group": "g1c",
+"nickname": "한 변 패널 수",
+"slider": [
+8,
+60,
+24
+],
+"int": true
+},
+{
+"id": "mw",
+"component": "Params/Input/Number Slider",
+"group": "g1c",
+"nickname": "멀리언 폭(맞댄 두 쪽 합)",
+"slider": [
+40,
+200,
+80
+],
+"int": true
+},
+{
+"id": "md",
+"component": "Params/Input/Number Slider",
+"group": "g1c",
+"nickname": "멀리언 깊이",
+"slider": [
+80,
+400,
+200
+],
+"int": true
+},
+{
+"id": "tw",
+"component": "Params/Input/Number Slider",
+"group": "g1c",
+"nickname": "트랜섬 높이",
+"slider": [
+40,
+200,
+80
+],
+"int": true
+},
+{
+"id": "sp",
+"component": "Params/Input/Number Slider",
+"group": "g1c",
+"nickname": "스팬드럴 높이",
+"slider": [
+600,
+2000,
+1200
+],
+"int": true
+},
+{
+"id": "gt",
+"component": "Params/Input/Number Slider",
+"group": "g1c",
+"nickname": "유리 두께",
+"slider": [
+10,
+60,
+28
+],
+"int": true
+},
+{
+"id": "cw",
+"component": "Params/Input/Number Slider",
+"group": "g1c",
+"nickname": "외부 캡 폭",
+"slider": [
+30,
+200,
+60
+],
+"int": true
+},
+{
+"id": "fd",
+"component": "Params/Input/Number Slider",
+"group": "g1c",
+"nickname": "외부 캡 돌출",
+"slider": [
+20,
+600,
+150
+],
+"int": true
+},
+{
+"id": "sBd",
+"component": "Params/Input/Number Slider",
+"group": "g1c",
+"nickname": "패널 하단(층 바닥 아래)",
+"slider": [
+0,
+1500,
+700
+],
+"int": true
+},
+{
+"id": "p03",
+"component": "Params/Input/Panel",
+"group": "g1c",
+"nickname": "0.3",
+"text": "0.3"
+},
+{
+"id": "tgPv",
+"component": "Params/Input/Boolean Toggle",
+"group": "g1c",
+"nickname": "유리 미리보기",
+"toggle": false
+},
+{
+"id": "rd",
+"component": "Maths/Trig/Radians",
+"group": "g2"
+},
+{
+"id": "htot",
+"component": "Maths/Operators/Multiplication",
+"group": "g2",
+"nickname": "건물 높이"
+},
+{
+"id": "fac",
+"component": "Maths/Operators/Division",
+"group": "g2",
+"nickname": "mm당 회전"
+},
+{
+"id": "xy0",
+"component": "Vector/Plane/XY Plane",
+"group": "g2",
+"nickname": "월드 XY"
+},
+{
+"id": "fc",
+"component": "Maths/Operators/Addition",
+"group": "g2",
+"nickname": "층수+지붕"
+},
+{
+"id": "fz",
+"component": "Sets/Sequence/Series",
+"group": "g2",
+"nickname": "층 높이들"
+},
+{
+"id": "fpt",
+"component": "Vector/Point/Construct Point",
+"group": "g2"
+},
+{
+"id": "fpl",
+"component": "Vector/Plane/XY Plane",
+"group": "g2",
+"nickname": "층 작업면"
+},
+{
+"id": "fan",
+"component": "Maths/Operators/Multiplication",
+"group": "g2",
+"nickname": "층 회전각"
+},
+{
+"id": "frot",
+"component": "Transform/Euclidean/Rotate",
+"group": "g2",
+"nickname": "돌린 작업면"
+},
+{
+"id": "rCw",
+"component": "Maths/Operators/Multiplication",
+"group": "g2",
+"nickname": "외피 반지름"
+},
+{
+"id": "cwl",
+"component": "Curve/Primitive/Polygon",
+"group": "g2",
+"nickname": "외피(유리) 선"
+},
+{
+"id": "sIn2",
+"component": "Maths/Operators/Multiplication",
+"group": "g2"
+},
+{
+"id": "sSl",
+"component": "Maths/Operators/Subtraction",
+"group": "g2",
+"nickname": "슬래브 한 변"
+},
+{
+"id": "rSl",
+"component": "Maths/Operators/Multiplication",
+"group": "g2"
+},
+{
+"id": "fpoly",
+"component": "Curve/Primitive/Polygon",
+"group": "g2",
+"nickname": "슬래브 끝 선"
+},
+{
+"id": "cIn2",
+"component": "Maths/Operators/Multiplication",
+"group": "g2"
+},
+{
+"id": "sDg",
+"component": "Maths/Operators/Subtraction",
+"group": "g2",
+"nickname": "구조 한 변"
+},
+{
+"id": "rDg",
+"component": "Maths/Operators/Multiplication",
+"group": "g2",
+"nickname": "구조 반지름"
+},
+{
+"id": "rCore",
+"component": "Maths/Operators/Multiplication",
+"group": "g2",
+"nickname": "코어 반지름"
+},
+{
+"id": "cpoly",
+"component": "Curve/Primitive/Polygon",
+"group": "g2",
+"nickname": "코어 선"
+},
+{
+"id": "mg",
+"component": "Sets/Tree/Merge",
+"group": "g3",
+"nickname": "층별 묶음"
+},
+{
+"id": "bs",
+"component": "Surface/Freeform/Boundary Surfaces",
+"group": "g3"
+},
+{
+"id": "nT2",
+"component": "Maths/Operators/Multiplication",
+"group": "g3",
+"nickname": "-슬래브 두께"
+},
+{
+"id": "uzS",
+"component": "Vector/Vector/Unit Z",
+"group": "g3",
+"nickname": "아래로"
+},
+{
+"id": "slab",
+"component": "Surface/Freeform/Extrude",
+"group": "g3",
+"nickname": "슬래브",
+"bake": true,
+"material": "concrete"
+},
+{
+"id": "cp0",
+"component": "Curve/Primitive/Polygon",
+"group": "g3",
+"nickname": "코어 바깥"
+},
+{
+"id": "ct2",
+"component": "Maths/Operators/Multiplication",
+"group": "g3"
+},
+{
+"id": "cin",
+"component": "Maths/Operators/Subtraction",
+"group": "g3",
+"nickname": "코어 안 한 변"
+},
+{
+"id": "rCin",
+"component": "Maths/Operators/Multiplication",
+"group": "g3"
+},
+{
+"id": "cpI",
+"component": "Curve/Primitive/Polygon",
+"group": "g3",
+"nickname": "코어 안쪽"
+},
+{
+"id": "mg3",
+"component": "Sets/Tree/Merge",
+"group": "g3"
+},
+{
+"id": "bs3",
+"component": "Surface/Freeform/Boundary Surfaces",
+"group": "g3"
+},
+{
+"id": "uzC",
+"component": "Vector/Vector/Unit Z",
+"group": "g3"
+},
+{
+"id": "core",
+"component": "Surface/Freeform/Extrude",
+"group": "g3",
+"nickname": "코어 벽",
+"bake": true,
+"material": "concrete"
+},
+{
+"id": "hd",
+"component": "Maths/Operators/Division",
+"group": "g4",
+"nickname": "춤/2"
+},
+{
+"id": "hb",
+"component": "Maths/Operators/Division",
+"group": "g4",
+"nickname": "폭/2"
+},
+{
+"id": "htw",
+"component": "Maths/Operators/Division",
+"group": "g4",
+"nickname": "웨브/2"
+},
+{
+"id": "xf",
+"component": "Maths/Operators/Subtraction",
+"group": "g4",
+"nickname": "플랜지 안쪽"
+},
+{
+"id": "tfh",
+"component": "Maths/Operators/Division",
+"group": "g4"
+},
+{
+"id": "xw",
+"component": "Maths/Operators/Subtraction",
+"group": "g4",
+"nickname": "웨브 끝"
+},
+{
+"id": "nhd",
+"component": "Maths/Operators/Multiplication",
+"group": "g4"
+},
+{
+"id": "nhb",
+"component": "Maths/Operators/Multiplication",
+"group": "g4"
+},
+{
+"id": "nxf",
+"component": "Maths/Operators/Multiplication",
+"group": "g4"
+},
+{
+"id": "nxw",
+"component": "Maths/Operators/Multiplication",
+"group": "g4"
+},
+{
+"id": "nhtw",
+"component": "Maths/Operators/Multiplication",
+"group": "g4"
+},
+{
+"id": "dF1",
+"component": "Maths/Domain/Construct Domain",
+"group": "g4"
+},
+{
+"id": "dFy",
+"component": "Maths/Domain/Construct Domain",
+"group": "g4"
+},
+{
+"id": "dF2",
+"component": "Maths/Domain/Construct Domain",
+"group": "g4"
+},
+{
+"id": "dWx",
+"component": "Maths/Domain/Construct Domain",
+"group": "g4"
+},
+{
+"id": "dWy",
+"component": "Maths/Domain/Construct Domain",
+"group": "g4"
+},
+{
+"id": "rF1",
+"component": "Curve/Primitive/Rectangle",
+"group": "g4",
+"nickname": "플랜지 1"
+},
+{
+"id": "rF2",
+"component": "Curve/Primitive/Rectangle",
+"group": "g4",
+"nickname": "플랜지 2"
+},
+{
+"id": "rW",
+"component": "Curve/Primitive/Rectangle",
+"group": "g4",
+"nickname": "웨브"
+},
+{
+"id": "m1",
+"component": "Sets/Tree/Merge",
+"group": "g4"
+},
+{
+"id": "m2",
+"component": "Sets/Tree/Merge",
+"group": "g4"
+},
+{
+"id": "prof",
+"component": "Intersect/Shape/Region Union",
+"group": "g4",
+"nickname": "H 윤곽"
+},
+{
+"id": "nr",
+"component": "Maths/Operators/Division",
+"group": "g4",
+"nickname": "노드 반지름"
+},
+{
+"id": "clr",
+"component": "Maths/Operators/Addition",
+"group": "g4",
+"nickname": "끝 여유(노드+플레이트)"
+},
+{
+"id": "rDp",
+"component": "Maths/Operators/Multiplication",
+"group": "g4",
+"nickname": "링 보 춤"
+},
+{
+"id": "rDh",
+"component": "Maths/Operators/Division",
+"group": "g4"
+},
+{
+"id": "mh",
+"component": "Maths/Operators/Multiplication",
+"group": "g5",
+"nickname": "링 간격"
+},
+{
+"id": "rc1",
+"component": "Maths/Operators/Division",
+"group": "g5"
+},
+{
+"id": "rc",
+"component": "Maths/Operators/Addition",
+"group": "g5",
+"nickname": "링 개수"
+},
+{
+"id": "rz",
+"component": "Sets/Sequence/Series",
+"group": "g5",
+"nickname": "링 층 높이들"
+},
+{
+"id": "drop",
+"component": "Maths/Operators/Addition",
+"group": "g5",
+"nickname": "슬래브 밑까지"
+},
+{
+"id": "ndrop",
+"component": "Maths/Operators/Multiplication",
+"group": "g5"
+},
+{
+"id": "rzz",
+"component": "Maths/Operators/Addition",
+"group": "g5",
+"nickname": "링 보 중심 높이"
+},
+{
+"id": "rpt",
+"component": "Vector/Point/Construct Point",
+"group": "g5"
+},
+{
+"id": "rpl",
+"component": "Vector/Plane/XY Plane",
+"group": "g5"
+},
+{
+"id": "ran",
+"component": "Maths/Operators/Multiplication",
+"group": "g5",
+"nickname": "링 회전각(그 층과 같게)"
+},
+{
+"id": "rrot",
+"component": "Transform/Euclidean/Rotate",
+"group": "g5"
+},
+{
+"id": "rpoly",
+"component": "Curve/Primitive/Polygon",
+"group": "g5",
+"nickname": "구조 링"
+},
+{
+"id": "nd",
+"component": "Maths/Operators/Multiplication",
+"group": "g5",
+"nickname": "링당 절점 수"
+},
+{
+"id": "jj",
+"component": "Sets/Sequence/Series",
+"group": "g5",
+"nickname": "절점 순번"
+},
+{
+"id": "kk",
+"component": "Sets/Sequence/Series",
+"group": "g5",
+"nickname": "링 번호"
+},
+{
+"id": "kh",
+"component": "Maths/Operators/Division",
+"group": "g5",
+"nickname": "반 칸 밀기"
+},
+{
+"id": "jk",
+"component": "Maths/Operators/Addition",
+"group": "g5",
+"nickname": "밀린 순번"
+},
+{
+"id": "tn",
+"component": "Maths/Operators/Division",
+"group": "g5",
+"nickname": "0~1 위치"
+},
+{
+"id": "tm",
+"component": "Maths/Operators/Modulus",
+"group": "g5",
+"nickname": "한 바퀴 정리"
+},
+{
+"id": "ev",
+"component": "Curve/Analysis/Evaluate Length",
+"group": "g5",
+"nickname": "절점"
+},
+{
+"id": "fl1",
+"component": "Sets/Tree/Flip Matrix",
+"group": "g6",
+"nickname": "순번별 세로줄"
+},
+{
+"id": "pl1",
+"component": "Curve/Spline/PolyLine",
+"group": "g6",
+"nickname": "오른 나선"
+},
+{
+"id": "ex1",
+"component": "Curve/Util/Explode",
+"group": "g6"
+},
+{
+"id": "kneg",
+"component": "Maths/Operators/Multiplication",
+"group": "g6",
+"nickname": "-링 번호"
+},
+{
+"id": "sh",
+"component": "Sets/List/Shift List",
+"group": "g6",
+"nickname": "링마다 거꾸로 밀기"
+},
+{
+"id": "fl2",
+"component": "Sets/Tree/Flip Matrix",
+"group": "g6"
+},
+{
+"id": "pl2",
+"component": "Curve/Spline/PolyLine",
+"group": "g6",
+"nickname": "왼 나선"
+},
+{
+"id": "ex2",
+"component": "Curve/Util/Explode",
+"group": "g6"
+},
+{
+"id": "segD",
+"component": "Sets/Tree/Merge",
+"group": "g6",
+"nickname": "대각재 축선 전부"
+},
+{
+"id": "dg_L",
+"component": "Curve/Analysis/Length",
+"group": "g7"
+},
+{
+"id": "dg_Lc",
+"component": "Maths/Operators/Subtraction",
+"group": "g7"
+},
+{
+"id": "dg_e1",
+"component": "Curve/Analysis/Evaluate Length",
+"group": "g7",
+"nickname": "시작(노드+플레이트만큼 안쪽, mm)"
+},
+{
+"id": "dg_e2",
+"component": "Curve/Analysis/Evaluate Length",
+"group": "g7",
+"nickname": "끝(노드+플레이트만큼 안쪽, mm)"
+},
+{
+"id": "dg_v",
+"component": "Vector/Vector/Vector 2Pt",
+"group": "g7",
+"nickname": "부재 방향"
+},
+{
+"id": "dg_pn",
+"component": "Vector/Plane/Plane Normal",
+"group": "g7"
+},
+{
+"id": "dg_dc",
+"component": "Vector/Point/Deconstruct",
+"group": "g7"
+},
+{
+"id": "dg_rv",
+"component": "Vector/Vector/Vector XYZ",
+"group": "g7",
+"nickname": "바깥 방향"
+},
+{
+"id": "dg_al",
+"component": "Vector/Plane/Align Plane",
+"group": "g7",
+"nickname": "춤 방향 맞춤"
+},
+{
+"id": "dg_or",
+"component": "Transform/Euclidean/Orient",
+"group": "g7",
+"nickname": "단면 옮기기"
+},
+{
+"id": "dg_ex",
+"component": "Surface/Freeform/Extrude",
+"group": "g7",
+"nickname": "대각재 H형강",
+"bake": true,
+"material": "steel"
+},
+{
+"id": "shat",
+"component": "Curve/Division/Shatter",
+"group": "g8",
+"nickname": "절점에서 끊기"
+},
+{
+"id": "uzU",
+"component": "Vector/Vector/Unit Z",
+"group": "g8",
+"nickname": "위쪽"
+},
+{
+"id": "profR",
+"component": "Transform/Affine/Scale",
+"group": "g8",
+"nickname": "링 보 단면"
+},
+{
+"id": "rg_L",
+"component": "Curve/Analysis/Length",
+"group": "g8"
+},
+{
+"id": "rg_Lc",
+"component": "Maths/Operators/Subtraction",
+"group": "g8"
+},
+{
+"id": "rg_e1",
+"component": "Curve/Analysis/Evaluate Length",
+"group": "g8",
+"nickname": "시작(노드+플레이트만큼 안쪽, mm)"
+},
+{
+"id": "rg_e2",
+"component": "Curve/Analysis/Evaluate Length",
+"group": "g8",
+"nickname": "끝(노드+플레이트만큼 안쪽, mm)"
+},
+{
+"id": "rg_v",
+"component": "Vector/Vector/Vector 2Pt",
+"group": "g8",
+"nickname": "부재 방향"
+},
+{
+"id": "rg_pn",
+"component": "Vector/Plane/Plane Normal",
+"group": "g8"
+},
+{
+"id": "rg_al",
+"component": "Vector/Plane/Align Plane",
+"group": "g8",
+"nickname": "춤 방향 맞춤"
+},
+{
+"id": "rg_or",
+"component": "Transform/Euclidean/Orient",
+"group": "g8",
+"nickname": "단면 옮기기"
+},
+{
+"id": "rg_ex",
+"component": "Surface/Freeform/Extrude",
+"group": "g8",
+"nickname": "링 보 H형강",
+"bake": true,
+"material": "steel"
+},
+{
+"id": "fbd",
+"component": "Maths/Operators/Multiplication",
+"group": "g9",
+"nickname": "바닥 보 춤"
+},
+{
+"id": "fbh",
+"component": "Maths/Operators/Division",
+"group": "g9"
+},
+{
+"id": "fdrop",
+"component": "Maths/Operators/Addition",
+"group": "g9"
+},
+{
+"id": "nfdrop",
+"component": "Maths/Operators/Multiplication",
+"group": "g9"
+},
+{
+"id": "uzF",
+"component": "Vector/Vector/Unit Z",
+"group": "g9",
+"nickname": "슬래브 밑으로"
+},
+{
+"id": "gate",
+"component": "Sets/List/Dispatch",
+"group": "g9",
+"nickname": "바닥 보 스위치"
+},
+{
+"id": "dgl",
+"component": "Curve/Primitive/Polygon",
+"group": "g9",
+"nickname": "층별 구조 선"
+},
+{
+"id": "fcount",
+"component": "Maths/Operators/Multiplication",
+"group": "g9",
+"nickname": "층당 보 수"
+},
+{
+"id": "fdv",
+"component": "Curve/Division/Divide Curve",
+"group": "g9",
+"nickname": "보 바깥 끝"
+},
+{
+"id": "gate2",
+"component": "Sets/List/Dispatch",
+"group": "g9"
+},
+{
+"id": "ccp",
+"component": "Curve/Analysis/Curve Closest Point",
+"group": "g9",
+"nickname": "코어 쪽 끝"
+},
+{
+"id": "profF",
+"component": "Transform/Affine/Scale",
+"group": "g9",
+"nickname": "바닥 보 단면"
+},
+{
+"id": "fv",
+"component": "Vector/Vector/Vector 2Pt",
+"group": "g9"
+},
+{
+"id": "fbase",
+"component": "Transform/Euclidean/Move",
+"group": "g9"
+},
+{
+"id": "fpn",
+"component": "Vector/Plane/Plane Normal",
+"group": "g9"
+},
+{
+"id": "fal",
+"component": "Vector/Plane/Align Plane",
+"group": "g9"
+},
+{
+"id": "for",
+"component": "Transform/Euclidean/Orient",
+"group": "g9"
+},
+{
+"id": "fex",
+"component": "Surface/Freeform/Extrude",
+"group": "g9",
+"nickname": "바닥 보 H형강",
+"bake": true,
+"material": "steel"
+},
+{
+"id": "nh2",
+"component": "Maths/Operators/Division",
+"group": "g10"
+},
+{
+"id": "nnh",
+"component": "Maths/Operators/Multiplication",
+"group": "g10"
+},
+{
+"id": "nb",
+"component": "Vector/Point/Construct Point",
+"group": "g10"
+},
+{
+"id": "nbp",
+"component": "Vector/Plane/XY Plane",
+"group": "g10"
+},
+{
+"id": "drum",
+"component": "Surface/Primitive/Cylinder",
+"group": "g10",
+"nickname": "노드 드럼",
+"material": "steel"
+},
+{
+"id": "rcap",
+"component": "Maths/Operators/Multiplication",
+"group": "g10",
+"nickname": "캡 반지름"
+},
+{
+"id": "cz1",
+"component": "Maths/Operators/Subtraction",
+"group": "g10"
+},
+{
+"id": "cpz",
+"component": "Sets/Tree/Merge",
+"group": "g10"
+},
+{
+"id": "cbp",
+"component": "Vector/Point/Construct Point",
+"group": "g10"
+},
+{
+"id": "cbl",
+"component": "Vector/Plane/XY Plane",
+"group": "g10"
+},
+{
+"id": "caps",
+"component": "Surface/Primitive/Cylinder",
+"group": "g10",
+"nickname": "노드 캡",
+"material": "steel"
+},
+{
+"id": "nd_dc",
+"component": "Vector/Point/Deconstruct",
+"group": "g10"
+},
+{
+"id": "nd_rv",
+"component": "Vector/Vector/Vector XYZ",
+"group": "g10",
+"nickname": "바깥 방향"
+},
+{
+"id": "npn",
+"component": "Vector/Plane/Plane Normal",
+"group": "g10"
+},
+{
+"id": "npl",
+"component": "Vector/Plane/Align Plane",
+"group": "g10",
+"nickname": "노드 자리(축=바깥)"
+},
+{
+"id": "px",
+"component": "Maths/Operators/Addition",
+"group": "g11",
+"nickname": "플레이트 X/2"
+},
+{
+"id": "eh",
+"component": "Maths/Operators/Division",
+"group": "g11"
+},
+{
+"id": "py",
+"component": "Maths/Operators/Addition",
+"group": "g11",
+"nickname": "플레이트 Y/2"
+},
+{
+"id": "npx",
+"component": "Maths/Operators/Multiplication",
+"group": "g11"
+},
+{
+"id": "npy",
+"component": "Maths/Operators/Multiplication",
+"group": "g11"
+},
+{
+"id": "ntp",
+"component": "Maths/Operators/Multiplication",
+"group": "g11"
+},
+{
+"id": "pa",
+"component": "Vector/Point/Construct Point",
+"group": "g11"
+},
+{
+"id": "pb",
+"component": "Vector/Point/Construct Point",
+"group": "g11"
+},
+{
+"id": "plate",
+"component": "Surface/Primitive/Box 2Pt",
+"group": "g11",
+"nickname": "엔드 플레이트",
+"material": "steel"
+},
+{
+"id": "xo",
+"component": "Maths/Operators/Addition",
+"group": "g11",
+"nickname": "플랜지 밖 볼트 X"
+},
+{
+"id": "nxo",
+"component": "Maths/Operators/Multiplication",
+"group": "g11"
+},
+{
+"id": "yb",
+"component": "Maths/Operators/Multiplication",
+"group": "g11"
+},
+{
+"id": "nyb",
+"component": "Maths/Operators/Multiplication",
+"group": "g11"
+},
+{
+"id": "xs1",
+"component": "Sets/Tree/Merge",
+"group": "g11"
+},
+{
+"id": "ys1a",
+"component": "Sets/Tree/Merge",
+"group": "g11"
+},
+{
+"id": "ys1",
+"component": "Sets/Tree/Merge",
+"group": "g11"
+},
+{
+"id": "bp1",
+"component": "Vector/Point/Construct Point",
+"group": "g11",
+"nickname": "볼트 6개"
+},
+{
+"id": "xi",
+"component": "Maths/Operators/Multiplication",
+"group": "g11",
+"nickname": "웨브 옆 볼트 X"
+},
+{
+"id": "nxi",
+"component": "Maths/Operators/Multiplication",
+"group": "g11"
+},
+{
+"id": "yi",
+"component": "Maths/Operators/Addition",
+"group": "g11"
+},
+{
+"id": "nyi",
+"component": "Maths/Operators/Multiplication",
+"group": "g11"
+},
+{
+"id": "xs2",
+"component": "Sets/Tree/Merge",
+"group": "g11"
+},
+{
+"id": "ys2",
+"component": "Sets/Tree/Merge",
+"group": "g11"
+},
+{
+"id": "bp2",
+"component": "Vector/Point/Construct Point",
+"group": "g11",
+"nickname": "볼트 4개"
+},
+{
+"id": "bpts",
+"component": "Sets/Tree/Merge",
+"group": "g11",
+"nickname": "볼트 자리"
+},
+{
+"id": "br",
+"component": "Maths/Operators/Division",
+"group": "g11",
+"nickname": "볼트 반지름"
+},
+{
+"id": "hr",
+"component": "Maths/Operators/Multiplication",
+"group": "g11",
+"nickname": "머리 반지름"
+},
+{
+"id": "sz0",
+"component": "Maths/Operators/Addition",
+"group": "g11"
+},
+{
+"id": "nsz",
+"component": "Maths/Operators/Multiplication",
+"group": "g11"
+},
+{
+"id": "slen",
+"component": "Maths/Operators/Addition",
+"group": "g11",
+"nickname": "볼트 길이"
+},
+{
+"id": "uzs",
+"component": "Vector/Vector/Unit Z",
+"group": "g11"
+},
+{
+"id": "sbp",
+"component": "Transform/Euclidean/Move",
+"group": "g11"
+},
+{
+"id": "sbl",
+"component": "Vector/Plane/XY Plane",
+"group": "g11"
+},
+{
+"id": "shank",
+"component": "Surface/Primitive/Cylinder",
+"group": "g11",
+"nickname": "볼트 몸통",
+"material": "steel"
+},
+{
+"id": "hpl",
+"component": "Vector/Plane/XY Plane",
+"group": "g11"
+},
+{
+"id": "hpg",
+"component": "Curve/Primitive/Polygon",
+"group": "g11"
+},
+{
+"id": "uz20",
+"component": "Vector/Vector/Unit Z",
+"group": "g11"
+},
+{
+"id": "head",
+"component": "Surface/Freeform/Extrude",
+"group": "g11",
+"nickname": "볼트 머리",
+"material": "steel"
+},
+{
+"id": "nz0",
+"component": "Maths/Operators/Addition",
+"group": "g11"
+},
+{
+"id": "nnz",
+"component": "Maths/Operators/Multiplication",
+"group": "g11"
+},
+{
+"id": "uzn",
+"component": "Vector/Vector/Unit Z",
+"group": "g11"
+},
+{
+"id": "npg",
+"component": "Transform/Euclidean/Move",
+"group": "g11"
+},
+{
+"id": "uz25",
+"component": "Vector/Vector/Unit Z",
+"group": "g11"
+},
+{
+"id": "nut",
+"component": "Surface/Freeform/Extrude",
+"group": "g11",
+"nickname": "너트",
+"material": "steel"
+},
+{
+"id": "rev",
+"component": "Vector/Vector/Reverse",
+"group": "g11",
+"nickname": "반대 방향"
+},
+{
+"id": "pn2",
+"component": "Vector/Plane/Plane Normal",
+"group": "g11"
+},
+{
+"id": "al2",
+"component": "Vector/Plane/Align Plane",
+"group": "g11"
+},
+{
+"id": "plpl",
+"component": "Sets/Tree/Merge",
+"group": "g11",
+"nickname": "플레이트 자리(양 끝)"
+},
+{
+"id": "edges",
+"component": "Curve/Util/Explode",
+"group": "g12",
+"nickname": "변 4개"
+},
+{
+"id": "stp",
+"component": "Maths/Operators/Division",
+"group": "g12",
+"nickname": "1/패널 수"
+},
+{
+"id": "tq",
+"component": "Sets/Sequence/Series",
+"group": "g12",
+"nickname": "0~1 위치"
+},
+{
+"id": "cev",
+"component": "Curve/Analysis/Evaluate Length",
+"group": "g12",
+"nickname": "패널 모서리"
+},
+{
+"id": "nb2",
+"component": "Maths/Operators/Multiplication",
+"group": "g12"
+},
+{
+"id": "uzb",
+"component": "Vector/Vector/Unit Z",
+"group": "g12"
+},
+{
+"id": "pbt",
+"component": "Transform/Euclidean/Move",
+"group": "g12",
+"nickname": "패널 하단"
+},
+{
+"id": "ppl",
+"component": "Vector/Plane/Construct Plane",
+"group": "g12",
+"nickname": "패널 작업면"
+},
+{
+"id": "kev",
+"component": "Curve/Analysis/Evaluate Length",
+"group": "g12",
+"nickname": "변 시작점"
+},
+{
+"id": "kbt",
+"component": "Transform/Euclidean/Move",
+"group": "g12"
+},
+{
+"id": "kpl",
+"component": "Vector/Plane/Construct Plane",
+"group": "g12",
+"nickname": "코너 작업면"
+},
+{
+"id": "w",
+"component": "Maths/Operators/Division",
+"group": "g13",
+"nickname": "패널 폭"
+},
+{
+"id": "mhh",
+"component": "Maths/Operators/Division",
+"group": "g13",
+"nickname": "반쪽 멀리언"
+},
+{
+"id": "wm",
+"component": "Maths/Operators/Subtraction",
+"group": "g13",
+"nickname": "폭-반쪽"
+},
+{
+"id": "mt",
+"component": "Maths/Operators/Multiplication",
+"group": "g13",
+"nickname": "트랜섬 깊이"
+},
+{
+"id": "gz",
+"component": "Maths/Operators/Multiplication",
+"group": "g13",
+"nickname": "유리 위치"
+},
+{
+"id": "gz2",
+"component": "Maths/Operators/Addition",
+"group": "g13"
+},
+{
+"id": "twh",
+"component": "Maths/Operators/Division",
+"group": "g13"
+},
+{
+"id": "htw2",
+"component": "Maths/Operators/Subtraction",
+"group": "g13",
+"nickname": "위 트랜섬 밑"
+},
+{
+"id": "s1",
+"component": "Maths/Operators/Subtraction",
+"group": "g13"
+},
+{
+"id": "s2",
+"component": "Maths/Operators/Addition",
+"group": "g13"
+},
+{
+"id": "cwh",
+"component": "Maths/Operators/Division",
+"group": "g13"
+},
+{
+"id": "ncwh",
+"component": "Maths/Operators/Multiplication",
+"group": "g13"
+},
+{
+"id": "fz2",
+"component": "Maths/Operators/Addition",
+"group": "g13",
+"nickname": "캡 끝"
+},
+{
+"id": "mLA",
+"component": "Vector/Point/Construct Point",
+"group": "g13"
+},
+{
+"id": "mLB",
+"component": "Vector/Point/Construct Point",
+"group": "g13"
+},
+{
+"id": "mL",
+"component": "Surface/Primitive/Box 2Pt",
+"group": "g13",
+"nickname": "왼쪽 멀리언",
+"material": "aluminum"
+},
+{
+"id": "mRA",
+"component": "Vector/Point/Construct Point",
+"group": "g13"
+},
+{
+"id": "mRB",
+"component": "Vector/Point/Construct Point",
+"group": "g13"
+},
+{
+"id": "mR",
+"component": "Surface/Primitive/Box 2Pt",
+"group": "g13",
+"nickname": "오른쪽 멀리언",
+"material": "aluminum"
+},
+{
+"id": "tBA",
+"component": "Vector/Point/Construct Point",
+"group": "g13"
+},
+{
+"id": "tBB",
+"component": "Vector/Point/Construct Point",
+"group": "g13"
+},
+{
+"id": "tB",
+"component": "Surface/Primitive/Box 2Pt",
+"group": "g13",
+"nickname": "아래 트랜섬",
+"material": "aluminum"
+},
+{
+"id": "tTA",
+"component": "Vector/Point/Construct Point",
+"group": "g13"
+},
+{
+"id": "tTB",
+"component": "Vector/Point/Construct Point",
+"group": "g13"
+},
+{
+"id": "tT",
+"component": "Surface/Primitive/Box 2Pt",
+"group": "g13",
+"nickname": "위 트랜섬",
+"material": "aluminum"
+},
+{
+"id": "tMA",
+"component": "Vector/Point/Construct Point",
+"group": "g13"
+},
+{
+"id": "tMB",
+"component": "Vector/Point/Construct Point",
+"group": "g13"
+},
+{
+"id": "tM",
+"component": "Surface/Primitive/Box 2Pt",
+"group": "g13",
+"nickname": "중간 트랜섬",
+"material": "aluminum"
+},
+{
+"id": "spdA",
+"component": "Vector/Point/Construct Point",
+"group": "g13"
+},
+{
+"id": "spdB",
+"component": "Vector/Point/Construct Point",
+"group": "g13"
+},
+{
+"id": "spd",
+"component": "Surface/Primitive/Box 2Pt",
+"group": "g13",
+"nickname": "스팬드럴 판",
+"material": "spandrel"
+},
+{
+"id": "glsA",
+"component": "Vector/Point/Construct Point",
+"group": "g13"
+},
+{
+"id": "glsB",
+"component": "Vector/Point/Construct Point",
+"group": "g13"
+},
+{
+"id": "gls",
+"component": "Surface/Primitive/Box 2Pt",
+"group": "g13",
+"nickname": "복층 유리",
+"material": "glass"
+},
+{
+"id": "capA",
+"component": "Vector/Point/Construct Point",
+"group": "g13"
+},
+{
+"id": "capB",
+"component": "Vector/Point/Construct Point",
+"group": "g13"
+},
+{
+"id": "cap",
+"component": "Surface/Primitive/Box 2Pt",
+"group": "g13",
+"nickname": "외부 캡",
+"material": "aluminum"
+},
+{
+"id": "nmd",
+"component": "Maths/Operators/Multiplication",
+"group": "g13"
+},
+{
+"id": "kpostA",
+"component": "Vector/Point/Construct Point",
+"group": "g13"
+},
+{
+"id": "kpostB",
+"component": "Vector/Point/Construct Point",
+"group": "g13"
+},
+{
+"id": "kpost",
+"component": "Surface/Primitive/Box 2Pt",
+"group": "g13",
+"nickname": "코너 기둥",
+"material": "aluminum"
+},
+{
+"id": "gate3",
+"component": "Sets/List/Dispatch",
+"group": "g14"
+},
+{
+"id": "pv",
+"component": "Transform/Euclidean/Orient",
+"group": "g14",
+"nickname": "유리 미리보기",
+"preview": true
+}
+],
+"wires": [
+[
+"sT",
+"",
+"rd",
+"Degrees"
+],
+[
+"sN",
+"",
+"htot",
+"A"
+],
+[
+"sH",
+"",
+"htot",
+"B"
+],
+[
+"rd",
+"Radians",
+"fac",
+"A"
+],
+[
+"htot",
+"Result",
+"fac",
+"B"
+],
+[
+"sN",
+"",
+"fc",
+"A"
+],
+[
+"p1",
+"",
+"fc",
+"B"
+],
+[
+"sH",
+"",
+"fz",
+"Step"
+],
+[
+"fc",
+"Result",
+"fz",
+"Count"
+],
+[
+"fz",
+"Series",
+"fpt",
+"Z coordinate"
+],
+[
+"fpt",
+"Point",
+"fpl",
+"Origin"
+],
+[
+"fz",
+"Series",
+"fan",
+"A"
+],
+[
+"fac",
+"Result",
+"fan",
+"B"
+],
+[
+"fpl",
+"Plane",
+"frot",
+"Geometry"
+],
+[
+"fan",
+"Result",
+"frot",
+"Angle"
+],
+[
+"sS",
+"",
+"rCw",
+"A"
+],
+[
+"pR",
+"",
+"rCw",
+"B"
+],
+[
+"frot",
+"Geometry",
+"cwl",
+"Plane"
+],
+[
+"rCw",
+"Result",
+"cwl",
+"Radius"
+],
+[
+"p4",
+"",
+"cwl",
+"Segments"
+],
+[
+"sIn",
+"",
+"sIn2",
+"A"
+],
+[
+"p2",
+"",
+"sIn2",
+"B"
+],
+[
+"sS",
+"",
+"sSl",
+"A"
+],
+[
+"sIn2",
+"Result",
+"sSl",
+"B"
+],
+[
+"sSl",
+"Result",
+"rSl",
+"A"
+],
+[
+"pR",
+"",
+"rSl",
+"B"
+],
+[
+"frot",
+"Geometry",
+"fpoly",
+"Plane"
+],
+[
+"rSl",
+"Result",
+"fpoly",
+"Radius"
+],
+[
+"p4",
+"",
+"fpoly",
+"Segments"
+],
+[
+"cIn",
+"",
+"cIn2",
+"A"
+],
+[
+"p2",
+"",
+"cIn2",
+"B"
+],
+[
+"sS",
+"",
+"sDg",
+"A"
+],
+[
+"cIn2",
+"Result",
+"sDg",
+"B"
+],
+[
+"sDg",
+"Result",
+"rDg",
+"A"
+],
+[
+"pR",
+"",
+"rDg",
+"B"
+],
+[
+"sC",
+"",
+"rCore",
+"A"
+],
+[
+"pR",
+"",
+"rCore",
+"B"
+],
+[
+"fpl",
+"Plane",
+"cpoly",
+"Plane"
+],
+[
+"rCore",
+"Result",
+"cpoly",
+"Radius"
+],
+[
+"p4",
+"",
+"cpoly",
+"Segments"
+],
+[
+"fpoly",
+"Polygon",
+"mg",
+"Data 1",
+"graft"
+],
+[
+"cpoly",
+"Polygon",
+"mg",
+"Data 2",
+"graft"
+],
+[
+"mg",
+"Result",
+"bs",
+"Edges"
+],
+[
+"sT2",
+"",
+"nT2",
+"A"
+],
+[
+"pNeg",
+"",
+"nT2",
+"B"
+],
+[
+"nT2",
+"Result",
+"uzS",
+"Factor"
+],
+[
+"bs",
+"Surfaces",
+"slab",
+"Base"
+],
+[
+"uzS",
+"Unit vector",
+"slab",
+"Direction"
+],
+[
+"rCore",
+"Result",
+"cp0",
+"Radius"
+],
+[
+"p4",
+"",
+"cp0",
+"Segments"
+],
+[
+"sCt",
+"",
+"ct2",
+"A"
+],
+[
+"p2",
+"",
+"ct2",
+"B"
+],
+[
+"sC",
+"",
+"cin",
+"A"
+],
+[
+"ct2",
+"Result",
+"cin",
+"B"
+],
+[
+"cin",
+"Result",
+"rCin",
+"A"
+],
+[
+"pR",
+"",
+"rCin",
+"B"
+],
+[
+"rCin",
+"Result",
+"cpI",
+"Radius"
+],
+[
+"p4",
+"",
+"cpI",
+"Segments"
+],
+[
+"cp0",
+"Polygon",
+"mg3",
+"Data 1"
+],
+[
+"cpI",
+"Polygon",
+"mg3",
+"Data 2"
+],
+[
+"mg3",
+"Result",
+"bs3",
+"Edges"
+],
+[
+"htot",
+"Result",
+"uzC",
+"Factor"
+],
+[
+"bs3",
+"Surfaces",
+"core",
+"Base"
+],
+[
+"uzC",
+"Unit vector",
+"core",
+"Direction"
+],
+[
+"dD",
+"",
+"hd",
+"A"
+],
+[
+"p2",
+"",
+"hd",
+"B"
+],
+[
+"dB",
+"",
+"hb",
+"A"
+],
+[
+"p2",
+"",
+"hb",
+"B"
+],
+[
+"dTw",
+"",
+"htw",
+"A"
+],
+[
+"p2",
+"",
+"htw",
+"B"
+],
+[
+"hd",
+"Result",
+"xf",
+"A"
+],
+[
+"dTf",
+"",
+"xf",
+"B"
+],
+[
+"dTf",
+"",
+"tfh",
+"A"
+],
+[
+"p2",
+"",
+"tfh",
+"B"
+],
+[
+"hd",
+"Result",
+"xw",
+"A"
+],
+[
+"tfh",
+"Result",
+"xw",
+"B"
+],
+[
+"hd",
+"Result",
+"nhd",
+"A"
+],
+[
+"pNeg",
+"",
+"nhd",
+"B"
+],
+[
+"hb",
+"Result",
+"nhb",
+"A"
+],
+[
+"pNeg",
+"",
+"nhb",
+"B"
+],
+[
+"xf",
+"Result",
+"nxf",
+"A"
+],
+[
+"pNeg",
+"",
+"nxf",
+"B"
+],
+[
+"xw",
+"Result",
+"nxw",
+"A"
+],
+[
+"pNeg",
+"",
+"nxw",
+"B"
+],
+[
+"htw",
+"Result",
+"nhtw",
+"A"
+],
+[
+"pNeg",
+"",
+"nhtw",
+"B"
+],
+[
+"xf",
+"Result",
+"dF1",
+"Domain start"
+],
+[
+"hd",
+"Result",
+"dF1",
+"Domain end"
+],
+[
+"nhb",
+"Result",
+"dFy",
+"Domain start"
+],
+[
+"hb",
+"Result",
+"dFy",
+"Domain end"
+],
+[
+"nhd",
+"Result",
+"dF2",
+"Domain start"
+],
+[
+"nxf",
+"Result",
+"dF2",
+"Domain end"
+],
+[
+"nxw",
+"Result",
+"dWx",
+"Domain start"
+],
+[
+"xw",
+"Result",
+"dWx",
+"Domain end"
+],
+[
+"nhtw",
+"Result",
+"dWy",
+"Domain start"
+],
+[
+"htw",
+"Result",
+"dWy",
+"Domain end"
+],
+[
+"dF1",
+"Domain",
+"rF1",
+"X Size"
+],
+[
+"dFy",
+"Domain",
+"rF1",
+"Y Size"
+],
+[
+"dF2",
+"Domain",
+"rF2",
+"X Size"
+],
+[
+"dFy",
+"Domain",
+"rF2",
+"Y Size"
+],
+[
+"dWx",
+"Domain",
+"rW",
+"X Size"
+],
+[
+"dWy",
+"Domain",
+"rW",
+"Y Size"
+],
+[
+"rF1",
+"Rectangle",
+"m1",
+"Data 1"
+],
+[
+"rF2",
+"Rectangle",
+"m1",
+"Data 2"
+],
+[
+"m1",
+"Result",
+"m2",
+"Data 1"
+],
+[
+"rW",
+"Rectangle",
+"m2",
+"Data 2"
+],
+[
+"m2",
+"Result",
+"prof",
+"Curves"
+],
+[
+"nD",
+"",
+"nr",
+"A"
+],
+[
+"p2",
+"",
+"nr",
+"B"
+],
+[
+"nr",
+"Result",
+"clr",
+"A"
+],
+[
+"tp",
+"",
+"clr",
+"B"
+],
+[
+"dD",
+"",
+"rDp",
+"A"
+],
+[
+"kR",
+"",
+"rDp",
+"B"
+],
+[
+"rDp",
+"Result",
+"rDh",
+"A"
+],
+[
+"p2",
+"",
+"rDh",
+"B"
+],
+[
+"sM",
+"",
+"mh",
+"A"
+],
+[
+"sH",
+"",
+"mh",
+"B"
+],
+[
+"sN",
+"",
+"rc1",
+"A"
+],
+[
+"sM",
+"",
+"rc1",
+"B"
+],
+[
+"rc1",
+"Result",
+"rc",
+"A"
+],
+[
+"p1",
+"",
+"rc",
+"B"
+],
+[
+"mh",
+"Result",
+"rz",
+"Step"
+],
+[
+"rc",
+"Result",
+"rz",
+"Count"
+],
+[
+"sT2",
+"",
+"drop",
+"A"
+],
+[
+"rDh",
+"Result",
+"drop",
+"B"
+],
+[
+"drop",
+"Result",
+"ndrop",
+"A"
+],
+[
+"pNeg",
+"",
+"ndrop",
+"B"
+],
+[
+"rz",
+"Series",
+"rzz",
+"A"
+],
+[
+"ndrop",
+"Result",
+"rzz",
+"B"
+],
+[
+"rzz",
+"Result",
+"rpt",
+"Z coordinate"
+],
+[
+"rpt",
+"Point",
+"rpl",
+"Origin"
+],
+[
+"rz",
+"Series",
+"ran",
+"A"
+],
+[
+"fac",
+"Result",
+"ran",
+"B"
+],
+[
+"rpl",
+"Plane",
+"rrot",
+"Geometry"
+],
+[
+"ran",
+"Result",
+"rrot",
+"Angle"
+],
+[
+"rrot",
+"Geometry",
+"rpoly",
+"Plane"
+],
+[
+"rDg",
+"Result",
+"rpoly",
+"Radius"
+],
+[
+"p4",
+"",
+"rpoly",
+"Segments"
+],
+[
+"sD",
+"",
+"nd",
+"A"
+],
+[
+"p4",
+"",
+"nd",
+"B"
+],
+[
+"nd",
+"Result",
+"jj",
+"Count"
+],
+[
+"rc",
+"Result",
+"kk",
+"Count"
+],
+[
+"kk",
+"Series",
+"kh",
+"A"
+],
+[
+"p2",
+"",
+"kh",
+"B"
+],
+[
+"jj",
+"Series",
+"jk",
+"A"
+],
+[
+"kh",
+"Result",
+"jk",
+"B",
+"graft"
+],
+[
+"jk",
+"Result",
+"tn",
+"A"
+],
+[
+"nd",
+"Result",
+"tn",
+"B"
+],
+[
+"tn",
+"Result",
+"tm",
+"A"
+],
+[
+"p1",
+"",
+"tm",
+"B"
+],
+[
+"rpoly",
+"Polygon",
+"ev",
+"Curve",
+"graft"
+],
+[
+"tm",
+"Result",
+"ev",
+"Length"
+],
+[
+"tog",
+"",
+"ev",
+"Normalized"
+],
+[
+"ev",
+"Point",
+"fl1",
+"Data"
+],
+[
+"fl1",
+"Data",
+"pl1",
+"Vertices"
+],
+[
+"pl1",
+"Polyline",
+"ex1",
+"Curve"
+],
+[
+"kk",
+"Series",
+"kneg",
+"A"
+],
+[
+"pNeg",
+"",
+"kneg",
+"B"
+],
+[
+"ev",
+"Point",
+"sh",
+"List"
+],
+[
+"kneg",
+"Result",
+"sh",
+"Shift",
+"graft"
+],
+[
+"sh",
+"List",
+"fl2",
+"Data"
+],
+[
+"fl2",
+"Data",
+"pl2",
+"Vertices"
+],
+[
+"pl2",
+"Polyline",
+"ex2",
+"Curve"
+],
+[
+"ex1",
+"Segments",
+"segD",
+"Data 1"
+],
+[
+"ex2",
+"Segments",
+"segD",
+"Data 2"
+],
+[
+"segD",
+"Result",
+"dg_L",
+"Curve"
+],
+[
+"dg_L",
+"Length",
+"dg_Lc",
+"A"
+],
+[
+"clr",
+"Result",
+"dg_Lc",
+"B"
+],
+[
+"segD",
+"Result",
+"dg_e1",
+"Curve"
+],
+[
+"clr",
+"Result",
+"dg_e1",
+"Length"
+],
+[
+"tAbs",
+"",
+"dg_e1",
+"Normalized"
+],
+[
+"segD",
+"Result",
+"dg_e2",
+"Curve"
+],
+[
+"dg_Lc",
+"Result",
+"dg_e2",
+"Length"
+],
+[
+"tAbs",
+"",
+"dg_e2",
+"Normalized"
+],
+[
+"dg_e1",
+"Point",
+"dg_v",
+"Point A"
+],
+[
+"dg_e2",
+"Point",
+"dg_v",
+"Point B"
+],
+[
+"dg_e1",
+"Point",
+"dg_pn",
+"Origin"
+],
+[
+"dg_v",
+"Vector",
+"dg_pn",
+"Z-Axis"
+],
+[
+"dg_e1",
+"Point",
+"dg_dc",
+"Point"
+],
+[
+"dg_dc",
+"X component",
+"dg_rv",
+"X component"
+],
+[
+"dg_dc",
+"Y component",
+"dg_rv",
+"Y component"
+],
+[
+"dg_pn",
+"Plane",
+"dg_al",
+"Plane"
+],
+[
+"dg_rv",
+"Vector",
+"dg_al",
+"Direction"
+],
+[
+"prof",
+"Result",
+"dg_or",
+"Geometry"
+],
+[
+"xy0",
+"Plane",
+"dg_or",
+"Source"
+],
+[
+"dg_al",
+"Plane",
+"dg_or",
+"Target"
+],
+[
+"dg_or",
+"Geometry",
+"dg_ex",
+"Base"
+],
+[
+"dg_v",
+"Vector",
+"dg_ex",
+"Direction"
+],
+[
+"rpoly",
+"Polygon",
+"shat",
+"Curve",
+"graft"
+],
+[
+"ev",
+"Parameter",
+"shat",
+"Parameters"
+],
+[
+"prof",
+"Result",
+"profR",
+"Geometry"
+],
+[
+"kR",
+"",
+"profR",
+"Factor"
+],
+[
+"shat",
+"Segments",
+"rg_L",
+"Curve"
+],
+[
+"rg_L",
+"Length",
+"rg_Lc",
+"A"
+],
+[
+"clr",
+"Result",
+"rg_Lc",
+"B"
+],
+[
+"shat",
+"Segments",
+"rg_e1",
+"Curve"
+],
+[
+"clr",
+"Result",
+"rg_e1",
+"Length"
+],
+[
+"tAbs",
+"",
+"rg_e1",
+"Normalized"
+],
+[
+"shat",
+"Segments",
+"rg_e2",
+"Curve"
+],
+[
+"rg_Lc",
+"Result",
+"rg_e2",
+"Length"
+],
+[
+"tAbs",
+"",
+"rg_e2",
+"Normalized"
+],
+[
+"rg_e1",
+"Point",
+"rg_v",
+"Point A"
+],
+[
+"rg_e2",
+"Point",
+"rg_v",
+"Point B"
+],
+[
+"rg_e1",
+"Point",
+"rg_pn",
+"Origin"
+],
+[
+"rg_v",
+"Vector",
+"rg_pn",
+"Z-Axis"
+],
+[
+"rg_pn",
+"Plane",
+"rg_al",
+"Plane"
+],
+[
+"uzU",
+"Unit vector",
+"rg_al",
+"Direction"
+],
+[
+"profR",
+"Geometry",
+"rg_or",
+"Geometry"
+],
+[
+"xy0",
+"Plane",
+"rg_or",
+"Source"
+],
+[
+"rg_al",
+"Plane",
+"rg_or",
+"Target"
+],
+[
+"rg_or",
+"Geometry",
+"rg_ex",
+"Base"
+],
+[
+"rg_v",
+"Vector",
+"rg_ex",
+"Direction"
+],
+[
+"dD",
+"",
+"fbd",
+"A"
+],
+[
+"kF",
+"",
+"fbd",
+"B"
+],
+[
+"fbd",
+"Result",
+"fbh",
+"A"
+],
+[
+"p2",
+"",
+"fbh",
+"B"
+],
+[
+"sT2",
+"",
+"fdrop",
+"A"
+],
+[
+"fbh",
+"Result",
+"fdrop",
+"B"
+],
+[
+"fdrop",
+"Result",
+"nfdrop",
+"A"
+],
+[
+"pNeg",
+"",
+"nfdrop",
+"B"
+],
+[
+"nfdrop",
+"Result",
+"uzF",
+"Factor"
+],
+[
+"frot",
+"Geometry",
+"gate",
+"List"
+],
+[
+"tgFl",
+"",
+"gate",
+"Dispatch pattern"
+],
+[
+"gate",
+"List A",
+"dgl",
+"Plane"
+],
+[
+"rDg",
+"Result",
+"dgl",
+"Radius"
+],
+[
+"p4",
+"",
+"dgl",
+"Segments"
+],
+[
+"fN",
+"",
+"fcount",
+"A"
+],
+[
+"p4",
+"",
+"fcount",
+"B"
+],
+[
+"dgl",
+"Polygon",
+"fdv",
+"Curve",
+"graft"
+],
+[
+"fcount",
+"Result",
+"fdv",
+"Count"
+],
+[
+"cpoly",
+"Polygon",
+"gate2",
+"List"
+],
+[
+"tgFl",
+"",
+"gate2",
+"Dispatch pattern"
+],
+[
+"fdv",
+"Points",
+"ccp",
+"Point"
+],
+[
+"gate2",
+"List A",
+"ccp",
+"Curve",
+"graft"
+],
+[
+"prof",
+"Result",
+"profF",
+"Geometry"
+],
+[
+"kF",
+"",
+"profF",
+"Factor"
+],
+[
+"ccp",
+"Point",
+"fv",
+"Point A"
+],
+[
+"fdv",
+"Points",
+"fv",
+"Point B"
+],
+[
+"ccp",
+"Point",
+"fbase",
+"Geometry"
+],
+[
+"uzF",
+"Unit vector",
+"fbase",
+"Motion"
+],
+[
+"fbase",
+"Geometry",
+"fpn",
+"Origin"
+],
+[
+"fv",
+"Vector",
+"fpn",
+"Z-Axis"
+],
+[
+"fpn",
+"Plane",
+"fal",
+"Plane"
+],
+[
+"uzU",
+"Unit vector",
+"fal",
+"Direction"
+],
+[
+"profF",
+"Geometry",
+"for",
+"Geometry"
+],
+[
+"xy0",
+"Plane",
+"for",
+"Source"
+],
+[
+"fal",
+"Plane",
+"for",
+"Target"
+],
+[
+"for",
+"Geometry",
+"fex",
+"Base"
+],
+[
+"fv",
+"Vector",
+"fex",
+"Direction"
+],
+[
+"nT",
+"",
+"nh2",
+"A"
+],
+[
+"p2",
+"",
+"nh2",
+"B"
+],
+[
+"nh2",
+"Result",
+"nnh",
+"A"
+],
+[
+"pNeg",
+"",
+"nnh",
+"B"
+],
+[
+"nnh",
+"Result",
+"nb",
+"Z coordinate"
+],
+[
+"nb",
+"Point",
+"nbp",
+"Origin"
+],
+[
+"nbp",
+"Plane",
+"drum",
+"Base"
+],
+[
+"nr",
+"Result",
+"drum",
+"Radius"
+],
+[
+"nT",
+"",
+"drum",
+"Length"
+],
+[
+"nr",
+"Result",
+"rcap",
+"A"
+],
+[
+"p115",
+"",
+"rcap",
+"B"
+],
+[
+"nnh",
+"Result",
+"cz1",
+"A"
+],
+[
+"p60",
+"",
+"cz1",
+"B"
+],
+[
+"cz1",
+"Result",
+"cpz",
+"Data 1"
+],
+[
+"nh2",
+"Result",
+"cpz",
+"Data 2"
+],
+[
+"cpz",
+"Result",
+"cbp",
+"Z coordinate"
+],
+[
+"cbp",
+"Point",
+"cbl",
+"Origin"
+],
+[
+"cbl",
+"Plane",
+"caps",
+"Base"
+],
+[
+"rcap",
+"Result",
+"caps",
+"Radius"
+],
+[
+"p60",
+"",
+"caps",
+"Length"
+],
+[
+"ev",
+"Point",
+"nd_dc",
+"Point"
+],
+[
+"nd_dc",
+"X component",
+"nd_rv",
+"X component"
+],
+[
+"nd_dc",
+"Y component",
+"nd_rv",
+"Y component"
+],
+[
+"ev",
+"Point",
+"npn",
+"Origin"
+],
+[
+"nd_rv",
+"Vector",
+"npn",
+"Z-Axis"
+],
+[
+"npn",
+"Plane",
+"npl",
+"Plane"
+],
+[
+"uzU",
+"Unit vector",
+"npl",
+"Direction"
+],
+[
+"hd",
+"Result",
+"px",
+"A"
+],
+[
+"eB",
+"",
+"px",
+"B"
+],
+[
+"eB",
+"",
+"eh",
+"A"
+],
+[
+"p2",
+"",
+"eh",
+"B"
+],
+[
+"hb",
+"Result",
+"py",
+"A"
+],
+[
+"eh",
+"Result",
+"py",
+"B"
+],
+[
+"px",
+"Result",
+"npx",
+"A"
+],
+[
+"pNeg",
+"",
+"npx",
+"B"
+],
+[
+"py",
+"Result",
+"npy",
+"A"
+],
+[
+"pNeg",
+"",
+"npy",
+"B"
+],
+[
+"tp",
+"",
+"ntp",
+"A"
+],
+[
+"pNeg",
+"",
+"ntp",
+"B"
+],
+[
+"npx",
+"Result",
+"pa",
+"X coordinate"
+],
+[
+"npy",
+"Result",
+"pa",
+"Y coordinate"
+],
+[
+"ntp",
+"Result",
+"pa",
+"Z coordinate"
+],
+[
+"px",
+"Result",
+"pb",
+"X coordinate"
+],
+[
+"py",
+"Result",
+"pb",
+"Y coordinate"
+],
+[
+"pa",
+"Point",
+"plate",
+"Point A"
+],
+[
+"pb",
+"Point",
+"plate",
+"Point B"
+],
+[
+"hd",
+"Result",
+"xo",
+"A"
+],
+[
+"eh",
+"Result",
+"xo",
+"B"
+],
+[
+"xo",
+"Result",
+"nxo",
+"A"
+],
+[
+"pNeg",
+"",
+"nxo",
+"B"
+],
+[
+"hb",
+"Result",
+"yb",
+"A"
+],
+[
+"p06",
+"",
+"yb",
+"B"
+],
+[
+"yb",
+"Result",
+"nyb",
+"A"
+],
+[
+"pNeg",
+"",
+"nyb",
+"B"
+],
+[
+"xo",
+"Result",
+"xs1",
+"Data 1"
+],
+[
+"nxo",
+"Result",
+"xs1",
+"Data 2"
+],
+[
+"nyb",
+"Result",
+"ys1a",
+"Data 1"
+],
+[
+"p0",
+"",
+"ys1a",
+"Data 2"
+],
+[
+"ys1a",
+"Result",
+"ys1",
+"Data 1"
+],
+[
+"yb",
+"Result",
+"ys1",
+"Data 2"
+],
+[
+"xs1",
+"Result",
+"bp1",
+"X coordinate",
+"graft"
+],
+[
+"ys1",
+"Result",
+"bp1",
+"Y coordinate"
+],
+[
+"hd",
+"Result",
+"xi",
+"A"
+],
+[
+"p045",
+"",
+"xi",
+"B"
+],
+[
+"xi",
+"Result",
+"nxi",
+"A"
+],
+[
+"pNeg",
+"",
+"nxi",
+"B"
+],
+[
+"htw",
+"Result",
+"yi",
+"A"
+],
+[
+"eh",
+"Result",
+"yi",
+"B"
+],
+[
+"yi",
+"Result",
+"nyi",
+"A"
+],
+[
+"pNeg",
+"",
+"nyi",
+"B"
+],
+[
+"xi",
+"Result",
+"xs2",
+"Data 1"
+],
+[
+"nxi",
+"Result",
+"xs2",
+"Data 2"
+],
+[
+"yi",
+"Result",
+"ys2",
+"Data 1"
+],
+[
+"nyi",
+"Result",
+"ys2",
+"Data 2"
+],
+[
+"xs2",
+"Result",
+"bp2",
+"X coordinate",
+"graft"
+],
+[
+"ys2",
+"Result",
+"bp2",
+"Y coordinate"
+],
+[
+"bp1",
+"Point",
+"bpts",
+"Data 1"
+],
+[
+"bp2",
+"Point",
+"bpts",
+"Data 2"
+],
+[
+"bd",
+"",
+"br",
+"A"
+],
+[
+"p2",
+"",
+"br",
+"B"
+],
+[
+"bd",
+"",
+"hr",
+"A"
+],
+[
+"p95",
+"",
+"hr",
+"B"
+],
+[
+"tp",
+"",
+"sz0",
+"A"
+],
+[
+"p30",
+"",
+"sz0",
+"B"
+],
+[
+"sz0",
+"Result",
+"nsz",
+"A"
+],
+[
+"pNeg",
+"",
+"nsz",
+"B"
+],
+[
+"sz0",
+"Result",
+"slen",
+"A"
+],
+[
+"p30",
+"",
+"slen",
+"B"
+],
+[
+"nsz",
+"Result",
+"uzs",
+"Factor"
+],
+[
+"bpts",
+"Result",
+"sbp",
+"Geometry"
+],
+[
+"uzs",
+"Unit vector",
+"sbp",
+"Motion"
+],
+[
+"sbp",
+"Geometry",
+"sbl",
+"Origin"
+],
+[
+"sbl",
+"Plane",
+"shank",
+"Base"
+],
+[
+"br",
+"Result",
+"shank",
+"Radius"
+],
+[
+"slen",
+"Result",
+"shank",
+"Length"
+],
+[
+"bpts",
+"Result",
+"hpl",
+"Origin"
+],
+[
+"hpl",
+"Plane",
+"hpg",
+"Plane"
+],
+[
+"hr",
+"Result",
+"hpg",
+"Radius"
+],
+[
+"p6",
+"",
+"hpg",
+"Segments"
+],
+[
+"p20",
+"",
+"uz20",
+"Factor"
+],
+[
+"hpg",
+"Polygon",
+"head",
+"Base"
+],
+[
+"uz20",
+"Unit vector",
+"head",
+"Direction"
+],
+[
+"tp",
+"",
+"nz0",
+"A"
+],
+[
+"p25",
+"",
+"nz0",
+"B"
+],
+[
+"nz0",
+"Result",
+"nnz",
+"A"
+],
+[
+"pNeg",
+"",
+"nnz",
+"B"
+],
+[
+"nnz",
+"Result",
+"uzn",
+"Factor"
+],
+[
+"hpg",
+"Polygon",
+"npg",
+"Geometry"
+],
+[
+"uzn",
+"Unit vector",
+"npg",
+"Motion"
+],
+[
+"p25",
+"",
+"uz25",
+"Factor"
+],
+[
+"npg",
+"Geometry",
+"nut",
+"Base"
+],
+[
+"uz25",
+"Unit vector",
+"nut",
+"Direction"
+],
+[
+"dg_v",
+"Vector",
+"rev",
+"Vector"
+],
+[
+"dg_e2",
+"Point",
+"pn2",
+"Origin"
+],
+[
+"rev",
+"Vector",
+"pn2",
+"Z-Axis"
+],
+[
+"pn2",
+"Plane",
+"al2",
+"Plane"
+],
+[
+"dg_rv",
+"Vector",
+"al2",
+"Direction"
+],
+[
+"dg_al",
+"Plane",
+"plpl",
+"Data 1"
+],
+[
+"al2",
+"Plane",
+"plpl",
+"Data 2"
+],
+[
+"cwl",
+"Polygon",
+"edges",
+"Curve"
+],
+[
+"p1",
+"",
+"stp",
+"A"
+],
+[
+"nP",
+"",
+"stp",
+"B"
+],
+[
+"stp",
+"Result",
+"tq",
+"Step"
+],
+[
+"nP",
+"",
+"tq",
+"Count"
+],
+[
+"edges",
+"Segments",
+"cev",
+"Curve",
+"graft"
+],
+[
+"tq",
+"Series",
+"cev",
+"Length"
+],
+[
+"tog",
+"",
+"cev",
+"Normalized"
+],
+[
+"sBd",
+"",
+"nb2",
+"A"
+],
+[
+"pNeg",
+"",
+"nb2",
+"B"
+],
+[
+"nb2",
+"Result",
+"uzb",
+"Factor"
+],
+[
+"cev",
+"Point",
+"pbt",
+"Geometry"
+],
+[
+"uzb",
+"Unit vector",
+"pbt",
+"Motion"
+],
+[
+"pbt",
+"Geometry",
+"ppl",
+"Origin"
+],
+[
+"cev",
+"Tangent",
+"ppl",
+"X-Axis"
+],
+[
+"uzU",
+"Unit vector",
+"ppl",
+"Y-Axis"
+],
+[
+"edges",
+"Segments",
+"kev",
+"Curve"
+],
+[
+"p0",
+"",
+"kev",
+"Length"
+],
+[
+"tog",
+"",
+"kev",
+"Normalized"
+],
+[
+"kev",
+"Point",
+"kbt",
+"Geometry"
+],
+[
+"uzb",
+"Unit vector",
+"kbt",
+"Motion"
+],
+[
+"kbt",
+"Geometry",
+"kpl",
+"Origin"
+],
+[
+"kev",
+"Tangent",
+"kpl",
+"X-Axis"
+],
+[
+"uzU",
+"Unit vector",
+"kpl",
+"Y-Axis"
+],
+[
+"sS",
+"",
+"w",
+"A"
+],
+[
+"nP",
+"",
+"w",
+"B"
+],
+[
+"mw",
+"",
+"mhh",
+"A"
+],
+[
+"p2",
+"",
+"mhh",
+"B"
+],
+[
+"w",
+"Result",
+"wm",
+"A"
+],
+[
+"mhh",
+"Result",
+"wm",
+"B"
+],
+[
+"md",
+"",
+"mt",
+"A"
+],
+[
+"p06",
+"",
+"mt",
+"B"
+],
+[
+"md",
+"",
+"gz",
+"A"
+],
+[
+"p03",
+"",
+"gz",
+"B"
+],
+[
+"gz",
+"Result",
+"gz2",
+"A"
+],
+[
+"gt",
+"",
+"gz2",
+"B"
+],
+[
+"tw",
+"",
+"twh",
+"A"
+],
+[
+"p2",
+"",
+"twh",
+"B"
+],
+[
+"sH",
+"",
+"htw2",
+"A"
+],
+[
+"tw",
+"",
+"htw2",
+"B"
+],
+[
+"sp",
+"",
+"s1",
+"A"
+],
+[
+"twh",
+"Result",
+"s1",
+"B"
+],
+[
+"sp",
+"",
+"s2",
+"A"
+],
+[
+"twh",
+"Result",
+"s2",
+"B"
+],
+[
+"cw",
+"",
+"cwh",
+"A"
+],
+[
+"p2",
+"",
+"cwh",
+"B"
+],
+[
+"cwh",
+"Result",
+"ncwh",
+"A"
+],
+[
+"pNeg",
+"",
+"ncwh",
+"B"
+],
+[
+"md",
+"",
+"fz2",
+"A"
+],
+[
+"fd",
+"",
+"fz2",
+"B"
+],
+[
+"mhh",
+"Result",
+"mLB",
+"X coordinate"
+],
+[
+"sH",
+"",
+"mLB",
+"Y coordinate"
+],
+[
+"md",
+"",
+"mLB",
+"Z coordinate"
+],
+[
+"mLA",
+"Point",
+"mL",
+"Point A"
+],
+[
+"mLB",
+"Point",
+"mL",
+"Point B"
+],
+[
+"wm",
+"Result",
+"mRA",
+"X coordinate"
+],
+[
+"w",
+"Result",
+"mRB",
+"X coordinate"
+],
+[
+"sH",
+"",
+"mRB",
+"Y coordinate"
+],
+[
+"md",
+"",
+"mRB",
+"Z coordinate"
+],
+[
+"mRA",
+"Point",
+"mR",
+"Point A"
+],
+[
+"mRB",
+"Point",
+"mR",
+"Point B"
+],
+[
+"mhh",
+"Result",
+"tBA",
+"X coordinate"
+],
+[
+"wm",
+"Result",
+"tBB",
+"X coordinate"
+],
+[
+"tw",
+"",
+"tBB",
+"Y coordinate"
+],
+[
+"mt",
+"Result",
+"tBB",
+"Z coordinate"
+],
+[
+"tBA",
+"Point",
+"tB",
+"Point A"
+],
+[
+"tBB",
+"Point",
+"tB",
+"Point B"
+],
+[
+"mhh",
+"Result",
+"tTA",
+"X coordinate"
+],
+[
+"htw2",
+"Result",
+"tTA",
+"Y coordinate"
+],
+[
+"wm",
+"Result",
+"tTB",
+"X coordinate"
+],
+[
+"sH",
+"",
+"tTB",
+"Y coordinate"
+],
+[
+"mt",
+"Result",
+"tTB",
+"Z coordinate"
+],
+[
+"tTA",
+"Point",
+"tT",
+"Point A"
+],
+[
+"tTB",
+"Point",
+"tT",
+"Point B"
+],
+[
+"mhh",
+"Result",
+"tMA",
+"X coordinate"
+],
+[
+"s1",
+"Result",
+"tMA",
+"Y coordinate"
+],
+[
+"wm",
+"Result",
+"tMB",
+"X coordinate"
+],
+[
+"s2",
+"Result",
+"tMB",
+"Y coordinate"
+],
+[
+"mt",
+"Result",
+"tMB",
+"Z coordinate"
+],
+[
+"tMA",
+"Point",
+"tM",
+"Point A"
+],
+[
+"tMB",
+"Point",
+"tM",
+"Point B"
+],
+[
+"mhh",
+"Result",
+"spdA",
+"X coordinate"
+],
+[
+"tw",
+"",
+"spdA",
+"Y coordinate"
+],
+[
+"gz",
+"Result",
+"spdA",
+"Z coordinate"
+],
+[
+"wm",
+"Result",
+"spdB",
+"X coordinate"
+],
+[
+"s1",
+"Result",
+"spdB",
+"Y coordinate"
+],
+[
+"gz2",
+"Result",
+"spdB",
+"Z coordinate"
+],
+[
+"spdA",
+"Point",
+"spd",
+"Point A"
+],
+[
+"spdB",
+"Point",
+"spd",
+"Point B"
+],
+[
+"mhh",
+"Result",
+"glsA",
+"X coordinate"
+],
+[
+"s2",
+"Result",
+"glsA",
+"Y coordinate"
+],
+[
+"gz",
+"Result",
+"glsA",
+"Z coordinate"
+],
+[
+"wm",
+"Result",
+"glsB",
+"X coordinate"
+],
+[
+"htw2",
+"Result",
+"glsB",
+"Y coordinate"
+],
+[
+"gz2",
+"Result",
+"glsB",
+"Z coordinate"
+],
+[
+"glsA",
+"Point",
+"gls",
+"Point A"
+],
+[
+"glsB",
+"Point",
+"gls",
+"Point B"
+],
+[
+"ncwh",
+"Result",
+"capA",
+"X coordinate"
+],
+[
+"md",
+"",
+"capA",
+"Z coordinate"
+],
+[
+"cwh",
+"Result",
+"capB",
+"X coordinate"
+],
+[
+"sH",
+"",
+"capB",
+"Y coordinate"
+],
+[
+"fz2",
+"Result",
+"capB",
+"Z coordinate"
+],
+[
+"capA",
+"Point",
+"cap",
+"Point A"
+],
+[
+"capB",
+"Point",
+"cap",
+"Point B"
+],
+[
+"md",
+"",
+"nmd",
+"A"
+],
+[
+"pNeg",
+"",
+"nmd",
+"B"
+],
+[
+"nmd",
+"Result",
+"kpostA",
+"X coordinate"
+],
+[
+"sH",
+"",
+"kpostB",
+"Y coordinate"
+],
+[
+"md",
+"",
+"kpostB",
+"Z coordinate"
+],
+[
+"kpostA",
+"Point",
+"kpost",
+"Point A"
+],
+[
+"kpostB",
+"Point",
+"kpost",
+"Point B"
+],
+[
+"ppl",
+"Plane",
+"gate3",
+"List"
+],
+[
+"tgPv",
+"",
+"gate3",
+"Dispatch pattern"
+],
+[
+"gls",
+"Box",
+"pv",
+"Geometry"
+],
+[
+"xy0",
+"Plane",
+"pv",
+"Source"
+],
+[
+"gate3",
+"List A",
+"pv",
+"Target"
+]
+],
+"blocks": [
+{
+"name": "주강 노드",
+"parts": [
+"drum",
+"caps"
+],
+"at": "npl"
+},
+{
+"name": "엔드 플레이트+볼트",
+"parts": [
+"plate",
+"shank",
+"head",
+"nut"
+],
+"at": "plpl"
+},
+{
+"name": "커튼월 유닛",
+"parts": [
+"mL",
+"mR",
+"tB",
+"tT",
+"tM",
+"spd",
+"gls",
+"cap"
+],
+"at": "ppl"
+},
+{
+"name": "커튼월 코너",
+"parts": [
+"kpost"
+],
+"at": "kpl"
+}
+]
+}

@@ -1,0 +1,85 @@
+name: 자동 시험
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  PYTHONUTF8: "1"
+  PYTHONIOENCODING: utf-8
+
+jobs:
+  test:
+    name: 시험 (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 설치
+        run: python -m pip install numpy shapely pillow
+
+      - name: 빌더 파일 문법 확인
+        run: python -m py_compile src/GH_AI_builder.py
+
+      - name: 예제 시험 (이름·재현·검사기·간섭·간이 그림)
+        run: python tests/ci_run.py --out ci_out
+
+      - name: 08 타워 3D 렌더 (Linux)
+        if: runner.os == 'Linux' && always()
+        shell: bash
+        run: |
+          npm install --no-save --no-package-lock three@0.170.0 playwright@1.49.1
+          npx playwright install --with-deps chromium
+          export THREE_JS="$PWD/node_modules/three/build/three.module.js"
+          cd ci_out
+          python ../tests/tools/views.py ../examples/08_비틀린다이아그리드타워_v3.json 08_렌더
+          rm -rf 08_렌더_data
+          ls -la
+
+      - name: 결과 요약
+        if: always()
+        shell: bash
+        run: |
+          if [ -f ci_out/summary.md ]; then cat ci_out/summary.md >> "$GITHUB_STEP_SUMMARY"; fi
+
+      - name: 시험 그림 올리기
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: 시험그림-${{ matrix.os }}
+          path: ci_out/
+          if-no-files-found: warn
+          retention-days: 30
+
+  secrets-scan:
+    name: 비밀값 검사
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: API 키·개인 파일이 들어가지 않았는지 확인
+        shell: bash
+        run: |
+          set -e
+          if grep -rIEn 'sk-ant-[A-Za-z0-9_-]{10,}|ghp_[A-Za-z0-9]{20,}|AKIA[0-9A-Z]{16}' --exclude-dir=.git .; then
+            echo "::error::API 키처럼 보이는 문자열이 있어요. 지우고 키를 새로 발급하세요."; exit 1; fi
+          bad=$(git ls-files | grep -iE '\.(3dm|3dmbak|gh|ghx|dwg|dxf|shp)$|(^|/)api_key\.txt$|(^|/)\.env$' || true)
+          if [ -n "$bad" ]; then echo "::error::올리면 안 되는 파일: $bad"; exit 1; fi
+          echo "문제 없음"

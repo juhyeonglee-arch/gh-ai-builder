@@ -1,0 +1,26 @@
+# 파이썬·노드 부산물
+__pycache__/
+*.pyc
+node_modules/
+package-lock.json
+
+# 시험 결과 (Actions 산출물로만 남김)
+ci_out/
+*_data/
+
+# 비밀값 — 절대 올리지 않음
+api_key.txt
+.env
+*.key
+secrets*
+
+# 개인 도면·재배포 금지 자료 — 각자 PC에 두고 경로만 지정
+private/
+*.3dm
+*.3dmbak
+*.gh
+*.ghx
+*.dwg
+*.dxf
+*.shp
+*.zip

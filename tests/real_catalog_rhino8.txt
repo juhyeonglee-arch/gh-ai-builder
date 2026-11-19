@@ -1,0 +1,855 @@
+Curve/Analysis/Closed :: Test if a curve is closed or periodic. | IN: Curve[C] Curve | OUT: Closed[C] Boolean, Periodic[P] Boolean
+Curve/Analysis/Control Points :: Extract the nurbs control points and knots of a curve. | IN: Curve[C] Curve | OUT: Points[P] Point[], Weights[W] Number[], Knots[K] Number[]
+Curve/Analysis/Control Polygon :: Extract the nurbs control polygon of a curve. | IN: Curve[C] Curve | OUT: Polygon[C] Curve, Points[P] Point[]
+Curve/Analysis/Curvature :: Evaluate the curvature of a curve at a specified parameter. | IN: Curve[C] Curve, Parameter[t] Number | OUT: Point[P] Point, Curvature[K] Vector, Curvature[C] Curve
+Curve/Analysis/Curvature Graph :: Draws Rhino Curvature Graphs. | IN: Curve[C] Curve, Density[D] Integer, Scale[S] Integer | OUT: -
+Curve/Analysis/Curve Closest Point :: Find the closest point on a curve. | IN: Point[P] Point, Curve[C] Curve | OUT: Point[P] Point, Parameter[t] Number, Distance[D] Number
+Curve/Analysis/Curve Depth :: Measure the depth of a curve. | IN: Curve[C] Curve, Minimum[Min] Number, Maximum[Max] Number | OUT: Minimum Parameter[tMin] Number, Minimum Depth[dMin] Number, Maximum Parameter[tMax] Number, Maximum Depth[dMax] Number
+Curve/Analysis/Curve Domain :: Measure and set the curve domain | IN: Curve[C] Curve, Domain[D] Domain | OUT: Curve[C] Curve, Domain[D] Domain
+Curve/Analysis/Curve Frame :: Get the curvature frame of a curve at a specified parameter. | IN: Curve[C] Curve, Parameter[t] Number | OUT: Frame[F] Plane
+Curve/Analysis/Curve Middle :: Get the point in the middle of a curve | IN: Curve[C] Curve | OUT: Midpoint[M] Point
+Curve/Analysis/Curve Nearest Object :: Find the object nearest to a curve. | IN: Curve[C] Curve, Geometry[G] Geometry[] | OUT: Point A[A] Point, Point B[B] Point, Index[I] Integer
+Curve/Analysis/Curve Proximity :: Find the pair of closest points between two curves. | IN: Curve A[A] Curve, Curve B[B] Curve | OUT: Point A[A] Point, Point B[B] Point, Distance[D] Number
+Curve/Analysis/Curve Side :: Find on which side of a curve a point exists | IN: Curve[C] Curve, Point[P] Point, Plane[Pl] Plane | OUT: Side[S] Integer, Left[L] Boolean, Right[R] Boolean
+Curve/Analysis/Deconstruct Arc :: Retrieve the base plane, radius and angle domain of an arc. | IN: Arc[A] Arc | OUT: Base Plane[B] Plane, Radius[R] Number, Angle[A] Domain
+Curve/Analysis/Deconstruct Rectangle :: Retrieve the base plane and side intervals of a rectangle. | IN: Rectangle[R] Rectangle | OUT: Base Plane[B] Plane, X Interval[X] Domain, Y Interval[Y] Domain
+Curve/Analysis/Derivatives :: Evaluate the derivatives of a curve at a specified parame... | IN: Curve[C] Curve, Parameter[t] Number | OUT: Point[P] Point, First derivative[1] Vector
+Curve/Analysis/Discontinuity :: Find all discontinuities along a curve. | IN: Curve[C] Curve, Level[L] Integer | OUT: Points[P] Point[], Parameters[t] Number[]
+Curve/Analysis/End Points :: Extract the end points of a curve. | IN: Curve[C] Curve | OUT: Start[S] Point, End[E] Point
+Curve/Analysis/Evaluate Curve :: Evaluate a curve at the specified parameter. | IN: Curve[C] Curve, Parameter[t] Number | OUT: Point[P] Point, Tangent[T] Vector, Angle[A] Number
+Curve/Analysis/Evaluate Length :: Evaluate a curve at a certain factor along its length. Le... | IN: Curve[C] Curve, Length[L] Number, Normalized[N] Boolean | OUT: Point[P] Point, Tangent[T] Vector, Parameter[t] Number
+Curve/Analysis/Extremes :: Find the extremes (highest and lowest points) on a curve. | IN: Curve[C] Curve, Plane[P] Plane | OUT: Highest[H] Point, Lowest[L] Point
+Curve/Analysis/Horizontal Frame :: Get a horizontally aligned frame along a curve at a speci... | IN: Curve[C] Curve, Parameter[t] Number | OUT: Frame[F] Plane
+Curve/Analysis/Length :: Measure the length of a curve. | IN: Curve[C] Curve | OUT: Length[L] Number
+Curve/Analysis/Length Domain :: Measure the length of a curve subdomain. | IN: Curve[C] Curve, Domain[D] Domain | OUT: Length[L] Number
+Curve/Analysis/Length Parameter :: Measure the length of a curve to and from a parameter. | IN: Curve[C] Curve, Parameter[t] Number | OUT: Length[L-] Number, Length[L+] Number
+Curve/Analysis/Perp Frame :: Solve the perpendicular (zero-twisting) frame at a specif... | IN: Curve[C] Curve, Parameter[t] Number | OUT: Frame[F] Plane
+Curve/Analysis/Planar :: Test a curve for planarity. | IN: Curve[C] Curve | OUT: Planar[p] Boolean, Plane[P] Plane, Deviation[D] Number
+Curve/Analysis/Point In Curve :: Test a point for closed curve containment. | IN: Point[P] Point, Curve[C] Curve | OUT: Relationship[R] Integer, Point[P'] Point
+Curve/Analysis/Point On Curve :: Evaluates a curve at a specific location | PARAM
+Curve/Analysis/Point in Curves :: Test a point for multiple closed curve containment. | IN: Point[P] Point, Curves[C] Curve[] | OUT: Relationship[R] Integer, Index[I] Integer, Point[P'] Point
+Curve/Analysis/Polygon Center :: Find the center point (average) for a polyline. | IN: Polyline[P] Curve | OUT: Center(V)[Cv] Point, Center(E)[Ce] Point, Center(A)[Ca] Point
+Curve/Analysis/Segment Lengths :: Finds the shortest and longest segments of a curve. | IN: Curve[C] Curve | OUT: Shortest Length[Sl] Number, Shortest Domain[Sd] Domain, Longest Length[Ll] Number, Longest Domain[Ld] Domain
+Curve/Analysis/Torsion :: Evaluate the torsion of a curve at a specified parameter. | IN: Curve[C] Curve, Parameter[t] Number | OUT: Point[P] Point, Torsion[T] Number
+Curve/Division/Contour (ex) :: Create a set of Curve contours | IN: Curve[C] Curve, Plane[P] Plane, Offsets[O] Number[], Distances[D] Number[] | OUT: Contours[C] Point{}, Parameters[t] Number{}
+Curve/Division/Curve Contour :: Create a set of Curve contours | IN: Curve[C] Curve, Point[P] Point, Direction[N] Vector, Distance[D] Number | OUT: Contours[C] Point{}, Parameters[t] Number{}
+Curve/Division/Curve Frames :: Generate a number of equally spaced curve frames. | IN: Curve[C] Curve, Count[N] Integer | OUT: Frames[F] Plane[], Parameters[t] Number[]
+Curve/Division/Dash Pattern :: Convert a curve to a dash pattern. | IN: Curve[C] Curve, Pattern[Pt] Number[] | OUT: Dashes[D] Curve[], Gaps[G] Curve[]
+Curve/Division/Divide By Deviation :: Divide a curve into segments with equal deviation | IN: Curve[C] Curve, Count[N] Integer | OUT: Points[P] Point[], Tangents[T] Vector[], Parameters[t] Number[], Deviation[d] Number[]
+Curve/Division/Divide Curve :: Divide a curve into equal length segments | IN: Curve[C] Curve, Count[N] Integer, Kinks[K] Boolean | OUT: Points[P] Point[], Tangents[T] Vector[], Parameters[t] Number[]
+Curve/Division/Divide Distance :: Divide a curve with a preset distance between points | IN: Curve[C] Curve, Distance[D] Number | OUT: Points[P] Point[], Tangents[T] Vector[], Parameters[t] Number[]
+Curve/Division/Divide Length :: Divide a curve into segments with a preset length | IN: Curve[C] Curve, Length[L] Number | OUT: Points[P] Point[], Tangents[T] Vector[], Parameters[t] Number[]
+Curve/Division/Horizontal Frames :: Generate a number of equally spaced, horizontally aligned... | IN: Curve[C] Curve, Count[N] Integer | OUT: Frames[F] Plane[], Parameters[t] Number[]
+Curve/Division/Perp Frames :: Generate a number of equally spaced, perpendicular frames... | IN: Curve[C] Curve, Count[N] Integer, Align[A] Boolean | OUT: Frames[F] Plane[], Parameters[t] Number[]
+Curve/Division/Shatter :: Shatter a curve into segments. | IN: Curve[C] Curve, Parameters[t] Number[] | OUT: Segments[S] Curve[]
+Curve/Primitive/Arc :: Create an arc defined by base plane, radius and angle dom... | IN: Plane[P] Plane, Radius[R] Number, Angle[A] Domain | OUT: Arc[A] Arc, Length[L] Number
+Curve/Primitive/Arc 3Pt :: Create an arc through three points. | IN: Point A[A] Point, Point B[B] Point, Point C[C] Point | OUT: Arc[A] Geometry, Plane[P] Plane, Radius[R] Number
+Curve/Primitive/Arc SED :: Create an arc defined by start point, end point and a tan... | IN: Start[S] Point, End[E] Point, Direction[D] Vector | OUT: Arc[A] Geometry, Plane[P] Plane, Radius[R] Number
+Curve/Primitive/BiArc :: Create a bi-arc based on endpoints and tangents. | IN: Start Point[S] Point, Start Tangent[Ts] Vector, End Point[E] Point, End Tangent[Te] Vector, Ratio[R] Number | OUT: First arc[A1] Arc, Second arc[A2] Arc, Bi-Arc[B] Curve
+Curve/Primitive/Circle :: Create a circle defined by base plane and radius. | IN: Plane[P] Plane, Radius[R] Number | OUT: Circle[C] Circle
+Curve/Primitive/Circle 3Pt :: Create a circle defined by three points. | IN: Point A[A] Point, Point B[B] Point, Point C[C] Point | OUT: Circle[C] Circle, Plane[P] Plane, Radius[R] Number
+Curve/Primitive/Circle CNR :: Create a circle defined by center, normal and radius. | IN: Center[C] Point, Normal[N] Vector, Radius[R] Number | OUT: Circle[C] Circle
+Curve/Primitive/Circle Fit :: Fit a circle to a collection of points. | IN: Points[P] Point[] | OUT: Circle[C] Circle, Radius[R] Number, Deviation[D] Number
+Curve/Primitive/Circle TanTan :: Create a circle tangent to two curves. | IN: Curve A[A] Curve, Curve B[B] Curve, Point[P] Point | OUT: Circle[C] Circle
+Curve/Primitive/Circle TanTanTan :: Create a circle tangent to three curves. | IN: Curve A[A] Curve, Curve B[B] Curve, Curve C[C] Curve, Point[P] Point | OUT: Circle[C] Circle
+Curve/Primitive/Ellipse :: Create an ellipse defined by base plane and two radii. | IN: Plane[P] Plane, Radius 1[R1] Number, Radius 2[R2] Number | OUT: Ellipse[E] Curve, Focus 1[F1] Point, Focus 2[F2] Point
+Curve/Primitive/Fit Line :: Fit a line to a collection of points. | IN: Points[P] Point[] | OUT: Line[L] Line
+Curve/Primitive/InCircle :: Create the incircle of a triangle. | IN: Corner A[A] Point, Corner B[B] Point, Corner C[C] Point | OUT: Circle[C] Circle, Plane[P] Plane, Radius[R] Number
+Curve/Primitive/InEllipse :: Create the inscribed ellipse (Steiner ellipse) of a trian... | IN: Corner A[A] Point, Corner B[B] Point, Corner C[C] Point | OUT: Ellipse[E] Curve, Plane[P] Plane
+Curve/Primitive/Line :: Create a line between two points. | IN: Start Point[A] Point, End Point[B] Point | OUT: Line[L] Line
+Curve/Primitive/Line 2Plane :: Create a line between two planes. | IN: Line[L] Line, Plane A[A] Plane, Plane B[B] Plane | OUT: Line[L] Line
+Curve/Primitive/Line 4Pt :: Create a line from four points. | IN: Line[L] Line, Point A[A] Point, Point B[B] Point | OUT: Line[L] Line
+Curve/Primitive/Line SDL :: Create a line segment defined by start point, tangent and... | IN: Start[S] Point, Direction[D] Vector, Length[L] Number | OUT: Line[L] Line
+Curve/Primitive/Modified Arc :: Create an arc based on another arc. | IN: Arc[A] Arc, Radius[R] Number, Angle[A] Domain | OUT: Arc[A] Arc
+Curve/Primitive/Polygon :: Create a polygon with optional round edges. | IN: Plane[P] Plane, Radius[R] Number, Segments[S] Integer, Fillet Radius[Rf] Number | OUT: Polygon[P] Curve, Length[L] Number
+Curve/Primitive/Polygon Edge :: Create a polygon from a single edge. | IN: Edge Start[E0] Point, Edge End[E1] Point, Plane Point[P] Point, Segments[S] Integer | OUT: Polygon[P] Curve, Centre[C] Point, Corner Radius[Rc] Number, Edge Radius[Rc] Number
+Curve/Primitive/Rectangle :: Create a rectangle on a plane | IN: Plane[P] Plane, X Size[X] Domain, Y Size[Y] Domain, Radius[R] Number | OUT: Rectangle[R] Generic Data, Length[L] Number
+Curve/Primitive/Rectangle 2Pt :: Create a rectangle from a base plane and two points | IN: Plane[P] Plane, Point A[A] Point, Point B[B] Point, Radius[R] Number | OUT: Rectangle[R] Generic Data, Length[L] Number
+Curve/Primitive/Rectangle 3Pt :: Create a rectangle from three points | IN: Point A[A] Point, Point B[B] Point, Point C[C] Point | OUT: Rectangle[R] Rectangle, Length[L] Number
+Curve/Primitive/Tangent Arcs :: Create tangent arcs between circles | IN: Circle A[A] Circle, Circle B[B] Circle, Radius[R] Number | OUT: Arc A[A] Arc, Arc B[B] Arc
+Curve/Primitive/Tangent Lines :: Create tangent lines between a point and a circle | IN: Point[P] Point, Circle[C] Circle | OUT: Tangent 1[T1] Line, Tangent 2[T2] Line
+Curve/Primitive/Tangent Lines (Ex) :: Create external tangent lines between circles | IN: Circle A[A] Circle, Circle B[B] Circle | OUT: Tangent 1[T1] Line, Tangent 2[T2] Line
+Curve/Primitive/Tangent Lines (In) :: Create internal tangent lines between circles | IN: Circle A[A] Circle, Circle B[B] Circle | OUT: Tangent 1[T1] Line, Tangent 2[T2] Line
+Curve/Primitive/TwoByFourJam :: Jam a two-by-four into a crooked room | IN: Room[R] Curve, Width[W] Number, Samples[S] Integer | OUT: Rectangle[R] Rectangle
+Curve/Spline/Bezier Span :: Construct a bezier span from endpoints and tangents. | IN: Start point[A] Point, Start tangent[At] Vector, End point[B] Point, End tangent[Bt] Vector | OUT: Curve[C] Curve, Length[L] Number, Domain[D] Domain
+Curve/Spline/Blend Curve :: Create a blend curve between two curves. | IN: Curve A[A] Curve, Curve B[B] Curve, Bulge A[Fa] Number, Bulge B[Fb] Number, Continuity[C] Integer | OUT: Blend[B] Curve
+Curve/Spline/Blend Curve Pt :: Create a blend curve between two curves that intersects a... | IN: Curve A[A] Curve, Curve B[B] Curve, Point[P] Point, Continuity[C] Integer | OUT: Blend[B] Curve
+Curve/Spline/Catenary :: Create a catenary chain between two points. | IN: Point A[A] Point, Point B[B] Point, Length[L] Number, Gravity[G] Vector | OUT: Catenary[C] Curve
+Curve/Spline/Catenary Ex :: Create a variable catenary chain between two points. | IN: Point A[A] Point, Point B[B] Point, Lengths[L] Number[], Weights[W] Number[], Gravity[G] Vector | OUT: Catenary[C] Curve, Segments[S] Curve[]
+Curve/Spline/Connect Curves :: Connect a sequence of curves. | IN: Curves[C] Curve[], Continuity[G] Integer, Close[L] Boolean, Bulge[B] Number | OUT: Curve[C] Curve
+Curve/Spline/Curve On Surface :: Create an interpolated curve through a set of points on a... | IN: Surface[S] Surface, UV coordinates[uv] Point[], Closed[C] Boolean | OUT: Curve[C] Curve, Length[L] Number, Domain[D] Domain
+Curve/Spline/Geodesic :: Construct a surface geodesic between two points. | IN: Surface[S] Surface, Start[S] Point, End[E] Point | OUT: Geodesic[G] Curve
+Curve/Spline/Interpolate :: Create an interpolated curve through a set of points. | IN: Vertices[V] Point[], Degree[D] Integer, Periodic[P] Boolean, KnotStyle[K] Integer | OUT: Curve[C] Curve, Length[L] Number, Domain[D] Domain
+Curve/Spline/Interpolate (t) :: Create an interpolated curve through a set of points with... | IN: Vertices[V] Point[], Tangent Start[Ts] Vector, Tangent End[Te] Vector, KnotStyle[K] Integer | OUT: Curve[C] Curve, Length[L] Number, Domain[D] Domain
+Curve/Spline/Iso Curve :: Construct {uv} isocurves on a surface. | IN: Surface[S] Surface, UV point[uv] Point | OUT: U Isocurve[U] Curve[], V Isocurve[V] Curve[]
+Curve/Spline/Kinky Curve :: Construct an interpolated curve through a set of points w... | IN: Vertices[V] Point[], Degree[D] Integer, Angle[A] Number | OUT: Curve[C] Curve, Length[L] Number, Domain[D] Domain
+Curve/Spline/Knot Vector :: Construct a nurbs curve knot vector. | IN: Count[N] Integer, Degree[D] Integer, Periodic[P] Boolean | OUT: Knots[K] Number[]
+Curve/Spline/Match Curve :: Match two curves. | IN: Curve A[A] Curve, Curve B[B] Curve, Continuity[C] Integer | OUT: Match[M] Curve
+Curve/Spline/Nurbs Curve :: Construct a nurbs curve from control points. | IN: Vertices[V] Point[], Degree[D] Integer, Periodic[P] Boolean | OUT: Curve[C] Curve, Length[L] Number, Domain[D] Domain
+Curve/Spline/Nurbs Curve PWK :: Construct a nurbs curve from control points, weights and ... | IN: Points[P] Point[], Weights[W] Number[], Knots[K] Number[] | OUT: Curve[C] Curve, Length[L] Number, Domain[D] Domain
+Curve/Spline/PolyArc :: Create a polycurve consisting of arc and line segments. | IN: Vertices[V] Point[], Tangent[T] Vector, Closed[C] Boolean | OUT: PolyArc[Crv] Curve
+Curve/Spline/PolyLine :: Create a polyline connecting a number of points. | IN: Vertices[V] Point[], Closed[C] Boolean | OUT: Polyline[Pl] Curve
+Curve/Spline/Sub Curve :: Construct a curve from the sub-domain of a base curve. | IN: Base curve[C] Curve, Domain[D] Domain | OUT: Curve[C] Curve
+Curve/Spline/Swing Arc :: Create a polycurve consisting of arcs defined by center p... | IN: Centers[C] Point[], Plane[P] Plane, Radius[R] Number | OUT: Curve A[A] Curve, Curve B[B] Curve, Circles[C] Circle[]
+Curve/Spline/Tangent Curve :: Create a curve through a set of points with tangents. | IN: Vertices[V] Point[], Tangents[T] Vector[], Blend[B] Number, Degree[D] Integer | OUT: Curve[C] Curve, Length[L] Number, Domain[D] Domain
+Curve/Spline/Tween Curve :: Tween between two curves. | IN: Curve A[A] Curve, Curve B[B] Curve, Factor[F] Number | OUT: Tween[T] Curve
+Curve/Util/Curve To Polyline :: Convert a curve to a polyline. | IN: Curve[C] Curve, Tolerance (distance)[Td] Number, Tolerance (angle)[Ta] Number, MinEdge[E-] Number, MaxEdge[E+] Number | OUT: Polyline[P] Curve, Segments[S] Integer
+Curve/Util/Explode :: Explode a curve into smaller segments. | IN: Curve[C] Curve, Recursive[R] Boolean | OUT: Segments[S] Curve[], Vertices[V] Point[]
+Curve/Util/Extend Curve :: Extend a curve by a specified distance. | IN: Curve[C] Curve, Type[T] Integer, Start[L0] Number, End[L1] Number | OUT: Curve[C] Curve
+Curve/Util/Fillet :: Fillet the sharp corners of a curve. | IN: Curve[C] Curve, Radius[R] Number | OUT: Curve[C] Curve
+Curve/Util/Fillet Distance :: Fillet the sharp corners of a curve by distance. | IN: Curve[C] Curve, Distance[D] Number | OUT: Curve[C] Curve
+Curve/Util/Fit Curve :: Fit a curve along another curve. | IN: Curve[C] Curve, Degree[D] Integer, Tolerance[Ft] Number | OUT: Curve[C] Curve
+Curve/Util/Flip Curve :: Flip a curve using an optional guide curve. | IN: Curve[C] Curve, Guide[G] Curve | OUT: Curve[C] Curve, Flag[F] Boolean
+Curve/Util/Join Curves :: Join as many curves as possible | IN: Curves[C] Curve[], Preserve[P] Boolean | OUT: Curves[C] Curve[]
+Curve/Util/Offset Curve :: Offset a curve with a specified distance. | IN: Curve[C] Curve, Distance[D] Number, Plane[P] Plane, Corners[C] Integer | OUT: Curve[C] Curve[]
+Curve/Util/Offset Curve Loose :: Offset the control-points of a curve with a specified dis... | IN: Curve[C] Curve, Distance[D] Number, Plane[P] Plane | OUT: Curve[C] Curve
+Curve/Util/Offset Loose 3D :: Offset the control-points of a curve with a specified dis... | IN: Curve[C] Curve, Distance[D] Number | OUT: Curve[C] Curve
+Curve/Util/Offset Polyline :: Offset a 2D polyline | IN: Polyline[P] Curve, Distance[D] Number | OUT: Offset[O] Curve[], Valid[V] Boolean[]
+Curve/Util/Offset on Srf :: Offset a curve on a surface with a specified distance. | IN: Curve[C] Curve, Distance[D] Number, Surface[S] Surface | OUT: Curve[C] Curve[]
+Curve/Util/Polyline Collapse :: Collapse short segments in a polyline curve. | IN: Polyline[P] Curve, Tolerance[t] Number | OUT: Polyline[Pl] Curve, Count[N] Integer
+Curve/Util/Project Curve :: Project a curve onto a Brep. | IN: Curve[C] Curve, Brep[B] Brep, Direction[D] Vector | OUT: Curve[C] Curve[]
+Curve/Util/Pull Curve :: Pull a curve onto a surface. | IN: Curve[C] Curve, Surface[S] Surface | OUT: Curve[C] Curve[]
+Curve/Util/Rebuild Curve :: Rebuild a curve with a specific number of control-points. | IN: Curve[C] Curve, Degree[D] Integer, Count[N] Integer, Tangents[T] Boolean | OUT: Curve[C] Curve
+Curve/Util/Reduce :: Reduce a polyline by removing least significant vertices. | IN: Polyline[P] Curve, Tolerance[T] Number | OUT: Polyline[P] Curve, Reduction[R] Integer
+Curve/Util/Seam :: Adjust the seam of a closed curve. | IN: Curve[C] Curve, Seam[t] Number | OUT: Curve[C] Curve
+Curve/Util/Simplify Curve :: Simplify a curve. | IN: Curve[C] Curve, Tolerance[t] Number, Angle Tolerance[a] Number | OUT: Curve[C] Curve, Simplified[S] Boolean
+Curve/Util/Smooth Polyline :: Smooth the vertices of a polyline curve. | IN: Polyline[P] Curve, Strength[S] Number, Times[T] Integer | OUT: Polyline[P] Curve
+Display/Colour/Colour CMYK :: Create a colour from floating point {CMYK} channels. | IN: Cyan[C] Number, Magenta[M] Number, Yellow[Y] Number, Key[K] Number | OUT: Colour[C] Colour
+Display/Colour/Colour HSL :: Create a colour from floating point {HSL} channels. | IN: Alpha[A] Number, Hue[H] Number, Saturation[S] Number, Luminance[L] Number | OUT: Colour[C] Colour
+Display/Colour/Colour HSV :: Create a colour from floating point {HSV} channels. | IN: Alpha[A] Number, Hue[H] Number, Saturation[S] Number, Value[V] Number | OUT: Colour[C] Colour
+Display/Colour/Colour L*ab :: Create a colour from floating point {CIE L*ab} channels. | IN: Alpha[A] Number, Luminance[L] Number, A[A] Number, B[B] Number | OUT: Colour[C] Colour
+Display/Colour/Colour LCH :: Create a colour from floating point {CIE LCH} channels. | IN: Alpha[A] Number, Luminance[L] Number, Chroma[C] Number, Hue[H] Number | OUT: Colour[C] Colour
+Display/Colour/Colour RGB :: Create a colour from {RGB} channels. | IN: Alpha[A] Integer, Red[R] Integer, Green[G] Integer, Blue[B] Integer | OUT: Colour[C] Colour
+Display/Colour/Colour RGB (f) :: Create a colour from floating point {RGB} channels. | IN: Alpha[A] Number, Red[R] Number, Green[G] Number, Blue[B] Number | OUT: Colour[C] Colour
+Display/Colour/Colour XYZ :: Create a colour from floating point {XYZ} channels (CIE 1... | IN: Alpha[A] Number, X[X] Number, Y[Y] Number, Z[Z] Number | OUT: Colour[C] Colour
+Display/Colour/Split AHSL :: Split a colour into floating point {AHSL} channels | IN: Colour[C] Colour | OUT: Alpha[A] Number, Hue[H] Number, Saturation[S] Number, Luminance[L] Number
+Display/Colour/Split AHSV :: Split a colour into floating point {AHSV} channels | IN: Colour[C] Colour | OUT: Alpha[A] Number, Hue[H] Number, Saturation[S] Number, Value[V] Number
+Display/Colour/Split ARGB :: Split a colour into floating point {ARGB} channels. | IN: Colour[C] Colour | OUT: Alpha[A] Number, Red[R] Number, Green[G] Number, Blue[B] Number
+Display/Dimensions/Aligned Dimension :: Create a distance annotation between two points | IN: Plane[P] Plane, Point A[A] Point, Point B[B] Point, Offset[O] Number, Text[T] Text, Size[S] Number | OUT: -
+Display/Dimensions/Angular Dimension :: Create an angle annotation between points. | IN: Center[C] Point, Point A[A] Point, Point B[B] Point, Reflex[R] Boolean, Text[T] Text, Size[S] Number | OUT: -
+Display/Dimensions/Angular Dimensions (Mesh) :: Create angle annotations for all mesh corners. | IN: Mesh[M] Mesh, Text[T] Text, Size[S] Number, Length Factor[F] Number, Minimum Angle[A0] Number, Maximum Angle[A1] Number | OUT: -
+Display/Dimensions/Arc Dimension :: Create an angle annotation based on an arc. | IN: Arc[A] Arc, Offset[O] Number, Text[T] Text, Size[S] Number | OUT: -
+Display/Dimensions/Circular Dimension :: Create an angle annotation projected to a circle. | IN: Circle[C] Circle, Point A[A] Point, Point B[B] Point, Text[T] Text, Size[S] Number | OUT: -
+Display/Dimensions/Gradient Hatch :: Create a gradient hatch | IN: Boundaries[B] Curve[], Axis[A] Line, Colour 1[C1] Colour, Colour 2[C2] Colour | OUT: -
+Display/Dimensions/Line Dimension :: Create a distance annotation along a line. | IN: Line[L] Line, Text[T] Text, Size[S] Number | OUT: -
+Display/Dimensions/Linear Dimension :: Create a distance annotation between points, projected to... | IN: Line[L] Line, Point A[A] Point, Point B[B] Point, Text[T] Text, Size[S] Number | OUT: -
+Display/Dimensions/Make2D :: Create a hidden line drawing from geometry | IN: Geometry[G] Geometry[], Clipping Planes[C] Plane[], View[V] View, Tangent Edges[Te] Boolean, Tangent Seams[Ts] Boolean | OUT: Visible curves[V] Curve[], Visible index[Vi] Integer[], Visible type[Vt] Text[], Hidden curves[H] Curve[], Hidden index[Hi] Integer[], Hidden type[Ht] Text[]
+Display/Dimensions/Make2D Parallel View :: Define a parallel view for a Make2D solution | IN: Projection[P] Rectangle | OUT: View[V] View
+Display/Dimensions/Make2D Perspective View :: Define a perspective view for a Make2D solution | IN: Camera[C] Point, Frame[F] Rectangle | OUT: View[V] View
+Display/Dimensions/Make2D Rhino View :: Import a Rhino view for a Make2D solution | IN: Name[N] Text, Clip[C] Boolean | OUT: View[V] View
+Display/Dimensions/Marker Dimension :: Create a text annotation at a point | IN: Line[L] Line, Text[T] Text, Size[S] Number | OUT: -
+Display/Dimensions/Pattern Hatch :: Create a patterned hatch | IN: Boundaries[B] Curve[], Pattern[P] Integer, Scale[S] Number, Angle[A] Number | OUT: -
+Display/Dimensions/Serial Dimension :: Create a distance annotation between multiple points, pro... | IN: Line[L] Line, Points[P] Point[], Text[T] Text, Size[S] Number | OUT: -
+Display/Dimensions/Text Tag :: Represents a list of text tags in a Rhino viewport | IN: Location[L] Point, Text[T] Text, Colour[C] Colour | OUT: -
+Display/Dimensions/Text Tag 3D :: Represents a list of 3D text tags in a Rhino viewport | IN: Location[L] Plane, Text[T] Text, Size[S] Number, Colour[C] Colour, Justification[J] Integer | OUT: -
+Display/Graphs/Bar Graph :: Bar graph representation of a set of numbers | PARAM
+Display/Graphs/Image Gallery :: Display a sequence of images | PARAM
+Display/Graphs/Legend :: Display a legend consisting of Tags and Colours | IN: Colour[C] Colour[], Tags[T] Text[], Rectangle[R] Rectangle | OUT: -
+Display/Graphs/Pie Chart :: Displays a set of text fragments as a pie chart | PARAM
+Display/Graphs/Quick Graph :: Display a set of y-values as a graph | PARAM
+Display/Graphs/Value Tracker :: Track a collection of numeric values over time | PARAM
+Display/Preview/Cloud Display :: Draw a collection of points as a fuzzy cloud | IN: Points[P] Point[], Colours[C] Colour[], Size[S] Number | OUT: -
+Display/Preview/Create Material :: Create an OpenGL material. | IN: Diffuse[Kd] Colour, Specular[Ks] Colour, Emission[Ke] Colour, Transparency[T] Number, Shine[S] Integer | OUT: Material[M] Shader
+Display/Preview/Custom Curve Preview :: Custom Curve Preview | IN: Curve[C] Curve, Linetype[L] Model Linetype, Colour[C] Colour | OUT: -
+Display/Preview/Custom Preview :: Allows for customized geometry previews | IN: Geometry[G] Geometry, Material[M] Shader | OUT: -
+Display/Preview/Deconstruct Material :: Deconstruct a display material (ie. shader) into its vari... | IN: Material[M] Shader | OUT: Diffuse[Kd] Colour, Specular[Ks] Colour, Emission[Ke] Colour, Transparency[T] Number, Shine[S] Integer
+Display/Preview/Dot Display :: Draw a collection of coloured dots | IN: Point[P] Point, Colour[C] Colour, Size[S] Number | OUT: -
+Display/Preview/Symbol (Advanced) :: Advanced symbol display properties | IN: Style[X] Integer, Size Primary[S1] Number, Size Secondary[S2] Number, Rotation[R] Number, Fill[Cf] Colour, Edge[Ce] Colour, Width[W] Number, Adjust[A] Boolean | OUT: Symbol Display[D] Symbol Display
+Display/Preview/Symbol (Simple) :: Simple symbol display properties | IN: Style[X] Integer, Size[S] Number, Rotation[R] Number, Colour[C] Colour | OUT: Symbol Display[D] Symbol Display
+Display/Preview/Symbol Display :: Display symbols | IN: Location[P] Point, Display[D] Symbol Display | OUT: -
+Display/Test/Test Crash :: Test crashing of GH | IN: Crash[C] Boolean | OUT: -
+Display/Vector/Point List :: Displays the indices in lists of points | IN: Points[P] Point[], Tags[T] Boolean, Lines[L] Boolean, Size[S] Number | OUT: -
+Display/Vector/Point Order :: Displays the order of a list of points | IN: Points[P] Point[] | OUT: -
+Display/Vector/Vector Display :: Preview vectors in the viewport | IN: Anchor[A] Point, Vector[V] Vector | OUT: -
+Display/Vector/Vector Display Ex :: Preview vectors in the viewport | IN: Point[P] Point, Vector[V] Vector, Colour[C] Colour, Width[W] Integer | OUT: -
+Display/Viewport/Fancy Curves :: Test new curve options | IN: Curve[Crv] Curve, Colour[C] Colour, Thickness[Thk] Number, CapStyle[Cap] Integer, JoinStyle[Join] Integer, Pattern[Ptn] Number[], PatternBySegment[BySeg] Boolean, PatternOffset[O] Number, WorldPatternLengths[W] Boolean, TaperPosition[TPos] Number, TaperThickness[TThk] Number | OUT: -
+Display/Viewport/Viewport Display :: Display viewport on canvas | IN: Visible[V] Boolean, Left[L] Integer, Top[T] Integer, Width[W] Integer, Height[H] Integer | OUT: -
+Intersect/Mathematical/Brep | Line :: Solve intersection events for a Brep and a line. | IN: Brep[B] Brep, Line[L] Line | OUT: Curves[C] Curve[], Points[P] Point[]
+Intersect/Mathematical/Brep | Plane :: Solve intersection events for a Brep and a plane (otherwi... | IN: Brep[B] Brep, Plane[P] Plane | OUT: Curves[C] Curve[], Points[P] Point[]
+Intersect/Mathematical/Contour :: Create a set of Brep or Mesh contours | IN: Shape[S] Geometry, Point[P] Point, Direction[N] Vector, Distance[D] Number | OUT: Contours[C] Curve{}
+Intersect/Mathematical/Contour (ex) :: Create a set of Brep or Mesh contours | IN: Shape[S] Geometry, Plane[P] Plane, Offsets[O] Number[], Distances[D] Number[] | OUT: Contours[C] Curve{}
+Intersect/Mathematical/Curve | Line :: Solve intersection events for a curve and a line. | IN: Curve[C] Curve, Line[L] Line | OUT: Points[P] Point[], Params[t] Number[], Count[N] Integer
+Intersect/Mathematical/Curve | Plane :: Solve intersection events for a curve and a plane. | IN: Curve[C] Curve, Plane[P] Plane | OUT: Points[P] Point[], Params C[t] Number[], Params P[uv] Point[]
+Intersect/Mathematical/IsoVist :: Compute an isovist sampling at a location | IN: Plane[P] Plane, Count[N] Integer, Radius[R] Number, Obstacles[O] Geometry[] | OUT: Points[P] Point[], Distance[D] Number[], Index[I] Integer[]
+Intersect/Mathematical/IsoVist Ray :: Compute a single isovist sample at a location | IN: Sample[S] Line, Radius[R] Number, Obstacles[O] Geometry[] | OUT: Point[P] Point, Distance[D] Number, Index[I] Integer
+Intersect/Mathematical/Line | Line :: Solve intersection events for two lines. | IN: Line 1[A] Line, Line 2[B] Line | OUT: Param A[tA] Number, Param B[tB] Number, Point A[pA] Point, Point B[pB] Point
+Intersect/Mathematical/Line | Plane :: Solve intersection event for a line and a plane. | IN: Line[L] Line, Plane[P] Plane | OUT: Point[P] Point, Param L[t] Number, Param P[uv] Point
+Intersect/Mathematical/Mesh | Plane :: Solve intersection events for a Mesh and a Plane (otherwi... | IN: Mesh[M] Mesh, Plane[P] Plane | OUT: Curves[C] Curve[]
+Intersect/Mathematical/Mesh | Ray :: Intersect a mesh with a semi-infinite ray | IN: Mesh[M] Mesh, Point[P] Point, Direction[D] Vector | OUT: Point[X] Point, Hit[H] Boolean
+Intersect/Mathematical/Plane Region :: Create a bounded region from intersecting planes. | IN: Plane[P] Plane, Bounds[B] Plane[] | OUT: Region[R] Curve
+Intersect/Mathematical/Plane | Plane :: Solve the intersection event of two planes. | IN: Plane A[A] Plane, Plane B[B] Plane | OUT: Line[L] Line
+Intersect/Mathematical/Plane | Plane | Plane :: Solve the intersection events of three planes. | IN: Plane A[A] Plane, Plane B[B] Plane, Plane C[C] Plane | OUT: Point[Pt] Point, Line AB[AB] Line, Line AC[AC] Line, Line BC[BC] Line
+Intersect/Mathematical/Point Cloud Contour :: Create a series of planar curves by intersecting planes w... | IN: Cloud[Pc] Point Cloud, Start[S] Point, Direction[N] Vector, Distance[D] Number, Limit[L] Boolean | OUT: Curves[C] Curve[]
+Intersect/Mathematical/Point Cloud Section :: Create a planar section by intersecting a plane with a cl... | IN: Cloud[Pc] Point Cloud, Plane[Pl] Plane | OUT: Curves[C] Curve[]
+Intersect/Mathematical/Surface | Line :: Solve intersection events for a surface and a line. | IN: Surface[S] Surface, Line[L] Line | OUT: Curves[C] Curve[], Points[P] Point[], UV Points[uv] Point[], Normal[N] Vector[]
+Intersect/Physical/Brep | Brep :: Solve intersection events for two Breps. | IN: Brep A[A] Brep, Brep B[B] Brep | OUT: Curves[C] Curve[], Points[P] Point[]
+Intersect/Physical/Brep | Curve :: Solve intersection events for a Brep and a curve. | IN: Brep[B] Brep, Curve[C] Curve | OUT: Curves[C] Curve[], Points[P] Point[]
+Intersect/Physical/Clash :: Perform clash analysis on a set of shapes. | IN: First Set[A] Mesh[], Second Set[B] Mesh[], Distance[D] Number, Result Limit[L] Integer | OUT: Clash Count[N] Integer, Clash Points[P] Point[], Clash Radii[R] Number[], First Index[i] Integer[], Second index[j] Integer[]
+Intersect/Physical/Collision Many|Many :: Test for many|many collision between objects | IN: Colliders[C] Geometry[] | OUT: Collision[C] Boolean[], Indices[I] Integer[]
+Intersect/Physical/Collision One|Many :: Test for one|many collision between objects | IN: Collider[C] Geometry, Obstacles[O] Geometry[] | OUT: Collision[C] Boolean, Index[I] Integer
+Intersect/Physical/Curve | Curve :: Solve intersection events for two curves. | IN: Curve A[A] Curve, Curve B[B] Curve | OUT: Points[P] Point[], Params A[tA] Number[], Params B[tB] Number[]
+Intersect/Physical/Curve | Self :: Solve all self intersection events for a curve. | IN: Curve[C] Curve | OUT: Points[P] Point[], Params[t] Number[]
+Intersect/Physical/Mesh | Curve :: Mesh Curve intersection | IN: Mesh[M] Mesh, Curve[C] Curve | OUT: Points[X] Point[], Faces[F] Integer[]
+Intersect/Physical/Mesh | Mesh :: Mesh Mesh intersection | IN: Mesh A[A] Mesh, Mesh B[B] Mesh | OUT: Intersections[X] Curve[]
+Intersect/Physical/Multiple Curves :: Solve intersection events for multiple curves. | IN: Curves[C] Curve[] | OUT: Points[P] Point[], Index A[iA] Integer[], Index B[iB] Integer[], Param A[tA] Number[], Param B[tB] Number[]
+Intersect/Physical/Surface Split :: Split a surface with a bunch of curves. | IN: Surface[S] Surface, Curves[C] Curve[] | OUT: Fragments[F] Surface[]
+Intersect/Physical/Surface | Curve :: Solve intersection events for a surface and a curve. | IN: Surface[S] Surface, Curve[C] Curve | OUT: Curves[C] Curve[], Points[P] Point[], UV Points[uv] Point[], Normals[N] Vector[], Parameters[t] Number[], Tangents[T] Vector[]
+Intersect/Region/Split with Brep :: Split a curve with a Brep. | IN: Curve[C] Curve, Brep[B] Brep | OUT: Curve[C] Curve[], Points[P] Point[]
+Intersect/Region/Split with Breps :: Split a curve with multiple Breps. | IN: Curve[C] Curve, Brep[B] Brep[] | OUT: Curve[C] Curve[], Points[P] Point[]
+Intersect/Region/Trim with Brep :: Trim a curve with a Brep. | IN: Curve[C] Curve, Brep[B] Brep | OUT: Inside[Ci] Curve[], Outside[Co] Curve[]
+Intersect/Region/Trim with Breps :: Trim a curve with multiple Breps. | IN: Curve[C] Curve, Brep[B] Brep[] | OUT: Inside[Ci] Curve[], Outside[Co] Curve[]
+Intersect/Region/Trim with Region :: Trim a curve with a region. | IN: Curve[C] Curve, Region[R] Curve, Plane[P] Plane | OUT: Inside[Ci] Curve[], Outside[Co] Curve[]
+Intersect/Region/Trim with Regions :: Trim a curve with multiple regions. | IN: Curve[C] Curve, Regions[R] Curve[], Plane[P] Plane | OUT: Inside[Ci] Curve[], Outside[Co] Curve[]
+Intersect/Shape/Boundary Volume :: Create a closed polysurface from boundary surfaces | IN: Boundaries[B] Brep[] | OUT: Solid[S] Brep
+Intersect/Shape/Box Slits :: Add slits to a collection of intersecting boxes | IN: Boxes[B] Box[], Gap[G] Number | OUT: Breps[B] Brep{}, Topology[T] Integer{}
+Intersect/Shape/Mesh Difference :: Perform a solid difference on two sets of meshes | IN: Meshes A[A] Mesh[], Meshes B[B] Mesh[] | OUT: Result[R] Mesh[]
+Intersect/Shape/Mesh Intersection :: Perform a solid intersection on a set of meshes | IN: Meshes A[A] Mesh[], Meshes B[B] Mesh[] | OUT: Result[R] Mesh[]
+Intersect/Shape/Mesh Split :: Mesh Mesh split | IN: Mesh[M] Mesh, Splitters[S] Mesh[] | OUT: Result[R] Mesh[]
+Intersect/Shape/Mesh Union :: Perform a solid union on a set of meshes | IN: Meshes[M] Mesh[] | OUT: Result[R] Mesh[]
+Intersect/Shape/Region Difference :: Difference between two sets of planar closed curves (regi... | IN: Curves A[A] Curve[], Curves B[B] Curve[], Plane[P] Plane | OUT: Result[R] Curve[]
+Intersect/Shape/Region Intersection :: Intersection between two sets of planar closed curves (re... | IN: Curves A[A] Curve[], Curves B[B] Curve[], Plane[P] Plane | OUT: Result[R] Curve[]
+Intersect/Shape/Region Slits :: Add slits to a collection of intersecting planar regions | IN: Regions[R] Curve[], Width[W] Number, Gap[G] Number | OUT: Regions[R] Surface{}, Topology[T] Integer{}
+Intersect/Shape/Region Union :: Union of a set of planar closed curves (regions) | IN: Curves[C] Curve[], Plane[P] Plane | OUT: Result[R] Curve[]
+Intersect/Shape/Solid Difference :: Perform a solid difference on two Brep sets. | IN: Breps A[A] Brep[], Breps B[B] Brep[] | OUT: Result[R] Brep[]
+Intersect/Shape/Solid Intersection :: Perform a solid intersection on two Brep sets. | IN: Breps A[A] Brep[], Breps B[B] Brep[] | OUT: Result[R] Brep[]
+Intersect/Shape/Solid Union :: Perform a solid union on a set of Breps. | IN: Breps[B] Brep[] | OUT: Result[R] Brep[]
+Intersect/Shape/Split Brep :: Split one brep with another. | IN: Brep[B] Brep, Cutter[C] Brep | OUT: Result[R] Brep[]
+Intersect/Shape/Split Brep Multiple :: Split one brep with a bunch of others. | IN: Brep[B] Brep, Cutters[C] Brep[] | OUT: Result[R] Brep[]
+Intersect/Shape/Trim Solid :: Cut holes into a shape with a set of solid cutters. | IN: Shape[S] Brep, Cutters[T] Brep[] | OUT: Result[R] Brep[]
+Maths/Domain/Bounds :: Create a numeric domain which encompasses a list of numbers. | IN: Numbers[N] Number[] | OUT: Domain[I] Domain
+Maths/Domain/Bounds 2D :: Create a numeric two-dimensional domain which encompasses... | IN: Coordinates[C] Point[] | OUT: Domain[I] Domain²
+Maths/Domain/Consecutive Domains :: Create consecutive domains from a list of numbers | IN: Numbers[N] Number[], Additive[A] Boolean | OUT: Domains[D] Domain[]
+Maths/Domain/Construct Domain :: Create a numeric domain from two numeric extremes. | IN: Domain start[A] Number, Domain end[B] Number | OUT: Domain[I] Domain
+Maths/Domain/Construct Domain² :: Create a two-dimensional domain from two simple domains. | IN: Domain U[U] Domain, Domain V[V] Domain | OUT: 2D Domain[I²] Domain²
+Maths/Domain/Deconstruct Domain :: Deconstruct a numeric domain into its component parts. | IN: Domain[I] Domain | OUT: Start[S] Number, End[E] Number
+Maths/Domain/Deconstruct Domain² :: Deconstruct a two-dimensional domain into four numbers | IN: Domain[I] Domain² | OUT: U min[U0] Number, U max[U1] Number, V min[V0] Number, V max[V1] Number
+Maths/Domain/Divide Domain :: Divide a domain into equal segments. | IN: Domain[I] Domain, Count[C] Integer | OUT: Segments[S] Domain[]
+Maths/Domain/Divide Domain² :: Divides a two-dimensional domain into equal segments. | IN: Domain[I] Domain², U Count[U] Integer, V Count[V] Integer | OUT: Segments[S] Domain²[]
+Maths/Domain/Find Domain :: Find the first domain that contains a specific value | IN: Domains[D] Domain[], Number[N] Number, Strict[S] Boolean | OUT: Index[I] Integer, Neighbour[N] Integer
+Maths/Domain/Includes :: Test a numeric value to see if it is included in the domain | IN: Value[V] Number, Domain[D] Domain | OUT: Includes[I] Boolean, Deviation[D] Number
+Maths/Domain/Remap Numbers :: Remap numbers into a new numeric domain | IN: Value[V] Number, Source[S] Domain, Target[T] Domain | OUT: Mapped[R] Number, Clipped[C] Number
+Maths/Matrix/Construct Matrix :: Construct a matrix from initial values | IN: Rows[R] Integer, Columns[C] Integer, Values[V] Number[] | OUT: Matrix[M] Matrix
+Maths/Matrix/Deconstruct Matrix :: Deconstruct a matrix into its component parts | IN: Matrix[M] Matrix | OUT: Rows[R] Integer, Columns[C] Integer, Values[V] Number[]
+Maths/Matrix/Display Matrix :: Display a matrix | PARAM
+Maths/Matrix/Invert Matrix :: Invert a matrix | IN: Matrix[M] Matrix, Tolerance[t] Number | OUT: Matrix[M] Matrix, Success[S] Boolean
+Maths/Matrix/Swap Columns :: Swap two columns in a matrix | IN: Matrix[M] Matrix, Column A[A] Integer, Column B[B] Integer | OUT: Matrix[M] Matrix
+Maths/Matrix/Swap Rows :: Swap two rows in a matrix | IN: Matrix[M] Matrix, Row A[A] Integer, Row B[B] Integer | OUT: Matrix[M] Matrix
+Maths/Matrix/Transpose Matrix :: Transpose a matrix (swap rows and columns) | IN: Matrix[M] Matrix | OUT: Matrix[M] Matrix
+Maths/Operators/Absolute :: Compute the absolute of a value. | IN: Value[x] Generic Data | OUT: Result[y] Generic Data
+Maths/Operators/Addition :: Mathematical addition | IN: A[A] Generic Data, B[B] Generic Data | OUT: Result[R] Generic Data
+Maths/Operators/Assert True :: Asserts all input values for truthy | PARAM
+Maths/Operators/Division :: Mathematical division | IN: A[A] Generic Data, B[B] Generic Data | OUT: Result[R] Generic Data
+Maths/Operators/Equality :: Test for (in)equality of two numbers | IN: First Number[A] Number, Second Number[B] Number | OUT: Equality[=] Boolean, Inequality[≠] Boolean
+Maths/Operators/Factorial :: Returns the factorial of an integer. | IN: Number[N] Integer | OUT: Factorial[F] Generic Data
+Maths/Operators/Gate And :: Perform boolean conjunction (AND gate). | IN: A[A] Boolean, B[B] Boolean | OUT: Result[R] Boolean
+Maths/Operators/Gate Majority :: Calculates the majority vote among three booleans. | IN: A[A] Boolean, B[B] Boolean, C[C] Boolean | OUT: Result[R] Boolean
+Maths/Operators/Gate Nand :: Perform boolean alternative denial (NAND gate). | IN: A[A] Boolean, B[B] Boolean | OUT: Result[R] Boolean
+Maths/Operators/Gate Nor :: Perform boolean joint denial (NOR gate). | IN: A[A] Boolean, B[B] Boolean | OUT: Result[R] Boolean
+Maths/Operators/Gate Not :: Perform boolean negation (NOT gate). | IN: A[A] Boolean | OUT: Result[R] Boolean
+Maths/Operators/Gate Or :: Perform boolean disjunction (OR gate). | IN: A[A] Boolean, B[B] Boolean | OUT: Result[R] Boolean
+Maths/Operators/Gate Xnor :: Perform boolean biconditional (XNOR gate). | IN: A[A] Boolean, B[B] Boolean | OUT: Result[R] Boolean
+Maths/Operators/Gate Xor :: Perform boolean exclusive disjunction (XOR gate). | IN: A[A] Boolean, B[B] Boolean | OUT: Result[R] Boolean
+Maths/Operators/Integer Division :: Mathematical integer division | IN: A[A] Integer, B[B] Integer | OUT: Result[R] Integer
+Maths/Operators/Larger Than :: Larger than (or equal to) | IN: First Number[A] Number, Second Number[B] Number | OUT: Larger than[>] Boolean, … or Equal to[>=] Boolean
+Maths/Operators/Mass Addition :: Perform mass addition of a list of items | IN: Input[I] Generic Data[] | OUT: Result[R] Generic Data, Partial Results[Pr] Generic Data[]
+Maths/Operators/Mass Multiplication :: Perform mass multiplication of a list of items | IN: Input[I] Generic Data[] | OUT: Result[R] Generic Data, Partial Results[Pr] Generic Data[]
+Maths/Operators/Modulus :: Divides two numbers and returns only the remainder. | IN: A[A] Generic Data, B[B] Generic Data | OUT: Result[R] Generic Data
+Maths/Operators/Multiplication :: Mathematical multiplication | IN: A[A] Generic Data, B[B] Generic Data | OUT: Result[R] Generic Data
+Maths/Operators/Negative :: Compute the negative of a value. | IN: Value[x] Generic Data | OUT: Result[y] Generic Data
+Maths/Operators/Power :: Raise a value to a power. | IN: A[A] Generic Data, B[B] Generic Data | OUT: Result[R] Generic Data
+Maths/Operators/Relative Differences :: Compute relative differences for a list of data | IN: Values[V] Generic Data[] | OUT: Differenced[D] Generic Data[]
+Maths/Operators/Series Addition :: Perform serial addition until a goal has been reached | IN: Numbers[N] Integer[], Goal[G] Integer, Start[S] Integer | OUT: Series[S] Integer[], Remainder[R] Integer
+Maths/Operators/Similarity :: Test for similarity of two numbers | IN: First Number[A] Number, Second Number[B] Number, Threshold[T%] Number | OUT: Similarity[=] Boolean, Absolute difference[dt] Number
+Maths/Operators/Smaller Than :: Smaller than (or equal to) | IN: First Number[A] Number, Second Number[B] Number | OUT: Smaller than[<] Boolean, … or Equal to[<=] Boolean
+Maths/Operators/Subtraction :: Mathematical subtraction | IN: A[A] Generic Data, B[B] Generic Data | OUT: Result[R] Generic Data
+Maths/Polynomials/Cube :: Compute the cube of a value | IN: Value[x] Generic Data | OUT: Result[y] Generic Data
+Maths/Polynomials/Cube Root :: Compute the cube root of a value | IN: Value[x] Generic Data | OUT: Result[y] Generic Data
+Maths/Polynomials/Log N :: Return the N-base logarithm of a number. | IN: Number[V] Number, Base[B] Number | OUT: Result[R] Number
+Maths/Polynomials/Logarithm :: Compute the Base-10 logarithm of a value. | IN: Value[x] Generic Data | OUT: Result[y] Generic Data
+Maths/Polynomials/Natural logarithm :: Compute the natural logarithm of a value. | IN: Value[x] Generic Data | OUT: Result[y] Generic Data
+Maths/Polynomials/One Over X :: Compute one over x. | IN: Value[x] Generic Data | OUT: Result[y] Generic Data
+Maths/Polynomials/Power of 10 :: Raise 10 to the power of N. | IN: Value[x] Generic Data | OUT: Result[y] Generic Data
+Maths/Polynomials/Power of 2 :: Raise 2 to the power of N. | IN: Value[x] Generic Data | OUT: Result[y] Generic Data
+Maths/Polynomials/Power of E :: Raise E to the power of N. | IN: Value[x] Generic Data | OUT: Result[y] Generic Data
+Maths/Polynomials/Square :: Compute the square of a value | IN: Value[x] Generic Data | OUT: Result[y] Generic Data
+Maths/Polynomials/Square Root :: Compute the square root of a value | IN: Value[x] Generic Data | OUT: Result[y] Generic Data
+Maths/Script/Evaluate :: Evaluate an expression with a flexible number of variables. | IN: Expression[E] Expression, x[x] Expression Variant, y[y] Expression Variant | OUT: Result[R] Generic Data
+Maths/Time/Combine Date & Time :: Combine a pure date and a pure time into a single date | IN: Date[D] Time, Time[T] Time | OUT: Result[R] Time
+Maths/Time/Construct Date :: Construct a date and time instance. | IN: Year[Y] Integer, Month[M] Integer, Day[D] Integer, Hour[h] Integer, Minute[m] Integer, Second[s] Integer | OUT: Date[D] Time
+Maths/Time/Construct Exotic Date :: Construct a date using a specific calendar | IN: Year[Y] Integer, Month[M] Integer, Day[D] Integer | OUT: Time[T] Time
+Maths/Time/Construct Smooth Time :: Construct a time instance from smooth components | IN: Days[D] Number, Hours[H] Number, Minutes[M] Number, Seconds[S] Number | OUT: Time[T] Time
+Maths/Time/Construct Time :: Construct a time instance | IN: Hour[H] Integer, Minute[M] Integer, Second[S] Integer | OUT: Time[T] Time
+Maths/Time/Date Range :: Create a range of successive dates or times | IN: Time A[A] Time, Time B[B] Time, Count[N] Integer | OUT: Range[R] Time[]
+Maths/Time/Deconstruct Date :: Deconstruct a date into years, months, days, hours, minut... | IN: Date[D] Time | OUT: Year[Y] Integer, Month[M] Integer, Day[D] Integer, Hour[h] Integer, Minute[m] Integer, Second[s] Integer
+Maths/Time/Interpolate Date :: Interpolate between two dates or times. | IN: Date A[A] Time, Date B[B] Time, Interpolation[t] Number | OUT: Date[D] Time
+Maths/Trig/ArcCosine :: Compute the angle whose cosine is the specified value. | IN: Value[x] Generic Data | OUT: Result[y] Generic Data
+Maths/Trig/ArcSine :: Compute the angle whose sine is the specified value. | IN: Value[x] Generic Data | OUT: Result[y] Generic Data
+Maths/Trig/ArcTangent :: Compute the angle whose tangent is the specified value. | IN: Value[x] Generic Data | OUT: Result[y] Generic Data
+Maths/Trig/Centroid :: Generate the triangle centroid from medians. | IN: Point A[A] Point, Point B[B] Point, Point C[C] Point | OUT: Centroid[C] Point, Median AB[AB] Line, Median BC[BC] Line, Median CA[CA] Line
+Maths/Trig/Circumcentre :: Generate the triangle circumcentre from perpendicular bis... | IN: Point A[A] Point, Point B[B] Point, Point C[C] Point | OUT: Circumcentre[C] Point, Bisector AB[AB] Line, Bisector BC[BC] Line, Bisector CA[CA] Line
+Maths/Trig/CoSecant :: Compute the co-secant (reciprocal of the Sine) of an angle. | IN: Value[x] Generic Data | OUT: Result[y] Generic Data
+Maths/Trig/CoTangent :: Compute the co-tangent (reciprocal of the Tangent) of an ... | IN: Value[x] Generic Data | OUT: Result[y] Generic Data
+Maths/Trig/Cosine :: Compute the cosine of a value | IN: Value[x] Generic Data | OUT: Result[y] Generic Data
+Maths/Trig/Degrees :: Convert an angle specified in radians to degrees | IN: Radians[R] Number | OUT: Degrees[D] Number
+Maths/Trig/Incentre :: Generate the triangle incentre from angle bisectors. | IN: Point A[A] Point, Point B[B] Point, Point C[C] Point | OUT: Incentre[I] Point, Bisector A[A] Line, Bisector B[B] Line, Bisector C[C] Line
+Maths/Trig/Orthocentre :: Generate the triangle orthocentre from altitudes. | IN: Point A[A] Point, Point B[B] Point, Point C[C] Point | OUT: Orthocentre[C] Point, Altitude AB[AB] Line, Altitude BC[BC] Line, Altitude CA[CA] Line
+Maths/Trig/Radians :: Convert an angle specified in degrees to radians | IN: Degrees[D] Number | OUT: Radians[R] Number
+Maths/Trig/Right Trigonometry :: Right triangle trigonometry | IN: Alpha[α] Number, Beta[β] Number, P length[P] Number, Q length[Q] Number, R length[R] Number | OUT: Alpha[α] Number, Beta[β] Number, P length[P] Number, Q length[Q] Number, R length[R] Number
+Maths/Trig/Secant :: Compute the secant (reciprocal of the Cosine) of an angle. | IN: Value[x] Generic Data | OUT: Result[y] Generic Data
+Maths/Trig/Sinc :: Compute the sinc (Sinus Cardinalis) of a value. | IN: Value[x] Generic Data | OUT: Result[y] Generic Data
+Maths/Trig/Sine :: Compute the sine of a value | IN: Value[x] Generic Data | OUT: Result[y] Generic Data
+Maths/Trig/Tangent :: Compute the tangent of a value | IN: Value[x] Generic Data | OUT: Result[y] Generic Data
+Maths/Trig/Triangle Trigonometry :: Generic triangle trigonometry | IN: Alpha[α] Number, Beta[β] Number, Gamma[γ] Number, A length[A] Number, B length[B] Number, C length[C] Number | OUT: Alpha[α] Number, Beta[β] Number, Gamma[γ] Number, A length[A] Number, B length[B] Number, C length[C] Number
+Maths/Util/Average :: Solve the arithmetic average for a set of items | IN: Input[I] Generic Data[] | OUT: Arithmetic mean[AM] Generic Data
+Maths/Util/Blur Numbers :: Blur a list of numbers by averaging neighbours | IN: Numbers[N] Number[], Strength[S] Number, Iterations[I] Integer, Lock[L] Boolean, Wrap[W] Boolean | OUT: Numbers[N] Number[]
+Maths/Util/Clamp :: Restrict a number between two numeric extremes. | IN: Value[V] Generic Data, Domain[D] Domain | OUT: Clamped[C] Generic Data
+Maths/Util/Complex Argument :: Get the argument of a Complex number | IN: Complex[C] Complex | OUT: Argument[A] Number
+Maths/Util/Complex Components :: Extract the Real and Imaginary components from a complex ... | IN: Complex[C] Complex | OUT: Real[R] Number, Imaginary[i] Number
+Maths/Util/Complex Conjugate :: Create the conjugate of a Complex number | IN: Complex[C] Complex | OUT: Conjugate[C] Complex
+Maths/Util/Complex Modulus :: Get the modulus of a Complex number | IN: Complex[C] Complex | OUT: Modulus[M] Number
+Maths/Util/Create Complex :: Create a complex number from a Real and an Imaginary comp... | IN: Real[R] Number, Imaginary[i] Number | OUT: Complex[C] Complex
+Maths/Util/Epsilon :: Returns a factor of double precision floating point epsilon. | IN: Factor[N] Number | OUT: Output[y] Number
+Maths/Util/Extremes :: Find the extremes in a list of values | IN: A[A] Generic Data, B[B] Generic Data | OUT: Mininum[V-] Generic Data, Maximum[V+] Generic Data
+Maths/Util/Golden Ratio :: Returns a factor of the golden ratio (Phi). | IN: Factor[N] Number | OUT: Output[y] Number
+Maths/Util/Interpolate data :: Interpolate a collection of data. | IN: Data[D] Generic Data[], Parameter[t] Number | OUT: Value[V] Generic Data
+Maths/Util/Maximum :: Return the greater of two items. | IN: A[A] Generic Data, B[B] Generic Data | OUT: Result[R] Generic Data
+Maths/Util/Minimum :: Return the lesser of two items. | IN: A[A] Generic Data, B[B] Generic Data | OUT: Result[R] Generic Data
+Maths/Util/Natural logarithm :: Returns a factor of the natural number (e). | IN: Factor[N] Number | OUT: Output[y] Number
+Maths/Util/Pi :: Returns a factor of Pi. | IN: Factor[N] Number | OUT: Output[y] Number
+Maths/Util/Round :: Round a floating point value. | IN: Number[x] Number | OUT: Nearest[N] Integer, Floor[F] Integer, Ceiling[C] Integer
+Maths/Util/Smooth Numbers :: Smooth out changing numbers over time | IN: Numbers[N] Number{} | OUT: Numbers[N] Number{}
+Maths/Util/Truncate :: Perform truncation of numerical extremes | IN: Input[I] Generic Data[], Truncation factor[t] Number | OUT: Result[T] Generic Data[]
+Maths/Util/Weighted Average :: Solve the arithmetic weighted average for a set of items | IN: Input[I] Generic Data[], Weights[W] Number[] | OUT: Arithmetic mean[AM] Generic Data
+Mesh/Analysis/Deconstruct Face :: Deconstruct a mesh face into its four corner indices. | IN: Face[F] Mesh face | OUT: Corner A[A] Integer, Corner B[B] Integer, Corner C[C] Integer, Corner D[D] Integer
+Mesh/Analysis/Deconstruct Mesh :: Deconstruct a mesh into its component parts. | IN: Mesh[M] Mesh | OUT: Vertices[V] Point[], Faces[F] Mesh face[], Colours[C] Colour[], Normals[N] Vector[]
+Mesh/Analysis/Face Boundaries :: Convert all mesh faces to polylines | IN: Mesh[M] Mesh | OUT: Boundaries[B] Curve[]
+Mesh/Analysis/Face Circles :: Solve the circumscribed circles for all mesh faces | IN: Mesh[M] Mesh | OUT: Centers[C] Circle[], Ratio[R] Number[]
+Mesh/Analysis/Face Normals :: Extract the normals and center points of all faces in a mesh | IN: Mesh[M] Mesh | OUT: Centers[C] Point[], Normals[N] Vector[]
+Mesh/Analysis/Mesh Closest Point :: Finds the closest point on a mesh | IN: Point[P] Point, Mesh[M] Mesh | OUT: Point[P] Point, Index[I] Integer, Parameter[P] Mesh Parameter
+Mesh/Analysis/Mesh Depth :: Validate the depth of a mesh. | IN: Mesh[M] Mesh, Minimum[Min] Number, Maximum[Max] Number | OUT: Mesh[M] Mesh, Valid[V] Boolean
+Mesh/Analysis/Mesh Edges :: Get all the edges of a mesh | IN: Mesh[M] Mesh | OUT: Naked Edges[E1] Line[], Interior Edges[E2] Line[], Non-Manifold Edges[E3] Line[]
+Mesh/Analysis/Mesh Eval :: Evaluate a mesh at a given parameter | IN: Mesh[M] Mesh, Parameter[P] Mesh Parameter | OUT: Point[P] Point, Normal[N] Vector, Colour[C] Colour
+Mesh/Analysis/Mesh Inclusion :: Test a point for Mesh inclusion | IN: Mesh[M] Mesh, Point[P] Point, Strict[S] Boolean | OUT: Inside[I] Boolean
+Mesh/Primitive/Construct Mesh :: Construct a mesh from vertices, faces and optional colours. | IN: Vertices[V] Point[], Faces[F] Mesh face[], Colours[C] Colour[] | OUT: Mesh[M] Mesh
+Mesh/Primitive/Mesh Box :: Create a mesh box. | IN: Base[B] Box, X Count[X] Integer, Y Count[Y] Integer, Z Count[Z] Integer | OUT: Mesh[M] Mesh
+Mesh/Primitive/Mesh Colours :: Assign a repeating colour pattern to a mesh object. | IN: Mesh[M] Mesh, Colours[C] Colour[] | OUT: Mesh[M] Mesh
+Mesh/Primitive/Mesh Plane :: Create a mesh plane. | IN: Boundary[B] Rectangle, Width count[W] Integer, Height count[H] Integer | OUT: Mesh[M] Mesh, Area[A] Number
+Mesh/Primitive/Mesh Quad :: Create a mesh quad. | IN: Corner A[A] Integer, Corner B[B] Integer, Corner C[C] Integer, Corner D[D] Integer | OUT: Face[F] Mesh face
+Mesh/Primitive/Mesh Sphere :: Create a mesh sphere. | IN: Base[B] Plane, Radius[R] Number, U Count[U] Integer, V Count[V] Integer | OUT: Mesh[M] Mesh
+Mesh/Primitive/Mesh Sphere Ex :: Create a mesh sphere from square patches. | IN: Base[B] Plane, Radius[R] Number, Count[C] Integer | OUT: Mesh[M] Mesh
+Mesh/Primitive/Mesh Spray :: Assign colours to a mesh based on spray points. | IN: Mesh[M] Mesh, Points[P] Point[], Colours[C] Colour[] | OUT: Mesh[M] Mesh
+Mesh/Primitive/Mesh Triangle :: Create a mesh triangle. | IN: Corner A[A] Integer, Corner B[B] Integer, Corner C[C] Integer | OUT: Face[F] Mesh face
+Mesh/Triangulation/Convex Hull :: Compute the planar, convex hull for a collection of points | IN: Points[P] Point[], Plane[Pl] Plane | OUT: Hull[H] Curve, Hull(z)[Hz] Curve, Indices[I] Integer[]
+Mesh/Triangulation/Convex Hull 3D :: Compute the non planar, convex hull for a collection of p... | IN: Points[P] Point[] | OUT: Hull[H] Mesh, Indices[I] Integer[]
+Mesh/Triangulation/Delaunay Edges :: Delaunay connectivity | IN: Points[P] Point[], Plane[Pl] Plane | OUT: Connectivity[C] Integer{}, Edges[E] Line[]
+Mesh/Triangulation/Delaunay Mesh :: Delaunay triangulation | IN: Points[P] Point[], Plane[Pl] Plane | OUT: Mesh[M] Mesh
+Mesh/Triangulation/Facet Dome :: Create a facetted dome | IN: Points[P] Point[], Box[B] Box, Radius[R] Number | OUT: Pattern[P] Curve[], Dome[D] Surface
+Mesh/Triangulation/MetaBall :: 2D Metaball isocurve through point | IN: Points[P] Point[], Plane[Pl] Plane, Point[X] Point, Accuracy[A] Number | OUT: Isocurve[I] Curve[]
+Mesh/Triangulation/MetaBall(t) :: 2D Metaball isosurface by threshold | IN: Points[P] Point[], Plane[Pl] Plane, Threshold[T] Number, Accuracy[A] Number | OUT: Isocurve[I] Curve[]
+Mesh/Triangulation/MetaBall(t) Custom :: 2D Metaball isosurface by threshold and custom charge values | IN: Points[P] Point[], Charge[C] Number[], Plane[Pl] Plane, Threshold[T] Number, Accuracy[A] Number | OUT: Isocurve[I] Curve[]
+Mesh/Triangulation/OcTree :: A three-dimensional oc-tree structure | IN: Points[P] Point[], Square[S] Boolean, Group[G] Integer | OUT: Boxes[B] Box{}, Points[P] Point{}
+Mesh/Triangulation/Proximity 2D :: Search for two-dimensional proximity within a point list | IN: Points[P] Point[], Plane[Pl] Plane, Group[G] Integer, Min Radius[R-] Number, Max Radius[R+] Number | OUT: Links[L] Line{}, Topology[T] Integer{}
+Mesh/Triangulation/Proximity 3D :: Search for three-dimensional proximity within a point list | IN: Points[P] Point[], Group[G] Integer, Min Radius[R-] Number, Max Radius[R+] Number | OUT: Links[L] Line{}, Topology[T] Integer{}
+Mesh/Triangulation/Quad Remesh :: Perform quad-remeshing on a shape. | IN: Geometry[G] Geometry, Guides[C] Curve[], Settings[S] Quad meshing settings | OUT: Mesh[M] Mesh
+Mesh/Triangulation/Quad Remesh Settings :: Create setting for Quad-remeshing. | IN: Target Count[Tc] Integer, Adaptive Size[As] Number, Adaptive Count[Ac] Boolean, Target Edge Length[Te] Number, Hard Edges[He] Boolean, Seam Edges[Se] Integer, Symmetry[Sy] Integer, Guide Curves[Gc] Integer | OUT: Settings[S] Quad meshing settings
+Mesh/Triangulation/QuadTree :: A two-dimensional quadtree structure | IN: Points[P] Point[], Plane[Pl] Plane, Square[S] Boolean, Group[G] Integer | OUT: Quads[Q] Curve{}, Points[P] Point{}
+Mesh/Triangulation/Quadmesh Settings :: A collection of Quad-Remeshing settings | PARAM
+Mesh/Triangulation/ShrinkWrap :: ShrinkWrap a mesh or point cloud object | IN: Geometry[G] Geometry[], Edge Length[E] Number, Offset[O] Number, Smoothing[S] Integer, Optimization[P] Integer, Fill Holes[F] Boolean | OUT: Mesh[M] Mesh
+Mesh/Triangulation/Substrate :: Substrate algorithm inspired by Jared Tarbell (Complexifi... | IN: Border[B] Rectangle, Count[N] Integer, Angles[A] Number[], Deviation[D] Number, Seed[S] Integer | OUT: Substrate[S] Line[]
+Mesh/Triangulation/TriRemesh :: Convert a Brep or Mesh into a mesh of near equilateral tr... | IN: Geometry[Geometry] Geometry, Target[Target] Mesh, Sharp[Sharp] Boolean, Features[Features] Generic Data[], Length[Length] Number, Iterations[Iters] Integer | OUT: Triangulation[T] Mesh, Dual[D] Mesh, Creases[C] Line[]
+Mesh/Triangulation/Voronoi :: Planar voronoi diagram for a collection of points | IN: Points[P] Point[], Radius[R] Number, Boundary[B] Rectangle, Plane[Pl] Plane | OUT: Cells[C] Curve[]
+Mesh/Triangulation/Voronoi 3D :: Volumetric voronoi diagram for a collection of points | IN: Points[P] Point[], Box[B] Box | OUT: Cells[C] Brep[], Boundary[B] Boolean[]
+Mesh/Triangulation/Voronoi Cell :: Compute a single 3D Voronoi cell | IN: Point[P] Point, Neighbours[N] Point[], Box[B] Box | OUT: Cell[C] Brep
+Mesh/Triangulation/Voronoi Groups :: Compute a custom set of nested voronoi diagrams. | IN: Boundary[B] Rectangle, Generation 1[G1] Point[], Generation 2[G2] Point[] | OUT: Diagram 1[D1] Curve[], Diagram 2[D2] Curve[]
+Mesh/Util/Align Vertices :: Align nearby vertices in a mesh | IN: Mesh[M] Mesh, Tolerance[T] Number | OUT: Result[R] Mesh, Count[N] Integer
+Mesh/Util/Blur Mesh :: Blur the colours on a mesh | IN: Mesh[M] Mesh, Iterations[I] Integer | OUT: Mesh[M] Mesh
+Mesh/Util/Cull Faces :: Cull faces from a mesh | IN: Mesh[M] Mesh, Pattern[P] Boolean[] | OUT: Mesh[M] Mesh
+Mesh/Util/Cull Vertices :: Cull vertices from a mesh | IN: Mesh[M] Mesh, Pattern[P] Boolean[], Shrink[S] Boolean | OUT: Mesh[M] Mesh
+Mesh/Util/Delete Faces :: Delete faces from a mesh | IN: Mesh[M] Mesh, Indices[I] Integer[] | OUT: Mesh[M] Mesh
+Mesh/Util/Delete Vertices :: Delete vertices from a mesh | IN: Mesh[M] Mesh, Indices[I] Integer[], Shrink[S] Boolean | OUT: Mesh[M] Mesh
+Mesh/Util/Disjoint Mesh :: Split a mesh into disjoint pieces. | IN: Mesh[M] Mesh | OUT: Meshes[M] Mesh[]
+Mesh/Util/Exposure :: Solve mesh exposure for a collection of energy rays and o... | IN: Shape[S] Mesh, Obstructions[O] Mesh[], Rays[R] Vector[], Energy[E] Number[], Lambert[L] Boolean | OUT: Exposure[E] Number[], Range[R] Domain
+Mesh/Util/Flip Mesh :: Flip the normal vectors of a mesh | IN: Mesh[M] Mesh, Vertex Normals[Vn] Boolean, Face Normals[Fn] Boolean, Face Orientation[Fo] Boolean | OUT: Result[R] Mesh
+Mesh/Util/Mesh Brep :: Create a mesh that approximates Brep geometry | IN: Brep[B] Brep, Settings[S] MeshParameters | OUT: Mesh[M] Mesh
+Mesh/Util/Mesh Join :: Join a set of meshes into a single mesh | IN: Meshes[M] Mesh[] | OUT: Mesh[M] Mesh
+Mesh/Util/Mesh Shadow :: Compute the shadow outline for a mesh object | IN: Mesh[M] Mesh, Light[L] Vector, Plane[P] Plane | OUT: Outlines[O] Curve[]
+Mesh/Util/Mesh Split Plane :: Split a mesh with an infinite plane. | IN: Mesh[M] Mesh, Plane[P] Plane | OUT: Above[A] Mesh[], Below[B] Mesh[]
+Mesh/Util/Mesh Surface :: Create a Surface UV mesh | IN: Surface[S] Surface, U Count[U] Integer, V Count[V] Integer, Overhang[H] Boolean, Equalize[Q] Boolean | OUT: Mesh[M] Mesh
+Mesh/Util/Occlusion :: Solve occlusion for a collection of view rays and obstruc... | IN: Samples[S] Point[], Obstructions[O] Mesh[], Rays[R] Vector[] | OUT: Hits[H] Integer[], Occlusion[O] Boolean{}
+Mesh/Util/Quadrangulate :: Quadrangulate as many triangles as possible in a mesh | IN: Mesh[M] Mesh, Angle[A] Number, Ratio[R] Number | OUT: Mesh[M] Mesh, Count[N] Integer
+Mesh/Util/Settings (Custom) :: Represents custom mesh settings. | IN: Stitch Seams[Stitch] Boolean, Simple Planes[Planes] Boolean, Refine[Refine] Boolean, Min Count[Min] Integer, Max Count[Max] Integer, Aspect Ratio[Aspect] Number, Max Distance[Max Dist] Number, Max Angle[Max Angle] Number, Min Edge[Min Edge] Number, Max Edge[Max Edge] Number | OUT: Settings[S] MeshParameters
+Mesh/Util/Settings (Quality) :: Represents 'Smooth & slower' mesh settings. | IN: - | OUT: Settings[S] MeshParameters
+Mesh/Util/Settings (Speed) :: Represents 'Jagged & faster' mesh settings. | IN: - | OUT: Settings[S] MeshParameters
+Mesh/Util/Simple Mesh :: Create a mesh that represents a Brep as simply as possible | IN: Brep[B] Brep | OUT: Mesh[M] Mesh
+Mesh/Util/Smooth Mesh :: Smooth the vertices of a mesh | IN: Mesh[M] Mesh, Strength[S] Number, Skip Naked[N] Boolean, Iterations[I] Integer, Limit[L] Number | OUT: Mesh[M] Mesh
+Mesh/Util/Triangulate :: Triangulate all quads in a mesh | IN: Mesh[M] Mesh | OUT: Mesh[M] Mesh, Count[N] Integer
+Mesh/Util/Unify Mesh :: Unify the normals of a mesh | IN: Mesh[M] Mesh | OUT: Result[R] Mesh, Count[N] Integer
+Mesh/Util/Unweld Mesh :: Unweld (split) creases in a mesh | IN: Mesh[M] Mesh, Angle[A] Number | OUT: Result[R] Mesh
+Mesh/Util/Weld Mesh :: Weld (merge) creases in a mesh | IN: Mesh[M] Mesh, Angle[A] Number | OUT: Result[R] Mesh
+Params/Annotations/Arrow :: Arrow type | PARAM
+Params/Geometry/Angular Dimension :: Contains a collection of angular dimensions | PARAM
+Params/Geometry/Annotation Dot :: Contains a collection of annotation dots | PARAM
+Params/Geometry/Atom :: Contains a collection of atoms | PARAM
+Params/Geometry/Block Instance :: Contains a collection of block instances | PARAM
+Params/Geometry/Box :: Contains a collection of boxes | PARAM
+Params/Geometry/Brep :: Contains a collection of Breps (Boundary REPresentations) | PARAM
+Params/Geometry/Centermark :: Contains a collection of centermarks | PARAM
+Params/Geometry/Circle :: Contains a collection of circles | PARAM
+Params/Geometry/Circular Arc :: Contains a collection of circular arcs | PARAM
+Params/Geometry/Curve :: Contains a collection of generic curves | PARAM
+Params/Geometry/Extrusion :: Contains a collection of Extrusions | PARAM
+Params/Geometry/Field :: Contains a collection of vector fields | PARAM
+Params/Geometry/Geometry :: Contains a collection of generic geometry | PARAM
+Params/Geometry/Geometry Cache :: Push or Pull geometry to and from the Rhino document | PARAM
+Params/Geometry/Geometry Pipeline :: Defines a geometry pipeline from Rhino to Grasshopper | PARAM
+Params/Geometry/Group :: Contains a collection of geometric groups | PARAM
+Params/Geometry/Hatch :: Contains a collection of hatches | PARAM
+Params/Geometry/Leader :: Contains a collection of leaders | PARAM
+Params/Geometry/Light :: Contains a collection of lights | PARAM
+Params/Geometry/Line :: Contains a collection of line segments | PARAM
+Params/Geometry/Linear Dimension :: Contains a collection of linear dimensions | PARAM
+Params/Geometry/Location :: Contains a collection of latitude-longitude coordinates | PARAM
+Params/Geometry/Mesh :: Contains a collection of polygon meshes | PARAM
+Params/Geometry/Mesh Face :: Contains a collection of triangle or quad mesh faces | PARAM
+Params/Geometry/Mesh Point :: Contains a collection of mesh points | PARAM
+Params/Geometry/Mesher Settings :: Represents a list of Meshing settings. | PARAM
+Params/Geometry/Ordinate Dimension :: Contains a collection of ordinate dimensions | PARAM
+Params/Geometry/Plane :: Contains a collection of three-dimensional axis-systems | PARAM
+Params/Geometry/Point :: Contains a collection of three-dimensional points | PARAM
+Params/Geometry/Point Cloud :: Contains a collection of point clouds | PARAM
+Params/Geometry/Radial Dimension :: Contains a collection of radial dimensions | PARAM
+Params/Geometry/Rectangle :: Contains a collection of rectangles | PARAM
+Params/Geometry/SubD :: Contains a collection of SubDs | PARAM
+Params/Geometry/Surface :: Contains a collection of generic surfaces | PARAM
+Params/Geometry/Text Entity :: Contains a collection of text entities | PARAM
+Params/Geometry/Transform :: Contains a collection of three-dimensional transformations | PARAM
+Params/Geometry/Twisted Box :: Contains a collection of twisted boxes | PARAM
+Params/Geometry/Vector :: Contains a collection of three-dimensional vectors | PARAM
+Params/Geometry/View :: Contains a collection of view frames | PARAM
+Params/Hatches/Hatch Line :: Contains a collection of model hatch lines | PARAM
+Params/Input/Boolean Toggle :: Boolean (true/false) toggle | PARAM
+Params/Input/Colour Swatch :: Colour (palette) swatch | PARAM
+Params/Input/Image Resource :: A previewable image uri. | PARAM
+Params/Input/Number Slider :: Numeric slider for single values | PARAM
+Params/Input/Panel :: A panel for custom notes and text values | PARAM
+Params/Model/Date Time Format :: Contains a collection of date time format strings | PARAM
+Params/Model/Match Text :: Specialized parameter to compare string input against dif... | PARAM
+Params/Objects/Object Display :: Contains a collection of object display attributes | PARAM
+Params/Objects/Object Drafting :: Contains a collection of object drafting attributes | PARAM
+Params/Objects/Object Render :: Contains a collection of object render attributes | PARAM
+Params/Primitive/Boolean :: Contains a collection of boolean values | PARAM
+Params/Primitive/Boolean Signal :: Contains a collection of boolean values | PARAM
+Params/Primitive/Color Gradient :: Contains a collection of color gradients | PARAM
+Params/Primitive/Color Stop :: Contains a collection of color stops | PARAM
+Params/Primitive/Colour :: Contains a collection of RGB colours | PARAM
+Params/Primitive/Complex :: Contains a collection of complex numbers | PARAM
+Params/Primitive/Constant :: Define a document-wide constant for use in Expressions | PARAM
+Params/Primitive/Culture :: Contains a collection of culture specifiers | PARAM
+Params/Primitive/Data :: Contains a collection of generic data | PARAM
+Params/Primitive/Data Path :: Contains a collection of data-tree paths | PARAM
+Params/Primitive/Domain :: Contains a collection of numeric domains | PARAM
+Params/Primitive/Domain² :: Contains a collection of 2D number domains | PARAM
+Params/Primitive/Earth Anchor Point :: Contains an Earth anchor point which associates a model p... | PARAM
+Params/Primitive/File Path :: Contains a collection of file paths | PARAM
+Params/Primitive/Font :: Contains a collection of fonts | PARAM
+Params/Primitive/Guid :: Contains a collection of Globally Unique Identifiers | PARAM
+Params/Primitive/Integer :: Contains a collection of integer numbers | PARAM
+Params/Primitive/Marshalling signal parameter :: Contains a collection of generic data | PARAM
+Params/Primitive/Matrix :: Contains a collection of numeric matrices | PARAM
+Params/Primitive/Model Mesher Settings :: Contains a collection of mesher settings | PARAM
+Params/Primitive/Number :: Contains a collection of floating point numbers | PARAM
+Params/Primitive/Predicate :: A predicate defines the criteria and determines whether a... | PARAM
+Params/Primitive/Receiver :: A data receiver object. | PARAM
+Params/Primitive/Shader :: Contains a collection of display materials | PARAM
+Params/Primitive/Symbol Display :: Symbol display properties | PARAM
+Params/Primitive/Text :: Contains a collection of text fragments | PARAM
+Params/Primitive/Time :: Contains a collection of times and dates | PARAM
+Params/Primitive/Unit System :: Contains a collection of model unit systems | PARAM
+Params/Rhino/Arrow Settings :: Contains a collection of arrows and their properties | PARAM
+Params/Rhino/Dimension Settings :: Contains a collection of dimension settings | PARAM
+Params/Rhino/Display Mode :: Contains a collection of display modes | PARAM
+Params/Rhino/Layout Viewport :: Contains a collection of rhino page layouts | PARAM
+Params/Rhino/Leader Settings :: Contains a collection of leader settings | PARAM
+Params/Rhino/Model Action :: Contains a collection of model actions | PARAM
+Params/Rhino/Model Annotation Style :: Contains a collection of model annotation styles | PARAM
+Params/Rhino/Model Attribute Key :: Contains a collection of attribute keys | PARAM
+Params/Rhino/Model Block Definition :: Contains a collection of model block definitions | PARAM
+Params/Rhino/Model Content :: Contains a collection of model content elements | PARAM
+Params/Rhino/Model Environment :: Contains a collection of model environments | PARAM
+Params/Rhino/Model Hatch Pattern :: Contains a collection of model hatch patterns | PARAM
+Params/Rhino/Model Layer :: Contains a collection of model layers | PARAM
+Params/Rhino/Model Linetype :: Contains a collection of model linetypes | PARAM
+Params/Rhino/Model Material :: Contains a collection of model materials | PARAM
+Params/Rhino/Model Object :: Contains a collection of model objects | PARAM
+Params/Rhino/Model Print Width :: Contains a collection of model print widths | PARAM
+Params/Rhino/Model Texture :: Contains a collection of model environments | PARAM
+Params/Rhino/Model Viewport :: Contains a collection of Rhino viewports | PARAM
+Params/Rhino/Text Settings :: Contains a collection of text settings | PARAM
+Params/Rhino/Tolerance Settings :: Contains a collection of tolerance settings | PARAM
+Params/Rhino/Units Settings :: Contains a collection of units settings | PARAM
+Params/Special/Number Set :: A set of mutable numerics | PARAM
+Params/Special/Timeline :: A timeline of values | IN: A[A] Domain | OUT: Value A[A] Number
+Params/Util/Cherry Picker :: Pick a single item from a data tree | PARAM
+Params/Util/Cluster :: Contains a cluster of Grasshopper components | IN: - | OUT: -
+Params/Util/Data Dam :: Delay data on its way through the document | IN: Data A[A] Generic Data{} | OUT: Data A[A] Generic Data{}
+Params/Util/Data Input :: Read a bunch of data from a file. | IN: - | OUT: -
+Params/Util/Data Signal :: Conditionally block data on its way through the document. | IN: Pass[Pa] Boolean, Stream 0[0] Generic Data{} | OUT: Solutions[So] Integer, Stream 0[0] Generic Data{}
+Params/Util/Expression :: A textual expression | PARAM
+Params/Util/Get Boolean :: Contextual boolean input. | PARAM
+Params/Util/Get Data :: Contextual generic data input. | PARAM
+Params/Util/Get File Path :: Contextual file path input. | PARAM
+Params/Util/Get Geometry :: Contextual geometry input. | PARAM
+Params/Util/Get Integer :: Contextual integer input. | PARAM
+Params/Util/Get Line :: Contextual line input. | PARAM
+Params/Util/Get Number :: Contextual numeric input. | PARAM
+Params/Util/Get Object :: Contextual object input. | PARAM
+Params/Util/Get Plane :: Contextual plane input. | PARAM
+Params/Util/Get Point :: Contextual point input. | PARAM
+Params/Util/Get String :: Contextual text input. | PARAM
+Params/Util/Group :: A group of Grasshopper objects | PARAM
+Params/Util/Jump :: Jump between different locations | PARAM
+Params/Util/Oh noes! :: We're sorry but LolCat images are no longer available | PARAM
+Params/Util/Param Viewer :: A viewer for data structures. | PARAM
+Params/Util/Relay :: A wire relay object | PARAM
+Params/Util/Scribble :: A quick note | PARAM
+Params/Util/Sketch :: A series of doodles | PARAM
+Params/Util/Suirify :: Suire-style simplification of data trees. | PARAM
+Params/Util/Text Balloon :: A thought balloon for annotation | PARAM
+Params/Util/Trigger :: Manually or cyclically trigger updates of certain compone... | PARAM
+Params/Util/Variant :: An expression variant | PARAM
+Params/Visibility/Object Visibility :: Contains a collection of object visibility attributes | PARAM
+Sets/List/Combine Data :: Combine non-null items out of several inputs | IN: Input 0[0] Generic Data, Input 1[1] Generic Data | OUT: Result[R] Generic Data, Index[I] Integer
+Sets/List/Cross Reference :: Cross Reference data from multiple lists | IN: List (A)[A] Generic Data[], List (B)[B] Generic Data[] | OUT: List (A)[A] Generic Data[], List (B)[B] Generic Data[]
+Sets/List/Dispatch :: Dispatch the items in a list into two target lists. | IN: List[L] Generic Data[], Dispatch pattern[P] Boolean[] | OUT: List A[A] Generic Data[], List B[B] Generic Data[]
+Sets/List/Insert Items :: Insert a collection of items into a list. | IN: List[L] Generic Data[], Item[I] Generic Data[], Indices[i] Integer[], Wrap[W] Boolean | OUT: List[L] Generic Data[]
+Sets/List/Item Index :: Retrieve the index of a certain item in a list. | IN: List[L] Generic Data[], Item[i] Generic Data | OUT: Index[i] Integer
+Sets/List/List Item :: Retrieve a specific item from a list. | IN: List[L] Generic Data[], Index[i] Integer, Wrap[W] Boolean | OUT: Item[i] Generic Data
+Sets/List/List Length :: Measure the length of a list. | IN: List[L] Generic Data[] | OUT: Length[L] Integer
+Sets/List/Longest List :: Grow a collection of lists to the longest length amongst ... | IN: List (A)[A] Generic Data[], List (B)[B] Generic Data[] | OUT: List (A)[A] Generic Data[], List (B)[B] Generic Data[]
+Sets/List/Null Item :: Test a data item for null or invalidity | IN: Item[I] Generic Data | OUT: Null Flags[N] Boolean, Invalid Flags[X] Boolean, Description[D] Text
+Sets/List/Partition List :: Partition a list into sub-lists | IN: List[L] Generic Data[], Size[S] Integer[] | OUT: Chunks[C] Generic Data{}
+Sets/List/Pick'n'Choose :: Pick and choose from a set of input data. | IN: Pattern[P] Integer[], Stream 0[0] Generic Data[], Stream 1[1] Generic Data[] | OUT: Result[R] Generic Data[]
+Sets/List/Replace Items :: Replace certain items in a list. | IN: List[L] Generic Data[], Item[I] Generic Data[], Indices[i] Integer[], Wrap[W] Boolean | OUT: List[L] Generic Data[]
+Sets/List/Replace Nulls :: Replace nulls or invalid data with other data | IN: Items[I] Generic Data[], Replacements[R] Generic Data[] | OUT: Items[I] Generic Data[], Count[N] Integer
+Sets/List/Reverse List :: Reverse the order of a list. | IN: List[L] Generic Data[] | OUT: List[L] Generic Data[]
+Sets/List/Shift List :: Offset all items in a list. | IN: List[L] Generic Data[], Shift[S] Integer, Wrap[W] Boolean | OUT: List[L] Generic Data[]
+Sets/List/Shortest List :: Shrink a collection of lists to the shortest length among... | IN: List (A)[A] Generic Data[], List (B)[B] Generic Data[] | OUT: List (A)[A] Generic Data[], List (B)[B] Generic Data[]
+Sets/List/Sift Pattern :: Sift elements in a list using a repeating index pattern. | IN: List[L] Generic Data[], Sift Pattern[P] Integer[] | OUT: Output 0[0] Generic Data[], Output 1[1] Generic Data[]
+Sets/List/Sort List :: Sort a list of numeric keys. | IN: Keys[K] Number[], Values A[A] Generic Data[] | OUT: Keys[K] Number[], Values A[A] Generic Data[]
+Sets/List/Split List :: Split a list into separate parts. | IN: List[L] Generic Data[], Index[i] Integer | OUT: List A[A] Generic Data[], List B[B] Generic Data[]
+Sets/List/Sub List :: Extract a subset from a list. | IN: List[L] Generic Data[], Domain[D] Domain, Wrap[W] Boolean | OUT: List[L] Generic Data[], Index[I] Integer[]
+Sets/List/Weave :: Weave a set of input data using a custom pattern. | IN: Pattern[P] Integer[], Stream 0[0] Generic Data[], Stream 1[1] Generic Data[] | OUT: Weave[W] Generic Data[]
+Sets/Sequence/Char Sequence :: Create a sequence of textual characters. | IN: Count[C] Integer, Char Pool[P] Text, Format[F] Text | OUT: Sequence[S] Text[]
+Sets/Sequence/Cull Index :: Cull (remove) indexed elements from a list. | IN: List[L] Generic Data[], Indices[I] Integer[], Wrap[W] Boolean | OUT: List[L] Generic Data[]
+Sets/Sequence/Cull Nth :: Cull (remove) every Nth element in a list. | IN: List[L] Generic Data[], Cull frequency[N] Integer | OUT: List[L] Generic Data[]
+Sets/Sequence/Cull Pattern :: Cull (remove) elements in a list using a repeating bit mask. | IN: List[L] Generic Data[], Cull Pattern[P] Boolean[] | OUT: List[L] Generic Data[]
+Sets/Sequence/Duplicate Data :: Duplicate data a predefined number of times. | IN: Data[D] Generic Data[], Number[N] Integer, Order[O] Boolean | OUT: Data[D] Generic Data[]
+Sets/Sequence/Fibonacci :: Creates a Fibonacci sequence. | IN: Seed A[A] Number, Seed B[B] Number, Number[N] Integer | OUT: Series[S] Number[]
+Sets/Sequence/Jitter :: Randomly shuffles a list of values. | IN: List[L] Generic Data[], Jitter[J] Number, Seed[S] Integer | OUT: Values[V] Generic Data[], Indices[I] Integer[]
+Sets/Sequence/Random :: Generate a list of pseudo random numbers. | IN: Range[R] Domain, Number[N] Integer, Seed[S] Integer | OUT: Random[R] Generic Data[]
+Sets/Sequence/Random Reduce :: Randomly remove N items from a list | IN: List[L] Generic Data[], Reduction[R] Integer, Seed[S] Integer | OUT: List[L] Generic Data[]
+Sets/Sequence/RandomEx :: Generate random data between extremes. | IN: Min[L0] Integer, Max[L1] Integer, Count[N] Integer, Seed[S] Integer | OUT: Values[V] Integer[]
+Sets/Sequence/Range :: Create a range of numbers. | IN: Domain[D] Domain, Steps[N] Integer | OUT: Range[R] Number[]
+Sets/Sequence/Repeat Data :: Repeat a pattern until it reaches a certain length. | IN: Data[D] Generic Data[], Length[L] Integer | OUT: Data[D] Generic Data[]
+Sets/Sequence/Sequence :: Generate a sequence of numbers | IN: Notation[N] Text, Length[L] Integer, Initial[I] Number[] | OUT: Sequence[S] Number[]
+Sets/Sequence/Series :: Create a series of numbers. | IN: Start[S] Number, Step[N] Number, Count[C] Integer | OUT: Series[S] Number[]
+Sets/Sequence/Stack Data :: Duplicate individual items in a list of data | IN: Data[D] Generic Data[], Stack[S] Integer[] | OUT: Data[D] Generic Data[]
+Sets/Sets/Carthesian Product :: Create the Carthesian product for two sets of identical c... | IN: Set A[A] Generic Data[], Set B[B] Generic Data[] | OUT: Product[P] Generic Data{}
+Sets/Sets/Create Set :: Creates the valid set from a list of items (a valid set o... | IN: List[L] Generic Data[] | OUT: Set[S] Generic Data[], Map[M] Integer[]
+Sets/Sets/Delete Consecutive :: Delete consecutive similar members in a set. | IN: Set[S] Generic Data[], Wrap[W] Boolean | OUT: Set[S] Generic Data[], Count[N] Integer
+Sets/Sets/Disjoint :: Test whether two sets are disjoint. | IN: Set A[A] Generic Data[], Set B[B] Generic Data[] | OUT: Result[R] Boolean
+Sets/Sets/Find similar member :: Find the most similar member in a set. | IN: Data[D] Generic Data, Set[S] Generic Data[] | OUT: Hit[H] Generic Data, Index[i] Integer
+Sets/Sets/Key/Value Search :: Extract an item from a collection using a key-value match | IN: Keys[K] Generic Data[], Values[V] Generic Data[], Search[S] Generic Data | OUT: Result[R] Generic Data
+Sets/Sets/Member Index :: Find the occurences of a specific member in a set. | IN: Set[S] Generic Data[], Member[M] Generic Data | OUT: Index[I] Integer[], Count[N] Integer
+Sets/Sets/Replace Members :: Replace members in a set. | IN: Set[S] Generic Data[], Find[F] Generic Data[], Replace[R] Generic Data[] | OUT: Result[R] Generic Data[]
+Sets/Sets/Set Difference :: Create the difference of two sets (the collection of obje... | IN: Set A[A] Generic Data[], Set B[B] Generic Data[] | OUT: Union[U] Generic Data[]
+Sets/Sets/Set Difference (S) :: Create the symmetric difference of two sets (the collecti... | IN: Set A[A] Generic Data[], Set B[B] Generic Data[] | OUT: ExDifference[X] Generic Data[]
+Sets/Sets/Set Intersection :: Creates the intersection of two sets (the collection of u... | IN: Set A[A] Generic Data[], Set B[B] Generic Data[] | OUT: Union[U] Generic Data[]
+Sets/Sets/Set Majority :: Determine majority member presence amongst three sets. | IN: Set A[A] Generic Data[], Set B[B] Generic Data[], Set C[C] Generic Data[] | OUT: Result[R] Generic Data[]
+Sets/Sets/Set Union :: Creates the union of two sets (the collection of unique o... | IN: Set A[A] Generic Data[], Set B[B] Generic Data[] | OUT: Union[U] Generic Data[]
+Sets/Sets/SubSet :: Test two sets for inclusion. | IN: Set A[A] Generic Data[], Set B[B] Generic Data[] | OUT: Result[R] Boolean
+Sets/Text/Characters :: Break text into individual characters | IN: Text[T] Text | OUT: Result[C] Text[], Unicode[U] Integer[]
+Sets/Text/Concatenate :: Concatenate some fragments of text | IN: Fragment A[A] Text, Fragment B[B] Text | OUT: Result[R] Text
+Sets/Text/Format :: Format some data using placeholders and formatting tags | IN: Format[F] Text, Culture[C] Culture, Data 0[0] Generic Data, Data 1[1] Generic Data | OUT: Text[T] Text
+Sets/Text/Match Text :: Match a text against a pattern | IN: Text[T] Text, Pattern[P] Text, RegEx[R] Text, Case[C] Boolean | OUT: Match[M] Boolean
+Sets/Text/Replace Text :: Replace all occurences of a specific text fragment with a... | IN: Text[T] Text, Find[F] Text, Replace[R] Text | OUT: Result[R] Text
+Sets/Text/Sort Text :: Sort a collection of text fragments | IN: Keys[K] Text[], Values[V] Generic Data[], Culture[C] Culture | OUT: Keys[K] Text[], Values[V] Generic Data[]
+Sets/Text/Text Case :: Change the CaSiNg of a piece of text | IN: Text[T] Text, Culture[C] Culture | OUT: Upper Case[U] Text, Lower Case[L] Text
+Sets/Text/Text Distance :: Compute the Levenshtein distance between two fragments of... | IN: Text A[A] Text, Text B[B] Text, Case[C] Boolean | OUT: Distance[D] Integer
+Sets/Text/Text Fragment :: Extract a fragment (subset) of some text | IN: Text[T] Text, Start[i] Integer, Count[N] Integer | OUT: Fragment[F] Text
+Sets/Text/Text Join :: Join a collection of text fragments into one | IN: Text[T] Text[], Join[J] Text | OUT: Result[R] Text
+Sets/Text/Text Length :: Get the length (character count) of some text | IN: Text[T] Text | OUT: Length[L] Integer
+Sets/Text/Text On Surface :: Create a collection of textual symbols aligned on a surface. | IN: Text[T] Text, Font[F] Text, Height[H] Number, Depth[D] Number, Base Line[B] Curve, Base Surface[S] Generic Data | OUT: Symbols[S] Brep[]
+Sets/Text/Text Split :: Split some text into fragments using separators | IN: Text[T] Text, Separators[C] Text | OUT: Result[R] Text[]
+Sets/Text/Text Trim :: Remove whitespace characters from the start and end of so... | IN: Text[T] Text, Start[S] Boolean, End[E] Boolean | OUT: Result[R] Text
+Sets/Tree/Clean Tree :: Removed all null and invalid items from a data tree. | IN: Remove Nulls[N] Boolean, Remove Invalid[X] Boolean, Remove Empty[E] Boolean, Tree[T] Generic Data{} | OUT: Tree[T] Generic Data{}
+Sets/Tree/Construct Path :: Construct a data tree branch path. | IN: Indices[I] Integer[] | OUT: Branch[B] Path
+Sets/Tree/Deconstruct Path :: Deconstruct a data tree path into individual integers. | IN: Branch[B] Path | OUT: Indices[I] Integer[]
+Sets/Tree/Entwine :: Flatten and combine a collection of data streams | IN: Branch {0;0}[{0;0}] Generic Data{}, Branch {0;1}[{0;1}] Generic Data{}, Branch {0;2}[{0;2}] Generic Data{} | OUT: Result[R] Generic Data
+Sets/Tree/Explode Tree :: Extract all the branches from a tree | IN: Data[D] Generic Data{} | OUT: Branch 0[-] Generic Data{}, Branch 1[-] Generic Data{}
+Sets/Tree/Flatten Tree :: Flatten a data tree by removing all branching information. | IN: Tree[T] Generic Data{}, Path[P] Path | OUT: Tree[T] Generic Data{}
+Sets/Tree/Flip Matrix :: Flip a matrix-like data tree by swapping rows and columns. | IN: Data[D] Generic Data{} | OUT: Data[D] Generic Data{}
+Sets/Tree/Graft Tree :: Graft a data tree by adding an extra branch for every item. | IN: Tree[T] Generic Data{} | OUT: Tree[T] Generic Data{}
+Sets/Tree/Match Tree :: Match one data tree with another. | IN: Tree[T] Generic Data{}, Guide[G] Generic Data{} | OUT: Tree[T] Generic Data{}
+Sets/Tree/Merge :: Merge a bunch of data streams | IN: Data 1[D1] Generic Data{}, Data 2[D2] Generic Data{} | OUT: Result[R] Generic Data{}
+Sets/Tree/Merge 03 :: Merge three streams into one. | IN: Stream A[A] Generic Data{}, Stream B[B] Generic Data{}, Stream C[C] Generic Data{} | OUT: Stream[S] Generic Data
+Sets/Tree/Merge 04 :: Merge four streams into one. | IN: Stream A[A] Generic Data{}, Stream B[B] Generic Data{}, Stream C[C] Generic Data{}, Stream D[D] Generic Data{} | OUT: Stream[S] Generic Data
+Sets/Tree/Merge 05 :: Merge five streams into one. | IN: Stream A[A] Generic Data{}, Stream B[B] Generic Data{}, Stream C[C] Generic Data{}, Stream D[D] Generic Data{}, Stream E[E] Generic Data{} | OUT: Stream[S] Generic Data
+Sets/Tree/Merge 06 :: Merge six streams into one. | IN: Stream A[A] Generic Data{}, Stream B[B] Generic Data{}, Stream C[C] Generic Data{}, Stream D[D] Generic Data{}, Stream E[E] Generic Data{}, Stream F[F] Generic Data{} | OUT: Stream[S] Generic Data
+Sets/Tree/Merge 08 :: Merge eight streams into one. | IN: Stream A[A] Generic Data{}, Stream B[B] Generic Data{}, Stream C[C] Generic Data{}, Stream D[D] Generic Data{}, Stream E[E] Generic Data{}, Stream F[F] Generic Data{}, Stream G[G] Generic Data{}, Stream H[H] Generic Data{} | OUT: Stream[S] Generic Data
+Sets/Tree/Merge 10 :: Merge ten streams into one. | IN: Stream A[A] Generic Data{}, Stream B[B] Generic Data{}, Stream C[C] Generic Data{}, Stream D[D] Generic Data{}, Stream E[E] Generic Data{}, Stream F[F] Generic Data{}, Stream G[G] Generic Data{}, Stream H[H] Generic Data{}, Stream I[I] Generic Data{}, Stream J[J] Generic Data{} | OUT: Stream[S] Generic Data
+Sets/Tree/Merge Multiple :: Merge multiple input streams into one | IN: Stream 0[0] Generic Data{}, Stream 1[1] Generic Data{} | OUT: Stream[S] Generic Data{}
+Sets/Tree/Path Compare :: Compare a path to a mask pattern | IN: Path[P] Path, Mask[M] Text | OUT: Comparison[C] Boolean
+Sets/Tree/Path Mapper :: Perform lexical operations on data trees. | PARAM
+Sets/Tree/Prune Tree :: Remove small branches from a Data Tree. | IN: Tree[T] Generic Data{}, Minimum[N0] Integer, Maximum[N1] Integer | OUT: Tree[T] Generic Data{}
+Sets/Tree/Relative Item :: Retrieve a relative item combo from a data tree | IN: Tree[T] Generic Data{}, Offset[O] Text, Wrap Paths[Wp] Boolean, Wrap Items[Wi] Boolean | OUT: Item A[A] Generic Data{}, Item B[B] Generic Data{}
+Sets/Tree/Relative Items :: Retrieve a relative item combo from two data trees | IN: Tree A[A] Generic Data{}, Tree B[B] Generic Data{}, Offset[O] Text, Wrap Paths[Wp] Boolean, Wrap Items[Wi] Boolean | OUT: Item A[A] Generic Data{}, Item B[B] Generic Data{}
+Sets/Tree/Replace Paths :: Find & replace paths in a data tree | IN: Data[D] Generic Data{}, Search[S] Text[], Replace[R] Path[] | OUT: Data[D] Generic Data{}
+Sets/Tree/Shift Paths :: Shift the indices in all data tree paths | IN: Data[D] Generic Data{}, Offset[O] Integer | OUT: Data[D] Generic Data{}
+Sets/Tree/Simplify Tree :: Simplify a data tree by removing the overlap shared among... | IN: Tree[T] Generic Data{}, Front[F] Boolean | OUT: Tree[T] Generic Data{}
+Sets/Tree/Split Tree :: Split a data tree into two parts using path masks. | IN: Data[D] Generic Data{}, Masks[M] Text[] | OUT: Positive[P] Generic Data{}, Negative[N] Generic Data{}
+Sets/Tree/Stream Filter :: Filters a collection of input streams | IN: Gate[G] Integer, Stream 0[0] Generic Data{}, Stream 1[1] Generic Data{} | OUT: Stream[S] Generic Data{}
+Sets/Tree/Stream Gate :: Redirects a stream into specific outputs. | IN: Stream[S] Generic Data{}, Gate[G] Integer | OUT: Target 0[0] Generic Data{}, Target 1[1] Generic Data{}
+Sets/Tree/Tree Branch :: Retrieve a specific branch from a data tree. | IN: Tree[T] Generic Data{}, Path[P] Path | OUT: Branch[B] Generic Data{}
+Sets/Tree/Tree Item :: Retrieve a specific item from a data tree. | IN: Tree[T] Generic Data{}, Path[P] Path, Index[i] Integer, Wrap[W] Boolean | OUT: Element[E] Generic Data
+Sets/Tree/Tree Statistics :: Get some statistics regarding a data tree. | IN: Tree[T] Generic Data{} | OUT: Paths[P] Path[], Length[L] Integer[], Count[C] Integer
+Sets/Tree/Trim Tree :: Reduce the complexity of a tree by merging the outermost ... | IN: Tree[T] Generic Data{}, Depth[D] Integer | OUT: Tree[T] Generic Data{}
+Sets/Tree/Unflatten Tree :: Unflatten a data tree by moving items back into branches. | IN: Tree[T] Generic Data{}, Guide[G] Generic Data{} | OUT: Tree[T] Generic Data{}
+Surface/Analysis/Area :: Solve area properties for breps, meshes and planar closed... | IN: Geometry[G] Geometry | OUT: Area[A] Number, Centroid[C] Point
+Surface/Analysis/Area Moments :: Solve area moments for breps, meshes and planar closed cu... | IN: Geometry[G] Geometry | OUT: Area[A] Number, Centroid[C] Point, Inertia[I] Vector, Secondary[S] Vector, Gyration[G] Vector
+Surface/Analysis/Box Corners :: Extract all 8 corners of a box. | IN: Box[B] Box | OUT: Corner A[A] Point, Corner B[B] Point, Corner C[C] Point, Corner D[D] Point, Corner E[E] Point, Corner F[F] Point, Corner G[G] Point, Corner H[H] Point
+Surface/Analysis/Box Properties :: Get some properties of a box | IN: Box[B] Box | OUT: Center[C] Point, Diagonal[D] Vector, Area[A] Number, Volume[V] Number, Degeneracy[d] Integer
+Surface/Analysis/Brep Closest Point :: Find the closest point on a brep | IN: Point[P] Point, Brep[B] Brep | OUT: Point[P] Point, Normal[N] Vector, Distance[D] Number
+Surface/Analysis/Brep Edges :: Extract the edge curves of a brep. | IN: Brep[B] Brep | OUT: Naked[En] Curve[], Interior[Ei] Curve[], Non-Manifold[Em] Curve[]
+Surface/Analysis/Brep Topology :: Get and display the topology of a brep. | IN: Brep[B] Brep | OUT: Face|Face Adjacency[FF] Integer{}, Face|Edge Adjacency[FE] Integer{}, Edge|Face Adjacency[EF] Integer{}
+Surface/Analysis/Brep Wireframe :: Extract the wireframe curves of a brep. | IN: Brep[B] Brep, Density[D] Integer | OUT: Wireframe[W] Curve[]
+Surface/Analysis/Deconstruct Box :: Deconstruct a box into its constituent parts. | IN: Box[B] Box | OUT: Plane[P] Plane, X[X] Domain, Y[Y] Domain, Z[Z] Domain
+Surface/Analysis/Deconstruct Brep :: Deconstruct a brep into its constituent parts. | IN: Brep[B] Brep | OUT: Faces[F] Surface[], Edges[E] Curve[], Vertices[V] Point[]
+Surface/Analysis/Dimensions :: Get the approximate dimensions of a surface | IN: Surface[S] Surface | OUT: U dimension[U] Number, V dimension[V] Number
+Surface/Analysis/Evaluate Box :: Evaluate a box in normalised {UVW} space. | IN: Box[B] Box, U parameter[U] Number, V parameter[V] Number, W parameter[W] Number | OUT: Plane[Pl] Plane, Point[Pt] Point, Include[I] Boolean
+Surface/Analysis/Evaluate Surface :: Evaluate local surface properties at a {uv} coordinate. | IN: Surface[S] Surface, Point[uv] Point | OUT: Point[P] Point, Normal[N] Vector, U direction[U] Vector, V direction[V] Vector, Frame[F] Plane
+Surface/Analysis/Is Planar :: Test whether a surface is planar | IN: Surface[S] Surface, Interior[I] Boolean | OUT: Planar[F] Boolean, Plane[P] Plane
+Surface/Analysis/Osculating Circles :: Calculate the principal osculating circles of a surface a... | IN: Surface[S] Surface, Point[uv] Point | OUT: Point[P] Point, First circle[C1] Curve, Second circle[C2] Curve
+Surface/Analysis/Point In Brep :: Test whether a point is inside a closed brep | IN: Brep[B] Brep, Point[P] Point, Strict[S] Boolean | OUT: Inside[I] Boolean
+Surface/Analysis/Point In Breps :: Test whether a point is inside a collection of closed breps | IN: Brep[B] Brep[], Point[P] Point, Strict[S] Boolean | OUT: Inside[I] Boolean, Index[i] Integer
+Surface/Analysis/Point In Trim :: Test whether a {uv} coordinate is inside the trimmed port... | IN: Surface[S] Surface, UV Point[P] Point | OUT: Inclusion[I] Boolean
+Surface/Analysis/Principal Curvature :: Evaluate the principal curvature of a surface at a {uv} c... | IN: Surface[S] Surface, Point[uv] Point | OUT: Frame[F] Plane, Maximum[C¹] Number, Minimum[C²] Number, Max direction[K¹] Vector, Min direction[K²] Vector
+Surface/Analysis/Shape In Brep :: Tests whether a shape is inside a brep | IN: Brep[B] Brep, Shape[S] Geometry | OUT: Relation[R] Integer
+Surface/Analysis/Surface Closest Point :: Find the closest point on a surface. | IN: Point[P] Point, Surface[S] Surface | OUT: Point[P] Point, UV Point[uvP] Point, Distance[D] Number
+Surface/Analysis/Surface Curvature :: Evaluate the surface curvature at a {uv} coordinate. | IN: Surface[S] Surface, Point[uv] Point | OUT: Frame[F] Plane, Gaussian[G] Number, Mean[M] Number
+Surface/Analysis/Surface Inflection :: Compute the inflection curves for a surface | IN: Surface[S] Surface, Tolerance[T] Number | OUT: Curves[C] Line[]
+Surface/Analysis/Surface Points :: Get the control-points of a Nurbs Surface | IN: Surface[S] Surface | OUT: Points[P] Point[], Weights[W] Number[], Greville[G] Point[], U Count[U] Integer, V Count[V] Integer
+Surface/Analysis/Volume :: Solve volume properties for closed breps and meshes. | IN: Geometry[G] Geometry | OUT: Volume[V] Number, Centroid[C] Point
+Surface/Analysis/Volume Moments :: Solve volume properties for closed breps and meshes. | IN: Geometry[G] Geometry | OUT: Volume[V] Number, Centroid[C] Point, Inertia[I] Vector, Secondary[S] Vector, Gyration[G] Vector
+Surface/Freeform/4Point Surface :: Create a surface connecting three or four corner points. | IN: Corner A[A] Point, Corner B[B] Point, Corner C[C] Point, Corner D[D] Point | OUT: Surface[S] Surface
+Surface/Freeform/Boundary Surfaces :: Create planar surfaces from a collection of boundary edge... | IN: Edges[E] Curve[] | OUT: Surfaces[S] Surface[]
+Surface/Freeform/Control Point Loft :: Create a loft through curve control points. | IN: Curves[C] Curve[], Degree[D] Integer | OUT: Surface[S] Surface
+Surface/Freeform/Edge Surface :: Create a surface from two, three or four edge curves. | IN: Curve A[A] Curve, Curve B[B] Curve, Curve C[C] Curve, Curve D[D] Curve | OUT: Surface[S] Brep
+Surface/Freeform/Extrude :: Extrude points, curves and surfaces along a vector. | IN: Base[B] Geometry, Direction[D] Vector | OUT: Extrusion[E] Geometry
+Surface/Freeform/Extrude Along :: Extrude curves and surfaces along a curve. | IN: Base[B] Geometry, Curve[C] Curve | OUT: Extrusion[E] Brep
+Surface/Freeform/Extrude Angled :: Extrude a planar polyline at angles | IN: Polyline[P] Curve, Base height[Hb] Number, Top height[Ht] Number, Angles[A] Number[] | OUT: Shape[S] Brep
+Surface/Freeform/Extrude Linear :: Extrude curves and surfaces along a straight path. | IN: Profile[P] Geometry, Orientation (P)[Po] Plane, Axis[A] Line, Orientation (A)[Ao] Plane | OUT: Extrusion[E] Brep
+Surface/Freeform/Extrude Point :: Extrude curves and surfaces to a point. | IN: Base[B] Geometry, Point[P] Point | OUT: Extrusion[E] Brep
+Surface/Freeform/Fit Loft :: Create a loft fitted through a set of curves. | IN: Curves[C] Curve[], Count U[Nu] Integer, Degree U[Du] Integer, Degree V[Dv] Integer | OUT: Surface[S] Surface
+Surface/Freeform/Fragment Patch :: Create a fragmented patch from a polyline boundary | IN: Boundary[B] Curve | OUT: Patch[P] Brep
+Surface/Freeform/Loft :: Create a lofted surface through a set of section curves. | IN: Curves[C] Curve[], Options[O] Loft Options | OUT: Loft[L] Brep
+Surface/Freeform/Loft Options :: Create loft options from atomic inputs | IN: Closed[Cls] Boolean, Adjust[Adj] Boolean, Rebuild[Rbd] Integer, Refit[Rft] Number, Type[T] Integer | OUT: Options[O] Loft Options
+Surface/Freeform/Network Surface :: Create a surface from curve networks | IN: Curves U[U] Curve[], Curves V[V] Curve[], Continuity[C] Integer | OUT: Surface[S] Surface
+Surface/Freeform/Patch :: Create a patch surface | IN: Curves[C] Curve[], Points[P] Point[], Spans[S] Integer, Flexibility[F] Number, Trim[T] Boolean | OUT: Patch[P] Surface
+Surface/Freeform/Pipe :: Create a pipe surface around a rail curve. | IN: Curve[C] Curve, Radius[R] Number, Caps[E] Integer, Fit Rail[Fr] Boolean | OUT: Pipe[P] Brep[]
+Surface/Freeform/Pipe Variable :: Create a pipe surface with variable radii around a rail c... | IN: Curve[C] Curve, Parameters[t] Number[], Radii[R] Number[], Caps[E] Integer, Fit Rail[Fr] Boolean | OUT: Pipe[P] Brep[]
+Surface/Freeform/Rail Revolution :: Create a surface of revolution using a sweep rail. | IN: Curve[P] Curve, Rail[R] Curve, Axis[A] Line, Scale[S] Boolean | OUT: Surface[S] Brep
+Surface/Freeform/Revolution :: Create a surface of revolution. | IN: Curve[P] Curve, Axis[A] Line, Domain[D] Domain | OUT: Surface[S] Brep
+Surface/Freeform/Ruled Surface :: Create a surface between two curves. | IN: Curve A[A] Curve, Curve B[B] Curve | OUT: Surface[S] Surface
+Surface/Freeform/Sum Surface :: Create a sum surface from two edge curves. | IN: Curve A[A] Curve, Curve B[B] Curve | OUT: Surface[S] Brep
+Surface/Freeform/Surface From Points :: Create a nurbs surface from a grid of points. | IN: Points[P] Point[], U Count[U] Integer, Interpolate[I] Boolean | OUT: Surface[S] Surface
+Surface/Freeform/Sweep1 :: Create a sweep surface with one rail curve. | IN: Rail[R] Curve, Sections[S] Curve[], Miter[M] Integer | OUT: Brep[S] Brep[]
+Surface/Freeform/Sweep2 :: Create a sweep surface with two rail curves. | IN: Rail 1[R¹] Curve, Rail 2[R²] Curve, Sections[S] Curve[], Same Height[H] Boolean | OUT: Brep[S] Brep[]
+Surface/Primitive/Bounding Box :: Solve oriented geometry bounding boxes. | IN: Content[C] Geometry[], Plane[P] Plane | OUT: Box[B] Box[], Box[B] Box[]
+Surface/Primitive/Box 2Pt :: Create a box defined by two points. | IN: Point A[A] Point, Point B[B] Point, Plane[P] Plane | OUT: Box[B] Box
+Surface/Primitive/Box Rectangle :: Create a box defined by a rectangle and a height. | IN: Rectangle[R] Rectangle, Height[H] Domain | OUT: Box[B] Box
+Surface/Primitive/Center Box :: Create a box centered on a plane. | IN: Base[B] Plane, X[X] Number, Y[Y] Number, Z[Z] Number | OUT: Box[B] Box
+Surface/Primitive/Cone :: Create a conical surface | IN: Base[B] Plane, Radius[R] Number, Length[L] Number | OUT: Cone[C] Surface, Tip[T] Point
+Surface/Primitive/Cylinder :: Create a cylindrical surface. | IN: Base[B] Plane, Radius[R] Number, Length[L] Number | OUT: Cylinder[C] Surface
+Surface/Primitive/Domain Box :: Create a box defined by a base plane and size domains. | IN: Base[B] Plane, X[X] Domain, Y[Y] Domain, Z[Z] Domain | OUT: Box[B] Box
+Surface/Primitive/Plane Surface :: Create a plane surface | IN: Plane[P] Plane, X Size[X] Domain, Y Size[Y] Domain | OUT: Plane[P] Surface
+Surface/Primitive/Plane Through Shape :: Make a rectangular surface that is larger than a given sh... | IN: Plane[P] Plane, Shape[S] Geometry, Inflate[I] Number | OUT: Surface[S] Surface
+Surface/Primitive/Quad Sphere :: Create a spherical brep made from quad nurbs patches. | IN: Base[B] Plane, Radius[R] Number | OUT: Sphere[S] Brep
+Surface/Primitive/Sphere :: Create a spherical surface. | IN: Base[B] Plane, Radius[R] Number | OUT: Sphere[S] Surface
+Surface/Primitive/Sphere 4Pt :: Create a spherical surface from 4 points. | IN: Point 1[P1] Point, Point 2[P2] Point, Point 3[P3] Point, Point 4[P4] Point | OUT: Center[C] Point, Radius[R] Number, Sphere[S] Surface
+Surface/Primitive/Sphere Fit :: Fit a sphere to a 3D collection of points | IN: Points[P] Point[] | OUT: Center[C] Point, Radius[R] Number, Sphere[S] Surface
+Surface/SubD/Mesh from SubD :: Get the approximation mesh of a SubD. | IN: SubD[S] SubD, Density[D] Integer | OUT: Mesh[M] Mesh
+Surface/SubD/MultiPipe :: Create a branching pipe around a network of lines/curves | IN: Curves[Curves] Generic Data[], NodeSize[NodeSize] Number[], SizePoints[SizePoints] Point[], EndOffset[EndOffset] Number, StrutSize[StrutSize] Number, Segment[Segment] Number, KinkAngle[KinkAngle] Number, CubeFit[CubeFit] Number, Caps[Caps] Integer | OUT: Pipe[P] SubD
+Surface/SubD/Set SubD Edge Sharpness :: Set the sharpness of SubD edges. | IN: SubD[S] SubD, Ids[Ei] Integer[], Sharpness[Sh] Generic Data[] | OUT: SubD[S] SubD
+Surface/SubD/SubD Box :: Create a subdivision box | IN: Box[B] Box, Density[D] Integer, Creases[C] Boolean | OUT: SubD[S] SubD
+Surface/SubD/SubD Control Polygon :: Extract the control polygon from a SubD. | IN: SubD[S] SubD | OUT: Mesh[M] Mesh
+Surface/SubD/SubD Edge Sharpness :: Extract the sharpness of every edge of a SubD. | IN: SubD[S] SubD | OUT: Ids[Ei] Integer[], Sharpness[Sh] Domain[], Crease[C] Boolean[]
+Surface/SubD/SubD Edge Tags :: Set the edge tags of a SubD shape. | IN: SubD[S] SubD, Tag[T] Text, Ids[Ei] Integer[] | OUT: SubD[S] SubD
+Surface/SubD/SubD Edges :: Extract all edge data from a SubD. | IN: SubD[S] SubD | OUT: Lines[L] Line[], Edges[E] Curve[], Tags[T] Text[], Ids[Ei] Text[]
+Surface/SubD/SubD Faces :: Extract all face data from a SubD. | IN: SubD[S] SubD | OUT: Points[P] Point[], Count[C] Integer[], Edge Ids[Ei] Text[], Vertex Ids[Vi] Text[]
+Surface/SubD/SubD Fuse :: Combine 2 SubD objects | IN: SubD A[A] Mesh, SubD B[B] Mesh, Boolean Option[O] Integer, Smoothing[S] Integer | OUT: Fuse[F] SubD
+Surface/SubD/SubD To Brep :: Convert a subdivision surface into an equivalent polysurf... | IN: SubD[S] SubD, Packing[P] Boolean, Continuity[Gx] Integer | OUT: Brep[Br] Brep
+Surface/SubD/SubD Vertex Tags :: Set the vertex tags of a SubD shape. | IN: SubD[S] SubD, Tag[T] Text, Ids[Vi] Integer[] | OUT: SubD[S] SubD
+Surface/SubD/SubD Vertices :: Extract all vertex data from a SubD. | IN: SubD[S] SubD | OUT: Points[P] Point[], Ids[Vi] Text[], Tags[T] Text[]
+Surface/SubD/SubD from Mesh :: Create a SubD from a control mesh | IN: Mesh[M] Mesh, Creases[Cr] Integer, Corners[Co] Integer, Interpolate[I] Boolean | OUT: SubD[S] SubD
+Surface/Util/Brep Join :: Join a number of Breps together | IN: Breps[B] Brep[] | OUT: Breps[B] Brep[], Closed[C] Boolean[]
+Surface/Util/Cap Holes :: Cap all planar holes in a Brep. | IN: Brep[B] Brep | OUT: Brep[B] Brep
+Surface/Util/Cap Holes Ex :: Cap as many holes as possible in a Brep. | IN: Brep[B] Brep | OUT: Brep[B] Brep, Caps[C] Integer, Solid[S] Boolean
+Surface/Util/Closed Edges :: Select closed edges. | IN: Brep[B] Brep, Tangency[T] Boolean | OUT: Closed[C] Curve[], Closed Indices[Ci] Integer[], Open[O] Curve[], Open Indices[Oi] Integer[]
+Surface/Util/Convex Edges :: Select concave or convex brep edges. | IN: Brep[B] Brep | OUT: Convex[Cv] Integer[], Concave[Cc] Integer[], Mixed[Mx] Integer[]
+Surface/Util/Copy Trim :: Copy UV trim data from one surface to another. | IN: Source[S] Surface, Target[T] Surface | OUT: Surface[S] Surface
+Surface/Util/Divide Surface :: Generate a grid of {uv} points on a surface. | IN: Surface[S] Surface, U Count[U] Integer, V Count[V] Integer | OUT: Points[P] Point{}, Normals[N] Vector{}, Parameters[uv] Point{}
+Surface/Util/Edges from Directions :: Select brep edges based on edge direction | IN: Brep[B] Brep, Directions[D] Vector[], Reflex[R] Boolean, Angle[A] Number | OUT: Edges[E] Curve[], Indices[I] Integer[], Map[M] Text[]
+Surface/Util/Edges from Faces :: Select all brep edges that delineate certain faces | IN: Brep[B] Brep, Points[P] Point[] | OUT: Edges[E] Curve[], Indices[I] Integer[]
+Surface/Util/Edges from Length :: Select brep edges based on length | IN: Brep[B] Brep, Minimum[L-] Number, Maximum[L+] Number | OUT: Edges[E] Curve[], Indices[I] Integer[]
+Surface/Util/Edges from Linearity :: Select brep edges based on linearity | IN: Brep[B] Brep, Minimum[L-] Number, Maximum[L+] Number | OUT: Edges[E] Curve[], Indices[I] Integer[]
+Surface/Util/Edges from Points :: Select brep edges based on point coincidence | IN: Brep[B] Brep, Points[P] Point[], Valence[V] Integer, Tolerance[T] Number | OUT: Edges[E] Curve[], Indices[I] Integer[], Map[M] Text[]
+Surface/Util/Fillet Edge :: Fillet some edges of a brep. | IN: Shape[S] Brep, Blend[B] Integer, Metric[M] Integer, Edges[E] Integer[], Radii[R] Number[] | OUT: Result[B] Brep
+Surface/Util/Flip :: Flip the normals of a surface based on local or remote ge... | IN: Surface[S] Surface, Guide[G] Surface | OUT: Surface[S] Surface, Result[R] Boolean
+Surface/Util/Isotrim :: Extract an isoparametric subset of a surface. | IN: Surface[S] Surface, Domain[D] Domain² | OUT: Surface[S] Surface
+Surface/Util/Loft Options :: Contains a collection of lofting options | PARAM
+Surface/Util/Merge Faces :: Merge all adjacent co-planar faces in a brep | IN: Brep[B] Brep | OUT: Breps[B] Brep, Before[N0] Integer, After[N1] Integer
+Surface/Util/Offset Surface :: Offset a surface by a fixed amount. | IN: Surface[S] Surface, Distance[D] Number, Retrim[T] Boolean | OUT: Surface[S] Surface
+Surface/Util/Offset Surface Loose :: Offset a surface by moving the control points. | IN: Surface[S] Surface, Distance[D] Number, Retrim[T] Boolean | OUT: Surface[S] Surface
+Surface/Util/Retrim :: Retrim a surface based on 3D trim data from another surface. | IN: Source[S] Surface, Target[T] Surface | OUT: Surface[S] Surface
+Surface/Util/Reverse Surface :: Reverse directions of surface parameterization (U, V, and W) | IN: Surface[S] Surface, U[U] Boolean, V[V] Boolean, W[W] Boolean | OUT: Surface[S] Surface
+Surface/Util/Surface Frames :: Generate a grid of {uv} frames on a surface | IN: Surface[S] Surface, U Count[U] Integer, V Count[V] Integer | OUT: Frames[F] Plane{}, Parameters[uv] Point{}
+Surface/Util/Transpose Surface :: Transpose surface parameterization (swap U and V) | IN: Surface[S] Surface | OUT: Surface[S] Surface, U[U] Domain, V[V] Domain
+Surface/Util/Untrim :: Remove all trim curves from a surface. | IN: Surface[S] Surface | OUT: Surface[S] Surface
+Transform/Affine/Box Mapping :: Transform geometry from one box into another. | IN: Geometry[G] Geometry, Source[S] Box, Target[T] Box | OUT: Geometry[G] Geometry, Transform[X] Transform
+Transform/Affine/Camera Obscura :: Camera Obscura (point mirror) transformation. | IN: Geometry[G] Geometry, Point[P] Point, Factor[F] Number | OUT: Geometry[G] Geometry, Transform[X] Transform
+Transform/Affine/Orient Direction :: Orient an object using directional constraints only. | IN: Geometry[G] Geometry, Point A[pA] Point, Direction A[dA] Vector, Point B[pB] Point, Direction B[dB] Vector | OUT: Geometry[G] Geometry, Transform[X] Transform
+Transform/Affine/Project :: Project an object onto a plane. | IN: Geometry[G] Generic Data, Plane[P] Plane | OUT: Geometry[G] Generic Data, Transform[X] Transform
+Transform/Affine/Project Along :: Project an object onto a plane along a direction. | IN: Geometry[G] Generic Data, Plane[P] Plane, Direction[D] Vector | OUT: Geometry[G] Generic Data, Transform[X] Transform
+Transform/Affine/Rectangle Mapping :: Transform geometry from one rectangle into another. | IN: Geometry[G] Geometry, Source[S] Rectangle, Target[T] Rectangle | OUT: Geometry[G] Geometry, Transform[X] Transform
+Transform/Affine/Scale :: Scale an object uniformly in all directions. | IN: Geometry[G] Geometry, Center[C] Point, Factor[F] Number | OUT: Geometry[G] Geometry, Transform[X] Transform
+Transform/Affine/Scale NU :: Scale an object with non-uniform factors. | IN: Geometry[G] Geometry, Plane[P] Plane, Scale X[X] Number, Scale Y[Y] Number, Scale Z[Z] Number | OUT: Geometry[G] Geometry, Transform[X] Transform
+Transform/Affine/Shear :: Shear an object based on a shearing vector. | IN: Geometry[G] Geometry, Base[P] Plane, Grip[G] Point, Target[T] Point | OUT: Geometry[G] Geometry, Transform[X] Transform
+Transform/Affine/Shear Angle :: Shear an object based on tilt angles. | IN: Geometry[G] Geometry, Base[P] Plane, Angle X[Ax] Number, Angle Y[Ay] Number | OUT: Geometry[G] Geometry, Transform[X] Transform
+Transform/Affine/Triangle Mapping :: Transform geometry from one triangle into another. | IN: Geometry[G] Geometry, Source[S] Curve, Target[T] Curve | OUT: Geometry[G] Geometry, Transform[X] Transform
+Transform/Array/Box Array :: Create a box array of geometry. | IN: Geometry[G] Geometry, Cell[C] Box, X Count[X] Integer, Y Count[Y] Integer, Z Count[Z] Integer | OUT: Geometry[G] Geometry[], Transform[X] Transform[]
+Transform/Array/Curve Array :: Create an array of geometry along a curve. | IN: Geometry[G] Geometry, Curve[C] Curve, Count[N] Integer | OUT: Geometry[G] Geometry[], Transform[X] Transform[]
+Transform/Array/Kaleidoscope :: Apply a kaleidoscope transformation to an object. | IN: Geometry[G] Geometry, Plane[P] Plane, Segments[S] Integer | OUT: Geometry[G] Geometry[], Transform[X] Transform[]
+Transform/Array/Linear Array :: Create a linear array of geometry. | IN: Geometry[G] Geometry, Direction[D] Vector, Count[N] Integer | OUT: Geometry[G] Geometry[], Transform[X] Transform[]
+Transform/Array/Polar Array :: Create a polar array of geometry. | IN: Geometry[G] Geometry, Plane[P] Plane, Count[N] Integer, Angle[A] Number | OUT: Geometry[G] Geometry[], Transform[X] Transform[]
+Transform/Array/Rectangular Array :: Create a rectangular array of geometry. | IN: Geometry[G] Geometry, Cell[C] Rectangle, X Count[X] Integer, Y Count[Y] Integer | OUT: Geometry[G] Geometry[], Transform[X] Transform[]
+Transform/Euclidean/Mirror :: Mirror an object. | IN: Geometry[G] Geometry, Plane[P] Plane | OUT: Geometry[G] Geometry, Transform[X] Transform
+Transform/Euclidean/Move :: Translate (move) an object along a vector. | IN: Geometry[G] Geometry, Motion[T] Vector | OUT: Geometry[G] Geometry, Transform[X] Transform
+Transform/Euclidean/Move Away From :: Translate (move) an object away from another object. | IN: Geometry[G] Geometry, Emitter[E] Geometry, Distance[D] Number | OUT: Geometry[G] Geometry, Transform[X] Transform
+Transform/Euclidean/Move To Plane :: Translate (move) an object onto a plane. | IN: Geometry[G] Geometry, Plane[P] Plane, Above[A] Boolean, Below[B] Boolean | OUT: Geometry[G] Geometry, Transform[X] Transform
+Transform/Euclidean/Orient :: Orient an object. Orientation is sometimes called a 'Chan... | IN: Geometry[G] Geometry, Source[A] Plane, Target[B] Plane | OUT: Geometry[G] Geometry, Transform[X] Transform
+Transform/Euclidean/Rotate :: Rotate an object in a plane. | IN: Geometry[G] Geometry, Angle[A] Number, Plane[P] Plane | OUT: Geometry[G] Geometry, Transform[X] Transform
+Transform/Euclidean/Rotate 3D :: Rotate an object around a center point and an axis vector. | IN: Geometry[G] Geometry, Angle[A] Number, Center[C] Point, Axis[X] Vector | OUT: Geometry[G] Geometry, Transform[X] Transform
+Transform/Euclidean/Rotate Axis :: Rotate an object around an axis. | IN: Geometry[G] Geometry, Angle[A] Number, Axis[X] Line | OUT: Geometry[G] Geometry, Transform[X] Transform
+Transform/Euclidean/Rotate Direction :: Rotate an object from one direction to another. | IN: Geometry[G] Geometry, Center[C] Point, From[F] Vector, To[T] Vector | OUT: Geometry[G] Geometry, Transform[X] Transform
+Transform/Euclidean/Sanity XForm :: Apply a sanity transformation to f a r - a w a y, tiny or... | IN: Geometry[G] Geometry[] | OUT: Geometry[G] Geometry[], Wackometry[W] Geometry[]
+Transform/Morph/Bend Deform :: Deform a shape by bending it | IN: Geometry[G] Geometry, Bending Arc[B] Arc | OUT: Geometry[G] Geometry
+Transform/Morph/Blend Box :: Create a twisted box between two surfaces. | IN: Surface A[Sa] Surface, Domain A[Da] Domain², Surface B[Sb] Surface, Domain B[Db] Domain² | OUT: Twisted Box[B] Twisted Box
+Transform/Morph/Box Morph :: Morph an object into a twisted box. | IN: Geometry[G] Geometry, Reference[R] Box, Target[T] Twisted Box | OUT: Geometry[G] Geometry
+Transform/Morph/Flow :: Re-aligns objects from a base curve to a target curve. | IN: Geometry[G] Geometry, Base[C0] Curve, Target[C1] Curve, Reverse Base[R0] Boolean, Reverse Target[R1] Boolean, Stretch[S] Boolean, Rigid[R] Boolean | OUT: Geometry[G] Geometry
+Transform/Morph/Maelstrom :: Spirally deforms objects as if they were caught in a whir... | IN: Geometry[G] Geometry, Plane[P] Plane, First[R0] Number, Second[R1] Number, Angle[A] Number, Rigid[R] Boolean | OUT: Geometry[G] Geometry
+Transform/Morph/Map to Surface :: Map a curve onto a surface via control points. | IN: Curve[C] Curve, Source[S] Surface, Target[T] Surface | OUT: Curve[C] Curve
+Transform/Morph/Mirror Curve :: Mirror a shape in a freeform curve. | IN: Geometry[G] Geometry, Curve[C] Curve, Tangent[T] Boolean | OUT: Geometry[G] Geometry
+Transform/Morph/Mirror Surface :: Mirror geometry in a freeform surface. | IN: Geometry[G] Geometry, Surface[S] Surface, Frame[F] Boolean | OUT: Geometry[G] Geometry
+Transform/Morph/MorphToMesh :: Morph geometry from reference polygons to offset cells of... | IN: Geometry[G] Generic Data[], Mesh[M] Mesh, Offsets[O] Number[] | OUT: Geometry[G] Geometry, Reference Polygons[Ref] Curve[]
+Transform/Morph/Point Deform :: Deform a shape by moving control-points individually | IN: Geometry[G] Geometry, Points[P] Point[], Motion[M] Vector[] | OUT: Geometry[G] Geometry
+Transform/Morph/Spatial Deform :: Perform spatial deformation based on custom space syntax. | IN: Geometry[G] Geometry, Syntax[S] Point[], Forces[F] Vector[] | OUT: Geometry[G] Geometry
+Transform/Morph/Spatial Deform (custom) :: Perform spatial deformation based on custom space syntax. | IN: Geometry[G] Geometry, Syntax[S] Point[], Forces[F] Vector[], Falloff[f] Text | OUT: Geometry[G] Geometry
+Transform/Morph/Splop :: Wraps geometry onto a surface. | IN: Geometry[G] Geometry, Plane[P] Plane, Surface[S] Surface, Parameter[uv] Point, Angle[A] Number, Rigid[R] Boolean | OUT: Geometry[G] Geometry
+Transform/Morph/Sporph :: Deforms an object from a source surface to a target surface | IN: Geometry[G] Geometry, Base[S0] Surface, Base UV[P0] Point, Target[S1] Surface, Target UV[P1] Point, Rigid[R] Boolean | OUT: Geometry[G] Geometry
+Transform/Morph/Stretch :: Deforms objects by stretching them along a finite axis. | IN: Geometry[G] Geometry, Axis[X] Line, Length[L] Number, Rigid[R] Boolean | OUT: Geometry[G] Geometry
+Transform/Morph/Surface Box :: Create a twisted box on a surface patch. | IN: Surface[S] Surface, Domain[D] Domain², Height[H] Number | OUT: Twisted Box[B] Twisted Box
+Transform/Morph/Surface Morph :: Morph geometry into surface UVW coordinates | IN: Geometry[G] Geometry, Reference[R] Box, Surface[S] Surface, U Domain[U] Domain, V Domain[V] Domain, W Domain[W] Domain | OUT: Geometry[G] Geometry
+Transform/Morph/Taper :: Deforms objects toward or away from an axis | IN: Geometry[G] Geometry, Axis[X] Line, Start[R0] Number, End[R1] Number, Flat[F] Boolean, Infinite[I] Boolean, Rigid[R] Boolean | OUT: Geometry[G] Geometry
+Transform/Morph/Twist :: Deforms objects by twisting them around an axis. | IN: Geometry[G] Geometry, Axis[X] Line, Angle[A] Number, Infinite[I] Boolean, Rigid[R] Boolean | OUT: Geometry[G] Geometry
+Transform/Morph/Twisted Box :: Create a twisted box from corner points. | IN: Corner A[A] Point, Corner B[B] Point, Corner C[C] Point, Corner D[D] Point, Corner E[E] Point, Corner F[F] Point, Corner G[G] Point, Corner H[H] Point | OUT: Twisted Box[B] Twisted Box
+Transform/Util/Compound :: Compound two transformations. | IN: Transforms[T] Transform[] | OUT: Compound[X] Transform
+Transform/Util/Group :: Group a geometry set | IN: Geometry[G] Geometry[] | OUT: Group[G] Group
+Transform/Util/Inverse Transform :: Invert a transformation. | IN: Transform[T] Transform | OUT: Transform[T] Transform
+Transform/Util/Merge Group :: Merge two geometry sets | IN: Group A[A] Group, Group B[B] Group | OUT: Group[G] Group
+Transform/Util/Named Group :: Group a geometry set under a name | IN: Group[G] Group, Geometry[G] Geometry[], Name[N] Text | OUT: Group[G] Group, Geometry[G] Geometry[], Name[N] Text
+Transform/Util/Split :: Split a compound transformation into fragments. | IN: Transform[T] Transform | OUT: Fragments[F] Transform[]
+Transform/Util/Split Group :: Split a group | IN: Group[G] Group, Indices[I] Integer[], Wrap[W] Boolean | OUT: Group A[A] Group, Group B[B] Group
+Transform/Util/Transform :: Transform an object. | IN: Geometry[G] Geometry, Transform[T] Transform | OUT: Geometry[G] Geometry
+Transform/Util/Transform Matrix :: A 4x4 Transformation matrix | PARAM
+Transform/Util/Ungroup :: Ungroup a geometry set | IN: Group[G] Group | OUT: Geometry[G] Geometry[]
+Vector/Colour/Blend Colours :: Interpolate (blend) between two colours. | IN: Colour A[A] Colour, Colour B[B] Colour, Factor[F] Number | OUT: Colour[C] Colour
+Vector/Field/Break Field :: Break a field into individual elements | IN: Field[F] Field | OUT: Fields[F] Field[]
+Vector/Field/Direction Display :: Display the force directions of a field section | IN: Field[F] Field, Section[S] Rectangle, Samples[N] Integer | OUT: Display[D] Mesh
+Vector/Field/Evaluate Field :: Evaluate a field at a point | IN: Field[F] Field, Point[P] Point | OUT: Tensor[T] Vector, Strength[S] Number
+Vector/Field/Field Line :: Compute the field line through a certain point | IN: Field[F] Field, Point[P] Point, Steps[N] Integer, Accuracy[A] Number, Method[M] Integer | OUT: Curve[C] Curve
+Vector/Field/Line Charge :: Create a field due to a line charge | IN: Line[L] Line, Charge[C] Number, Bounds[B] Box | OUT: Field[F] Field
+Vector/Field/Merge Fields :: Merge a collection of fields into one | IN: Fields[F] Field[] | OUT: Field[F] Field
+Vector/Field/Perpendicular Display :: Display the perpendicularity of a field through a section | IN: Field[F] Field, Section[S] Rectangle, Samples[N] Integer, Positive Colour[C+] Colour, Negative Colour[C-] Colour | OUT: Display[D] Mesh
+Vector/Field/Point Charge :: Create a field due to a point charge | IN: Point[P] Point, Charge[C] Number, Decay[D] Number, Bounds[B] Box | OUT: Field[F] Field
+Vector/Field/Scalar Display :: Display the scalar values of a field section | IN: Field[F] Field, Section[S] Rectangle, Samples[N] Integer | OUT: Display[D] Mesh
+Vector/Field/Spin Force :: Create a field due to a spin force | IN: Plane[P] Plane, Strength[S] Number, Radius[R] Number, Decay[D] Number, Bounds[B] Box | OUT: Field[F] Field
+Vector/Field/Tensor Display :: Display the tensor vectors of a field section | IN: Field[F] Field, Section[S] Rectangle, Samples[N] Integer | OUT: -
+Vector/Field/Vector Force :: Create a field due to a vector force | IN: Line[L] Line, Bounds[B] Box | OUT: Field[F] Field
+Vector/Grid/Hexagonal :: 2D grid with hexagonal cells | IN: Plane[P] Plane, Size[S] Number, Extent X[Ex] Integer, Extent Y[Ey] Integer | OUT: Cells[C] Curve{}, Points[P] Point{}
+Vector/Grid/Populate 2D :: Populate a 2-Dimensional region with points | IN: Region[R] Rectangle, Count[N] Integer, Seed[S] Integer, Points[P] Point[] | OUT: Population[P] Point[]
+Vector/Grid/Populate 3D :: Populate a 3-Dimensional region with points | IN: Region[R] Box, Count[N] Integer, Seed[S] Integer, Points[P] Point[] | OUT: Population[P] Point[]
+Vector/Grid/Populate Geometry :: Populate generic geometry with points | IN: Geometry[G] Geometry, Count[N] Integer, Seed[S] Integer, Points[P] Point[] | OUT: Population[P] Point[]
+Vector/Grid/Radial :: 2D radial grid | IN: Plane[P] Plane, Size[S] Number, Extent R[Er] Integer, Extent P[Ep] Integer | OUT: Cells[C] Curve{}, Points[P] Point{}
+Vector/Grid/Rectangular :: 2D grid with rectangular cells | IN: Plane[P] Plane, Size X[Sx] Number, Size Y[Sy] Number, Extent X[Ex] Integer, Extent Y[Ey] Integer | OUT: Cells[C] Rectangle, Points[P] Point{}
+Vector/Grid/Square :: 2D grid with square cells | IN: Plane[P] Plane, Size[S] Number, Extent X[Ex] Integer, Extent Y[Ey] Integer | OUT: Cells[C] Rectangle, Points[P] Point{}
+Vector/Grid/Triangular :: 2D grid with triangular cells | IN: Plane[P] Plane, Size[S] Number, Extent X[Ex] Integer, Extent Y[Ey] Integer | OUT: Cells[C] Curve{}, Points[P] Point{}
+Vector/Plane/Adjust Plane :: Adjust a plane to match a new normal direction | IN: Plane[P] Plane, Normal[N] Vector | OUT: Plane[P] Plane
+Vector/Plane/Align Plane :: Perform minimal rotation to align a plane with a guide ve... | IN: Plane[P] Plane, Direction[D] Vector | OUT: Plane[P] Plane, Angle[A] Number
+Vector/Plane/Align Planes :: Align planes by minimizing their serial rotation. | IN: Planes[P] Plane[], Master[M] Plane | OUT: Planes[P] Plane[]
+Vector/Plane/Construct Plane :: Construct a plane from an origin point and {x}, {y} axes. | IN: Origin[O] Point, X-Axis[X] Vector, Y-Axis[Y] Vector | OUT: Plane[Pl] Plane
+Vector/Plane/Deconstruct Plane :: Deconstruct a plane into its component parts. | IN: Plane[P] Plane | OUT: Origin[O] Point, X-Axis[X] Vector, Y-Axis[Y] Vector, Z-Axis[Z] Vector
+Vector/Plane/Flip Plane :: Flip or swap the axes of a plane | IN: Plane[P] Plane, Reverse X[X] Boolean, Reverse Y[Y] Boolean, Swap axes[S] Boolean | OUT: Plane[P] Plane
+Vector/Plane/Line + Line :: Create a plane from two line segments. | IN: Line A[A] Line, Line B[B] Line | OUT: Plane[Pl] Plane
+Vector/Plane/Line + Pt :: Create a plane from a line and a point. | IN: Line[L] Line, Point[P] Point | OUT: Plane[Pl] Plane
+Vector/Plane/Plane 3Pt :: Create a plane through three points. | IN: Point A[A] Point, Point B[B] Point, Point C[C] Point | OUT: Plane[Pl] Plane
+Vector/Plane/Plane Closest Point :: Find the closest point on a plane. | IN: Point[S] Point, Plane[P] Plane | OUT: Point[P] Point, UV Point[uv] Point, Distance[D] Number
+Vector/Plane/Plane Coordinates :: Get the coordinates of a point in a plane axis system. | IN: Point[P] Point, System[S] Plane | OUT: X coordinate[X] Number, Y coordinate[Y] Number, Z coordinate[Z] Number
+Vector/Plane/Plane Fit :: Fit a plane through a set of points. | IN: Points[P] Point[] | OUT: Plane[Pl] Plane, Deviation[dx] Number
+Vector/Plane/Plane Normal :: Create a plane perpendicular to a vector. | IN: Origin[O] Point, Z-Axis[Z] Vector | OUT: Plane[P] Plane
+Vector/Plane/Plane Offset :: Offset a plane. | IN: Base Plane[P] Plane, Offset[O] Number | OUT: Plane[Pl] Plane
+Vector/Plane/Plane Origin :: Change the origin point of a plane | IN: Base[B] Plane, Origin[O] Point | OUT: Plane[Pl] Plane
+Vector/Plane/Rotate Plane :: Perform plane rotation around plane z-axis | IN: Plane[P] Plane, Angle[A] Number | OUT: Plane[P] Plane
+Vector/Plane/XY Plane :: World XY plane. | IN: Origin[O] Point | OUT: Plane[P] Plane
+Vector/Plane/XZ Plane :: World XZ plane. | IN: Origin[O] Point | OUT: Plane[P] Plane
+Vector/Plane/YZ Plane :: World YZ plane. | IN: Origin[O] Point | OUT: Plane[P] Plane
+Vector/Point/Barycentric :: Create a point from barycentric {u,v,w} coordinates | IN: Point A[A] Point, Point B[B] Point, Point C[C] Point, Coordinate U[U] Number, Coordinate V[V] Number, Coordinate W[W] Number | OUT: Point[P] Point
+Vector/Point/Closest Point :: Find closest point in a point collection. | IN: Point[P] Point, Cloud[C] Point[] | OUT: Closest Point[P] Point, CP Index[i] Integer, Distance[D] Number
+Vector/Point/Closest Points :: Find closest points in a point collection. | IN: Point[P] Point, Cloud[C] Point[], Count[N] Integer | OUT: Closest Point[P] Point[], CP Index[i] Integer[], Distance[D] Number[]
+Vector/Point/Construct Point :: Construct a point from {xyz} coordinates. | IN: X coordinate[X] Number, Y coordinate[Y] Number, Z coordinate[Z] Number | OUT: Point[Pt] Point
+Vector/Point/Coordinate Mask :: Represents a list of point coordinate masks | PARAM
+Vector/Point/Cull Duplicates :: Cull points that are coincident within tolerance | IN: Points[P] Point[], Tolerance[T] Number | OUT: Points[P] Point[], Indices[I] Integer[], Valence[V] Integer[]
+Vector/Point/Deconstruct :: Deconstruct a point into its component parts. | IN: Point[P] Point | OUT: X component[X] Number, Y component[Y] Number, Z component[Z] Number
+Vector/Point/Distance :: Compute Euclidean distance between two point coordinates. | IN: Point A[A] Point, Point B[B] Point | OUT: Distance[D] Number
+Vector/Point/Numbers to Points :: Convert a list of numbers to a list of points | IN: Numbers[N] Number[], Mask[M] Coordinate Mask | OUT: Points[P] Point[]
+Vector/Point/Point Cloud Attributes :: Point Cloud Attributes | IN: Cloud[Pc] Point Cloud, Locations[L] Point[], Normals[N] Vector[], Colours[C] Colour[], Hidden[H] Boolean[] | OUT: Cloud[Pc] Point Cloud, Locations[L] Point[], Normals[N] Vector[], Colours[C] Colour[], Hidden[H] Boolean[]
+Vector/Point/Point Cloud Closest Point :: Find the closest point in a point cloud | IN: Point[P] Point, Cloud[Pc] Point Cloud | OUT: Closest Point[P] Point, Index[I] Integer, Distance[D] Number
+Vector/Point/Point Cylindrical :: Create a point from cylindrical {angle,radius,elevation} ... | IN: Base plane[P] Plane, Angle[A] Number, Radius[R] Number, Elevation[E] Number | OUT: Point[Pt] Point
+Vector/Point/Point Groups :: Create groups from nearby points | IN: Points[P] Point[], Distance[D] Number | OUT: Groups[G] Point{}, Indices[I] Integer{}
+Vector/Point/Point Oriented :: Create a point from plane {u,v,w} coordinates. | IN: Base plane[P] Plane, U component[U] Number, V component[V] Number, W component[W] Number | OUT: Point[Pt] Point
+Vector/Point/Point Polar :: Create a point from polar {phi,theta,offset} coordinates. | IN: Base plane[P] Plane, XY angle[xy] Number, Z angle[z] Number, Offset[d] Number | OUT: Point[Pt] Point
+Vector/Point/Points to Numbers :: Convert a list of points to a list of numbers | IN: Points[P] Point[], Mask[M] Coordinate Mask | OUT: Numbers[N] Number[]
+Vector/Point/Project Point :: Project a point onto a collection of shapes | IN: Point[P] Point, Direction[D] Vector, Geometry[G] Geometry[] | OUT: Point[P] Point, Index[I] Integer
+Vector/Point/Pull Point :: Pull a point to a variety of geometry. | IN: Point[P] Point, Geometry[G] Geometry[] | OUT: Closest Point[P] Point, Distance[D] Number, Index[I] Integer
+Vector/Point/Reduce Point Cloud :: Reduce the number of points in a point cloud | IN: Cloud[Pc] Point Cloud, Samples[S] Integer | OUT: Cloud[Pc] Point Cloud
+Vector/Point/Sort Along Curve :: Sort points along a curve | IN: Points[P] Point[], Curve[C] Curve | OUT: Points[P] Point[], Indices[I] Integer[]
+Vector/Point/Sort Points :: Sort points by Euclidean coordinates (first x, then y, th... | IN: Points[P] Point[] | OUT: Points[P] Point[], Indices[I] Integer[]
+Vector/Point/To Polar :: Convert a 3D point to plane polar coordinates. | IN: Point[P] Point, System[S] Plane | OUT: Phi[P] Number, Theta[T] Number, Radius[R] Number
+Vector/Vector/Addition :: Perform vector-vector addition. | IN: Vector A[A] Vector, Vector B[B] Vector, Unitize[U] Boolean | OUT: Vector[V] Vector, Length[L] Number
+Vector/Vector/Amplitude :: Set the amplitude (length) of a vector. | IN: Vector[V] Vector, Amplitude[A] Number | OUT: Vector[V] Vector
+Vector/Vector/Angle :: Compute the angle between two vectors. | IN: Vector A[A] Vector, Vector B[B] Vector, Plane[P] Plane | OUT: Angle[A] Number, Reflex[R] Number
+Vector/Vector/Cross Product :: Compute vector cross product. | IN: Vector A[A] Vector, Vector B[B] Vector, Unitize[U] Boolean | OUT: Vector[V] Vector, Length[L] Number
+Vector/Vector/Deconstruct Vector :: Deconstruct a vector into its component parts. | IN: Vector[V] Vector | OUT: X component[X] Number, Y component[Y] Number, Z component[Z] Number
+Vector/Vector/Divide :: Perform vector-scalar division. | IN: Vector[V] Vector, Factor[F] Number | OUT: Vector[V] Vector, Length[L] Number
+Vector/Vector/Dot Product :: Compute vector dot product. | IN: Vector A[A] Vector, Vector B[B] Vector, Unitize[U] Boolean | OUT: Dot product[D] Number
+Vector/Vector/Multiply :: Perform vector-scalar multiplication. | IN: Vector[V] Vector, Factor[F] Number | OUT: Vector[V] Vector, Length[L] Number
+Vector/Vector/Reverse :: Reverse a vector (multiply by -1). | IN: Vector[V] Vector | OUT: Vector[V] Vector
+Vector/Vector/Rotate :: Rotate a vector around an axis. | IN: Vector[V] Vector, Axis[X] Vector, Angle[A] Number | OUT: Vector[V] Vector
+Vector/Vector/Solar Incidence :: Gets the solar incidence vector for a certain time and place | IN: Location[L] Location, Time[T] Time, Orientation[P] Plane | OUT: Direction[D] Vector, Elevation[E] Number, Horizon[H] Boolean, Colour[C] Colour
+Vector/Vector/Unit Vector :: Unitize vector. | IN: Vector[V] Vector | OUT: Vector[V] Vector
+Vector/Vector/Unit X :: Unit vector parallel to the world {x} axis. | IN: Factor[F] Number | OUT: Unit vector[V] Vector
+Vector/Vector/Unit Y :: Unit vector parallel to the world {y} axis. | IN: Factor[F] Number | OUT: Unit vector[V] Vector
+Vector/Vector/Unit Z :: Unit vector parallel to the world {z} axis. | IN: Factor[F] Number | OUT: Unit vector[V] Vector
+Vector/Vector/Vector 2Pt :: Create a vector between two points. | IN: Point A[A] Point, Point B[B] Point, Unitize[U] Boolean | OUT: Vector[V] Vector, Length[L] Number
+Vector/Vector/Vector Length :: Compute the length (amplitude) of a vector. | IN: Vector[V] Vector | OUT: Length[L] Number
+Vector/Vector/Vector XYZ :: Create a vector from {xyz} components. | IN: X component[X] Number, Y component[Y] Number, Z component[Z] Number | OUT: Vector[V] Vector, Length[L] Number

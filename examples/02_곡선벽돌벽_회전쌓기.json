@@ -1,0 +1,715 @@
+{
+ "title": "곡선 벽돌 벽 — 반 장 엇갈림 + 위로 갈수록 회전",
+ "summary": "벽 길이와 휨으로 원호 기준선을 만들고, 벽돌 높이+줄눈 간격으로 그 선을 위로 복사해 단(코스)을 만들어요. 단마다 선을 따라 벽돌 길이+줄눈 간격으로 벽돌 중심을 찍는데, 홀수 단은 반 장만큼 밀어서 엇갈리게 해요. 각 중심에서 곡선 방향을 따르는 상자로 벽돌을 놓고, 아래 단 0도에서 맨 위 단 최대각까지 단마다 조금씩 더 돌려 벽면에 패턴이 생기게 해요.",
+ "notes": "단 수·회전 최대각·벽 휨 슬라이더를 먼저 움직여 보세요. 줄눈을 0으로 하면 벽돌이 맞닿아요. '6. 높이 따라 회전'의 Rotate를 Bake하면 벽돌 솔리드가 나와요. 벽 휨은 0이 되면 원호를 만들 수 없어서 200부터 시작해요.",
+ "groups": [
+  {
+   "id": "g1",
+   "label": "1. 입력 값",
+   "note": "벽 크기, 벽돌 치수, 줄눈, 단 수, 회전 최대각을 정해요."
+  },
+  {
+   "id": "g2",
+   "label": "2. 곡선 벽 기준선",
+   "note": "양 끝점과 가운데로 휜 점, 세 점을 지나는 원호로 벽의 평면 곡선을 만들어요."
+  },
+  {
+   "id": "g3",
+   "label": "3. 단 쌓기",
+   "note": "벽돌 높이+줄눈 간격으로 기준선을 위로 복사해 단마다 곡선을 하나씩 만들어요."
+  },
+  {
+   "id": "g4",
+   "label": "4. 벽돌 자리 (반 장 엇갈림)",
+   "note": "단마다 곡선을 따라 일정 간격으로 벽돌 중심을 찍고, 홀수 단은 반 장 밀어요."
+  },
+  {
+   "id": "g5",
+   "label": "5. 벽돌 놓기",
+   "note": "중심마다 곡선 방향을 따르는 작업면을 세우고 벽돌 크기 상자를 놓아요."
+  },
+  {
+   "id": "g6",
+   "label": "6. 높이 따라 회전",
+   "note": "맨 아래 단 0도에서 맨 위 단 최대각까지 단마다 각도를 나눠 벽돌을 제자리에서 돌려요."
+  }
+ ],
+ "nodes": [
+  {
+   "id": "s1",
+   "component": "Params/Input/Number Slider",
+   "group": "g1",
+   "nickname": "벽 길이",
+   "slider": [
+    2000,
+    12000,
+    6000
+   ],
+   "int": true
+  },
+  {
+   "id": "s2",
+   "component": "Params/Input/Number Slider",
+   "group": "g1",
+   "nickname": "벽 휨",
+   "slider": [
+    200,
+    3000,
+    1200
+   ],
+   "int": true
+  },
+  {
+   "id": "s3",
+   "component": "Params/Input/Number Slider",
+   "group": "g1",
+   "nickname": "단 수",
+   "slider": [
+    1,
+    60,
+    25
+   ],
+   "int": true
+  },
+  {
+   "id": "s4",
+   "component": "Params/Input/Number Slider",
+   "group": "g1",
+   "nickname": "회전 최대각(도)",
+   "slider": [
+    0,
+    90,
+    30
+   ],
+   "int": true
+  },
+  {
+   "id": "s5",
+   "component": "Params/Input/Number Slider",
+   "group": "g1",
+   "nickname": "벽돌 길이",
+   "slider": [
+    150,
+    400,
+    230
+   ],
+   "int": true
+  },
+  {
+   "id": "s6",
+   "component": "Params/Input/Number Slider",
+   "group": "g1",
+   "nickname": "벽돌 폭",
+   "slider": [
+    50,
+    200,
+    110
+   ],
+   "int": true
+  },
+  {
+   "id": "s7",
+   "component": "Params/Input/Number Slider",
+   "group": "g1",
+   "nickname": "벽돌 높이",
+   "slider": [
+    40,
+    150,
+    70
+   ],
+   "int": true
+  },
+  {
+   "id": "s8",
+   "component": "Params/Input/Number Slider",
+   "group": "g1",
+   "nickname": "줄눈",
+   "slider": [
+    0,
+    30,
+    10
+   ],
+   "int": true
+  },
+  {
+   "id": "p1",
+   "component": "Params/Input/Panel",
+   "group": "g1",
+   "nickname": "2",
+   "text": "2"
+  },
+  {
+   "id": "p2",
+   "component": "Params/Input/Panel",
+   "group": "g1",
+   "nickname": "1",
+   "text": "1"
+  },
+  {
+   "id": "c1",
+   "component": "Vector/Point/Construct Point",
+   "group": "g2",
+   "nickname": "시작점"
+  },
+  {
+   "id": "d1",
+   "component": "Maths/Operators/Division",
+   "group": "g2",
+   "nickname": "길이/2"
+  },
+  {
+   "id": "c2",
+   "component": "Vector/Point/Construct Point",
+   "group": "g2",
+   "nickname": "휜 점"
+  },
+  {
+   "id": "c3",
+   "component": "Vector/Point/Construct Point",
+   "group": "g2",
+   "nickname": "끝점"
+  },
+  {
+   "id": "a1",
+   "component": "Curve/Primitive/Arc 3Pt",
+   "group": "g2",
+   "nickname": "벽 곡선"
+  },
+  {
+   "id": "ad1",
+   "component": "Maths/Operators/Addition",
+   "group": "g3",
+   "nickname": "단 높이"
+  },
+  {
+   "id": "d2",
+   "component": "Maths/Operators/Division",
+   "group": "g3",
+   "nickname": "높이/2"
+  },
+  {
+   "id": "se1",
+   "component": "Sets/Sequence/Series",
+   "group": "g3",
+   "nickname": "단 중심 높이"
+  },
+  {
+   "id": "uz1",
+   "component": "Vector/Vector/Unit Z",
+   "group": "g3"
+  },
+  {
+   "id": "mv",
+   "component": "Transform/Euclidean/Move",
+   "group": "g3",
+   "nickname": "단 곡선들"
+  },
+  {
+   "id": "ad2",
+   "component": "Maths/Operators/Addition",
+   "group": "g4",
+   "nickname": "벽돌 간격"
+  },
+  {
+   "id": "d3",
+   "component": "Maths/Operators/Division",
+   "group": "g4",
+   "nickname": "반 장"
+  },
+  {
+   "id": "d4",
+   "component": "Maths/Operators/Division",
+   "group": "g4",
+   "nickname": "벽돌 길이/2"
+  },
+  {
+   "id": "se2",
+   "component": "Sets/Sequence/Series",
+   "group": "g4",
+   "nickname": "단 번호"
+  },
+  {
+   "id": "mo",
+   "component": "Maths/Operators/Modulus",
+   "group": "g4",
+   "nickname": "홀짝"
+  },
+  {
+   "id": "mu",
+   "component": "Maths/Operators/Multiplication",
+   "group": "g4",
+   "nickname": "엇갈림"
+  },
+  {
+   "id": "ad3",
+   "component": "Maths/Operators/Addition",
+   "group": "g4",
+   "nickname": "첫 벽돌 위치"
+  },
+  {
+   "id": "le",
+   "component": "Curve/Analysis/Length",
+   "group": "g4"
+  },
+  {
+   "id": "dv",
+   "component": "Maths/Operators/Division",
+   "group": "g4",
+   "nickname": "들어가는 장 수"
+  },
+  {
+   "id": "sb",
+   "component": "Maths/Operators/Subtraction",
+   "group": "g4",
+   "nickname": "장 수-1"
+  },
+  {
+   "id": "se3",
+   "component": "Sets/Sequence/Series",
+   "group": "g4",
+   "nickname": "벽돌 거리들"
+  },
+  {
+   "id": "tAbs",
+   "component": "Params/Input/Boolean Toggle",
+   "group": "g4",
+   "nickname": "mm로 재기(끔)",
+   "toggle": false
+  },
+  {
+   "id": "ev",
+   "component": "Curve/Analysis/Evaluate Length",
+   "group": "g4",
+   "nickname": "벽돌 중심"
+  },
+  {
+   "id": "uz2",
+   "component": "Vector/Vector/Unit Z",
+   "group": "g5"
+  },
+  {
+   "id": "cp",
+   "component": "Vector/Plane/Construct Plane",
+   "group": "g5",
+   "nickname": "벽돌 작업면"
+  },
+  {
+   "id": "d5",
+   "component": "Maths/Operators/Division",
+   "group": "g5",
+   "nickname": "폭/2"
+  },
+  {
+   "id": "cb",
+   "component": "Surface/Primitive/Center Box",
+   "group": "g5",
+   "nickname": "벽돌"
+  },
+  {
+   "id": "sb2",
+   "component": "Maths/Operators/Subtraction",
+   "group": "g6",
+   "nickname": "단 수-1"
+  },
+  {
+   "id": "cd",
+   "component": "Maths/Domain/Construct Domain",
+   "group": "g6",
+   "nickname": "0~최대각"
+  },
+  {
+   "id": "rg",
+   "component": "Sets/Sequence/Range",
+   "group": "g6",
+   "nickname": "단별 각도"
+  },
+  {
+   "id": "ra",
+   "component": "Maths/Trig/Radians",
+   "group": "g6"
+  },
+  {
+   "id": "xy",
+   "component": "Vector/Plane/XY Plane",
+   "group": "g6",
+   "nickname": "수평 회전면"
+  },
+  {
+   "id": "ro",
+   "component": "Transform/Euclidean/Rotate",
+   "group": "g6",
+   "nickname": "회전된 벽돌"
+  }
+ ],
+ "wires": [
+  [
+   "s1",
+   "",
+   "d1",
+   "A"
+  ],
+  [
+   "p1",
+   "",
+   "d1",
+   "B"
+  ],
+  [
+   "d1",
+   "Result",
+   "c2",
+   "X coordinate"
+  ],
+  [
+   "s2",
+   "",
+   "c2",
+   "Y coordinate"
+  ],
+  [
+   "s1",
+   "",
+   "c3",
+   "X coordinate"
+  ],
+  [
+   "c1",
+   "Point",
+   "a1",
+   "Point A"
+  ],
+  [
+   "c2",
+   "Point",
+   "a1",
+   "Point B"
+  ],
+  [
+   "c3",
+   "Point",
+   "a1",
+   "Point C"
+  ],
+  [
+   "s7",
+   "",
+   "ad1",
+   "A"
+  ],
+  [
+   "s8",
+   "",
+   "ad1",
+   "B"
+  ],
+  [
+   "s7",
+   "",
+   "d2",
+   "A"
+  ],
+  [
+   "p1",
+   "",
+   "d2",
+   "B"
+  ],
+  [
+   "d2",
+   "Result",
+   "se1",
+   "Start"
+  ],
+  [
+   "ad1",
+   "Result",
+   "se1",
+   "Step"
+  ],
+  [
+   "s3",
+   "",
+   "se1",
+   "Count"
+  ],
+  [
+   "se1",
+   "Series",
+   "uz1",
+   "Factor"
+  ],
+  [
+   "a1",
+   "Arc",
+   "mv",
+   "Geometry"
+  ],
+  [
+   "uz1",
+   "Unit vector",
+   "mv",
+   "Motion"
+  ],
+  [
+   "s5",
+   "",
+   "ad2",
+   "A"
+  ],
+  [
+   "s8",
+   "",
+   "ad2",
+   "B"
+  ],
+  [
+   "ad2",
+   "Result",
+   "d3",
+   "A"
+  ],
+  [
+   "p1",
+   "",
+   "d3",
+   "B"
+  ],
+  [
+   "s5",
+   "",
+   "d4",
+   "A"
+  ],
+  [
+   "p1",
+   "",
+   "d4",
+   "B"
+  ],
+  [
+   "s3",
+   "",
+   "se2",
+   "Count"
+  ],
+  [
+   "se2",
+   "Series",
+   "mo",
+   "A"
+  ],
+  [
+   "p1",
+   "",
+   "mo",
+   "B"
+  ],
+  [
+   "mo",
+   "Result",
+   "mu",
+   "A"
+  ],
+  [
+   "d3",
+   "Result",
+   "mu",
+   "B"
+  ],
+  [
+   "mu",
+   "Result",
+   "ad3",
+   "A"
+  ],
+  [
+   "d4",
+   "Result",
+   "ad3",
+   "B"
+  ],
+  [
+   "a1",
+   "Arc",
+   "le",
+   "Curve"
+  ],
+  [
+   "le",
+   "Length",
+   "dv",
+   "A"
+  ],
+  [
+   "ad2",
+   "Result",
+   "dv",
+   "B"
+  ],
+  [
+   "dv",
+   "Result",
+   "sb",
+   "A"
+  ],
+  [
+   "p2",
+   "",
+   "sb",
+   "B"
+  ],
+  [
+   "ad3",
+   "Result",
+   "se3",
+   "Start",
+   "graft"
+  ],
+  [
+   "ad2",
+   "Result",
+   "se3",
+   "Step"
+  ],
+  [
+   "sb",
+   "Result",
+   "se3",
+   "Count"
+  ],
+  [
+   "mv",
+   "Geometry",
+   "ev",
+   "Curve",
+   "graft"
+  ],
+  [
+   "se3",
+   "Series",
+   "ev",
+   "Length"
+  ],
+  [
+   "ev",
+   "Point",
+   "cp",
+   "Origin"
+  ],
+  [
+   "ev",
+   "Tangent",
+   "cp",
+   "X-Axis"
+  ],
+  [
+   "uz2",
+   "Unit vector",
+   "cp",
+   "Y-Axis"
+  ],
+  [
+   "s6",
+   "",
+   "d5",
+   "A"
+  ],
+  [
+   "p1",
+   "",
+   "d5",
+   "B"
+  ],
+  [
+   "cp",
+   "Plane",
+   "cb",
+   "Base"
+  ],
+  [
+   "d4",
+   "Result",
+   "cb",
+   "X"
+  ],
+  [
+   "d2",
+   "Result",
+   "cb",
+   "Y"
+  ],
+  [
+   "d5",
+   "Result",
+   "cb",
+   "Z"
+  ],
+  [
+   "s3",
+   "",
+   "sb2",
+   "A"
+  ],
+  [
+   "p2",
+   "",
+   "sb2",
+   "B"
+  ],
+  [
+   "s4",
+   "",
+   "cd",
+   "Domain end"
+  ],
+  [
+   "cd",
+   "Domain",
+   "rg",
+   "Domain"
+  ],
+  [
+   "sb2",
+   "Result",
+   "rg",
+   "Steps"
+  ],
+  [
+   "rg",
+   "Range",
+   "ra",
+   "Degrees"
+  ],
+  [
+   "ev",
+   "Point",
+   "xy",
+   "Origin"
+  ],
+  [
+   "cb",
+   "Box",
+   "ro",
+   "Geometry"
+  ],
+  [
+   "ra",
+   "Radians",
+   "ro",
+   "Angle",
+   "graft"
+  ],
+  [
+   "xy",
+   "Plane",
+   "ro",
+   "Plane"
+  ],
+  [
+   "tAbs",
+   "",
+   "ev",
+   "Normalized"
+  ]
+ ]
+}
