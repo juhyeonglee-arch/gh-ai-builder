@@ -5,6 +5,10 @@
 설계 의도를 말로 적으면, Rhino 8 그래스호퍼 캔버스에 **진짜 컴포넌트가 선으로 이어진 정의**가 만들어지고,
 결과를 재료별 레이어와 블록으로 정리해 Rhino 객체로 **Bake**할 수 있는 도구예요.
 
+**▶ 웹 미리보기: https://juhyeonglee-arch.github.io/gh-ai-builder/** — 설치 없이 링크만 열면 돼요.
+예제나 내 JSON을 넣으면 브라우저에서 바로 계산해 3D로 보여 주고, 컴포넌트 이름 오류와 계산 오류를 찾아 줘요.
+슬라이더를 움직여 형태를 바꿔 볼 수 있고, 내 파일은 내 브라우저 밖으로 나가지 않아요.
+
 ![08 비틀린 다이아그리드 타워](renders/08_외관_구조.png)
 
 ## 무엇을 하나요
@@ -16,9 +20,18 @@
 3. **[결과 Bake]** 를 누르면 `GH_AI::제목::재료::부재` 레이어로, 반복 부재는 Rhino 블록으로 들어가요.
 4. 정의 정보는 캔버스 패널에 같이 저장돼서 .gh를 다시 열어도 고치기·Bake가 이어져요.
 
+## 웹 미리보기로 확인하기 (Rhino 없이)
+
+1. [웹 미리보기](https://juhyeonglee-arch.github.io/gh-ai-builder/)를 열어요. 처음 한 번은 계산 엔진을 받느라 10~30초 걸려요.
+2. 예제를 고르거나, **내 JSON 파일 열기** 또는 **JSON 붙여 넣기** 후 **계산하고 보기**.
+3. 이름 오류·계산 오류·경고가 위에 표시되고, 3D 화면에서 재료별로 켜고 끌 수 있어요.
+4. 슬라이더를 바꾼 뒤 **JSON 복사**를 누르면 그 값이 담긴 JSON을 빌더에 그대로 붙여 넣을 수 있어요.
+
+웹 미리보기는 검사기(근사 계산)라서 실제 그래스호퍼와 조금 다를 수 있어요. 최종 확인은 Rhino에서 해요.
+
 ## 쓰는 법 (Rhino 8, 설치 없음)
 
-1. [Releases](https://github.com/juhyeonglee-arch/gh-ai-builder/releases)에서 `GH_AI_builder.py`를 내려받아요.
+1. [Releases](https://github.com/juhyeonglee-arch/gh-ai-builder/releases/latest)에서 `GH_AI_builder.py`를 내려받아요.
    (또는 이 저장소의 [`src/GH_AI_builder.py`](src/GH_AI_builder.py) → Download raw file)
 2. Rhino 8 명령창에 `RunPythonScript` → 내려받은 파일을 골라요. 빌더 창이 떠요.
 3. "만들고 싶은 것" 칸에 그래프 JSON을 붙여 넣고 **[새로 만들기]**.
@@ -60,8 +73,11 @@ Rhino 없이 정의를 계산해 보는 **그래스호퍼 흉내 검사기**(`te
 | 검사기 계산 | 예제마다 오류 0개, Bake 결과 1개 이상 |
 | 간섭 검사 | 08 타워 구조 부재가 유리 선을 뚫지 않음 |
 | 그림 | 예제별 간이 그림(두 OS), 08 타워 3D 렌더 4장(Linux) |
+| 웹 미리보기 | 실제 브라우저로 사이트를 열어 예제 전부 계산, 오류 0개·08 Bake 80,081개 (Linux) |
 
 결과 표는 각 실행의 **Summary**에, 그림은 **Artifacts**(`시험그림-…`)에 남아요.
+PR에서는 결과 표와 확인 그림이 PR 댓글로 자동으로 달려요(그림은 `ci-results` 브랜치에 보관).
+`main`에 합쳐지면 웹 미리보기가 같은 확인을 통과한 뒤에만 자동으로 다시 배포돼요.
 마지막 확인(실제 Rhino에서 실행)은 사람이 해야 해요.
 
 내 PC에서 똑같이 돌리려면 (개발자용):
@@ -77,6 +93,7 @@ python tests/ci_run.py --out ci_out
 src/        빌더 (Rhino 8에서 RunPythonScript로 실행) + 사용법
 examples/   붙여 넣는 정의 JSON, gen/ 생성 스크립트
 tests/      검사기(ghsim), 실제 컴포넌트 목록, 이름 검사, 간섭 검사, 3D 렌더 도구, ci_run.py
+web/        웹 미리보기 (GitHub Pages, 브라우저 속 파이썬으로 검사기 실행)
 renders/    08 타워 확인 그림
 docs/       개발 노트 (JSON 형식, 검사기, 겪은 오류, 남은 일)
 .github/    자동 시험 설정

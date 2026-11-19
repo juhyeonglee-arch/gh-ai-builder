@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GH AI 빌더 — 정의 미리보기</title>
+<link rel="stylesheet" href="style.css">
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+<aside id="side">
+  <header>
+    <h1>GH AI 빌더 <small>정의 미리보기</small></h1>
+    <p class="lead">그래프 JSON을 넣으면 Rhino 없이 브라우저에서 계산해 3D로 보여 주고, 컴포넌트 이름 오류를 찾아 줘요.
+      내 파일은 내 브라우저에서만 읽고 어디에도 올라가지 않아요.</p>
+  </header>
+
+  <section class="card">
+    <label for="ex">예제</label>
+    <select id="ex"><option value="">— 예제 고르기 —</option></select>
+    <div class="row">
+      <label class="btn ghost" for="file">내 JSON 파일 열기</label>
+      <input id="file" type="file" accept=".json,.txt,application/json" hidden>
+      <button id="copy" class="btn ghost" title="슬라이더 값까지 담은 JSON을 복사해요">JSON 복사</button>
+    </div>
+    <details id="pasteBox">
+      <summary>JSON 붙여 넣기</summary>
+      <textarea id="txt" spellcheck="false" placeholder='{"title": "...", "nodes": [...], "wires": [...]}'></textarea>
+    </details>
+    <button id="go" class="btn primary" disabled>엔진 준비 중…</button>
+    <div id="status" class="status">파이썬 엔진을 불러오는 중이에요.</div>
+  </section>
+
+  <section class="card" id="resCard" hidden>
+    <h2 id="title"></h2>
+    <p id="summary" class="muted"></p>
+    <div id="badges" class="badges"></div>
+    <ul id="msgs" class="msgs"></ul>
+  </section>
+
+  <section class="card" id="sliderCard" hidden>
+    <h2>입력값 <small class="muted">놓으면 다시 계산해요</small></h2>
+    <div id="sliders"></div>
+    <button id="reset" class="btn ghost">처음 값으로</button>
+  </section>
+
+  <section class="card" id="viewCard">
+    <h2>보기</h2>
+    <div id="layers" class="layers"></div>
+    <div class="row">
+      <button id="fit" class="btn ghost">전체 보기</button>
+      <button id="shot" class="btn ghost">그림 저장</button>
+    </div>
+  </section>
+
+  <footer class="muted">
+    Rhino에서 실제로 지으려면 <a href="https://github.com/juhyeonglee-arch/gh-ai-builder#쓰는-법-rhino-8-설치-없음">빌더 쓰는 법</a>을 보세요.
+    이 화면은 검사기(근사 계산)라서 실제 그래스호퍼와 조금 다를 수 있어요.
+  </footer>
+</aside>
+<main id="view"><canvas id="c"></canvas><div id="busy" hidden><div class="spin"></div><span id="busyText">계산 중…</span></div></main>
+<script type="module" src="app.js"></script>
+</body>
+</html>

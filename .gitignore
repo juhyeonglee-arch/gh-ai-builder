@@ -24,3 +24,5 @@ private/
 *.dxf
 *.shp
 *.zip
+_site/
+web_out/
