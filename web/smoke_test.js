@@ -43,7 +43,7 @@ const expect = JSON.parse(process.env.EXPECT || '{}'); // {"08": 80081}
       res = await pg.evaluate(() => window.__result);
     } catch (er) { res = { error: 'timeout: ' + (await pg.locator('#status').innerText().catch(() => '')) }; }
     await pg.waitForTimeout(500);
-    await pg.screenshot({ path: path.join(out, `웹_${e.file.replace(/\.json$/, '')}.png`) });
+    await pg.screenshot({ timeout: 180000, path: path.join(out, `웹_${e.file.replace(/\.json$/, '')}.png`) });
     const errs = res.error ? [res.error] : res.problems.filter(p => p.startsWith('ERROR')).concat(res.names);
     const bakeOk = !(key in expect) || (res.bake === expect[key]);
     const ok = !errs.length && res.bake > 0 && bakeOk && !logs.length;
