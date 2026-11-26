@@ -24,17 +24,20 @@ scene.add(new THREE.HemisphereLight(0xffffff, 0x8a8070, 1.1));
 const dl = new THREE.DirectionalLight(0xffffff, 1.6); dl.position.set(0.5, -0.8, 0.9); scene.add(dl);
 const dl2 = new THREE.DirectionalLight(0xffffff, 0.5); dl2.position.set(-0.7, 0.6, 0.3); scene.add(dl2);
 const camera = new THREE.PerspectiveCamera(35, 1, 10, 1e7); camera.up.set(0, 0, 1); camera.position.set(1, -1.3, 0.8);
-const controls = new OrbitControls(camera, canvas); controls.enableDamping = true;
+const controls = new OrbitControls(camera, canvas);
 const root = new THREE.Group(); scene.add(root);
 const layerGroups = {}; // 재료 → [Object3D]
 let bbox = null;
 
 function resize() {
   const r = canvas.parentElement.getBoundingClientRect();
-  renderer.setSize(r.width, r.height, false); camera.aspect = r.width / r.height; camera.updateProjectionMatrix();
+  renderer.setSize(r.width, r.height, false); camera.aspect = r.width / r.height; camera.updateProjectionMatrix(); draw();
 }
+// 큰 모델은 한 장 그리는 데 오래 걸려서, 계속 그리지 않고 바뀔 때만 그린다.
+let drawQueued = false;
+function draw() { if (drawQueued) return; drawQueued = true; requestAnimationFrame(() => { drawQueued = false; renderer.render(scene, camera); }); }
+controls.addEventListener('change', draw);
 addEventListener('resize', resize); resize();
-(function loop() { controls.update(); renderer.render(scene, camera); requestAnimationFrame(loop); })();
 
 function material(m) {
   const { label, ...p } = MAT[m] || MAT.none;
@@ -71,6 +74,7 @@ function buildScene(meta, bufs) {
   const first = !bbox; bbox = box.isEmpty() ? null : box;
   renderLayers();
   if (first || !keepView) fit();
+  draw();
 }
 
 function fit() {
@@ -80,7 +84,7 @@ function fit() {
   if (!isFinite(dir.x) || dir.length() < 0.5) dir.set(0.6, -0.75, 0.35).normalize();
   const d = r / Math.sin(THREE.MathUtils.degToRad(camera.fov) / 2) * 1.05;
   controls.target.copy(c); camera.position.copy(c).addScaledVector(dir, d);
-  camera.near = d / 1000; camera.far = d * 20; camera.updateProjectionMatrix();
+  camera.near = d / 1000; camera.far = d * 20; camera.updateProjectionMatrix(); controls.update(); draw();
 }
 
 function renderLayers() {
@@ -88,7 +92,7 @@ function renderLayers() {
   for (const m of Object.keys(layerGroups)) {
     const lab = document.createElement('label');
     const cb = document.createElement('input'); cb.type = 'checkbox'; cb.checked = layerGroups[m][0].visible;
-    cb.onchange = () => layerGroups[m].forEach(o => o.visible = cb.checked);
+    cb.onchange = () => { layerGroups[m].forEach(o => o.visible = cb.checked); draw(); };
     const sw = document.createElement('span'); sw.className = 'sw'; sw.style.background = '#' + (MAT[m] || MAT.none).color.toString(16).padStart(6, '0');
     lab.append(cb, sw, (MAT[m] || MAT.none).label); el.append(lab);
   }
